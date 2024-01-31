@@ -40,6 +40,8 @@ class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
   List<ServiceListRecord>? serviceTmpList;
   // Stores action output result for [Custom Action - getServiceDistance] action in BookingListPage widget.
   List<ServiceListRecord>? serviceAfterGetDistanceList;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in BookingListPage widget.
+  bool? isOK;
 
   /// Initialization and disposal methods.
 

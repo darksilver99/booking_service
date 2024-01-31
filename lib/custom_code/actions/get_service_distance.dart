@@ -57,5 +57,10 @@ Future<List<ServiceListRecord>> getServiceDistance(
     serviceList[i].distanceValue = distance["distance"];
   }
   serviceList.sort((a, b) => a.distanceValue.compareTo(b.distanceValue));
+  if (serviceList.isNotEmpty) {
+    if (serviceList[0].distanceValue > 100000) {
+      FFAppState().hasNearService = false;
+    }
+  }
   return serviceList;
 }
