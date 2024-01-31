@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/components/confirm_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -45,6 +47,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -70,7 +74,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
             },
           ),
           title: Text(
-            'Page Title',
+            'Setting',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Sora',
                   color: Colors.white,
@@ -83,9 +87,80 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [],
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Builder(
+                    builder: (context) => FFButtonWidget(
+                      onPressed: () async {
+                        Function() _navigate = () {};
+                        await showDialog(
+                          context: context,
+                          builder: (dialogContext) {
+                            return Dialog(
+                              elevation: 0,
+                              insetPadding: EdgeInsets.zero,
+                              backgroundColor: Colors.transparent,
+                              alignment: AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
+                              child: GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: ConfirmViewWidget(
+                                  title: 'ต้องการออกจากระบบ?',
+                                ),
+                              ),
+                            );
+                          },
+                        ).then((value) =>
+                            safeSetState(() => _model.isConfirm = value));
+
+                        if ((_model.isConfirm != null) && _model.isConfirm!) {
+                          GoRouter.of(context).prepareAuthEvent();
+                          await authManager.signOut();
+                          GoRouter.of(context).clearRedirectLocation();
+
+                          _navigate = () =>
+                              context.goNamedAuth('LoginPage', context.mounted);
+                        } else {
+                          setState(() {});
+                        }
+
+                        _navigate();
+
+                        setState(() {});
+                      },
+                      text: 'ออกจากระบบ',
+                      options: FFButtonOptions(
+                        width: double.infinity,
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Inter',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                  ),
+                ].addToEnd(SizedBox(height: 16.0)),
+              ),
+            ),
           ),
         ),
       ),

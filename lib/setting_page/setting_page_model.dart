@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/components/confirm_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -12,6 +14,8 @@ class SettingPageModel extends FlutterFlowModel<SettingPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  bool? isConfirm;
 
   /// Initialization and disposal methods.
 
