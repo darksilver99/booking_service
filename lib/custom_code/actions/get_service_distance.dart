@@ -25,7 +25,8 @@ Future<List<ServiceListRecord>> getServiceDistance(
         "https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination&key=$apiKey";
     var response = await http.post(Uri.parse(url));
     var data = jsonDecode(response.body);
-    var distance = {
+    Map<String, dynamic> distance;
+    distance = {
       "text": '-',
       "distance": 0,
     };
@@ -57,6 +58,6 @@ Future<List<ServiceListRecord>> getServiceDistance(
     serviceList[i].distanceValue = distance["distance"];
     newServiceList.add(serviceList[i]);
   }
-  newServiceList.sort((a, b) => a.distance.compareTo(b.distance));
-  return serviceList!;
+  newServiceList.sort((a, b) => a.distanceValue.compareTo(b.distanceValue));
+  return serviceList;
 }
