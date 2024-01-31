@@ -60,6 +60,8 @@ Future<List<ServiceListRecord>> getServiceDistance(
   if (serviceList.isNotEmpty) {
     if (serviceList[0].distanceValue > 100000) {
       FFAppState().hasNearService = false;
+    } else {
+      FFAppState().hasNearService = true;
     }
   }
   return serviceList;
