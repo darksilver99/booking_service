@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBr0D1fAkmsRnl2sD1NPbADoKP7akzctic</string>
+	<key>GCM_SENDER_ID</key>
+	<string>811447320818</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.silver.bookingservice</string>
+	<key>PROJECT_ID</key>
+	<string>booking-service-8oymdg</string>
+	<key>STORAGE_BUCKET</key>
+	<string>booking-service-8oymdg.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:811447320818:ios:29165eb93352b51983d06b</string>
+</dict>
+</plist>
