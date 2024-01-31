@@ -331,7 +331,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                             '-',
                                                           ),
                                                           textAlign:
-                                                              TextAlign.end,
+                                                              TextAlign.center,
                                                           maxLines: 1,
                                                           style: FlutterFlowTheme
                                                                   .of(context)

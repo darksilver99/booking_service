@@ -17,7 +17,6 @@ Future<List<ServiceListRecord>> getServiceDistance(
   // Add your function code here!
   var apiKey = "AIzaSyCvb-Gf-CpXqAmywyKIMArC3W8pBOrL3og";
   var origin = "${currentLocation!.latitude},${currentLocation.longitude}";
-  List<ServiceListRecord> newServiceList = [];
   for (var i = 0; i < serviceList!.length; i++) {
     var destination =
         "${serviceList[i].location!.latitude},${serviceList[i].location!.longitude}";
@@ -56,8 +55,7 @@ Future<List<ServiceListRecord>> getServiceDistance(
     }
     serviceList[i].distanceText = distance["text"];
     serviceList[i].distanceValue = distance["distance"];
-    newServiceList.add(serviceList[i]);
   }
-  newServiceList.sort((a, b) => a.distanceValue.compareTo(b.distanceValue));
+  serviceList.sort((a, b) => a.distanceValue.compareTo(b.distanceValue));
   return serviceList;
 }
