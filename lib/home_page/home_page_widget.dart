@@ -264,7 +264,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               child: Container(
                                 width: double.infinity,
                                 height: functions.getHeigthByDivide(
-                                    MediaQuery.sizeOf(context).width, 2.0),
+                                    MediaQuery.sizeOf(context).width, 4.0),
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
