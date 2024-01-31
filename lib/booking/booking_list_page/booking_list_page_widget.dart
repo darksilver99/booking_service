@@ -303,6 +303,9 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                               RatingViewWidget(
                                                 key: Key(
                                                     'Keyd2v_${serviceDistanceListIndex}_of_${serviceDistanceList.length}'),
+                                                parameter1:
+                                                    serviceDistanceListItem
+                                                        .rating,
                                               ),
                                             ],
                                           ),

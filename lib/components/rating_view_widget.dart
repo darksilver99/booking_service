@@ -9,7 +9,12 @@ import 'rating_view_model.dart';
 export 'rating_view_model.dart';
 
 class RatingViewWidget extends StatefulWidget {
-  const RatingViewWidget({super.key});
+  const RatingViewWidget({
+    super.key,
+    this.parameter1,
+  });
+
+  final double? parameter1;
 
   @override
   State<RatingViewWidget> createState() => _RatingViewWidgetState();
@@ -49,7 +54,10 @@ class _RatingViewWidgetState extends State<RatingViewWidget> {
         color: FlutterFlowTheme.of(context).warning,
       ),
       direction: Axis.horizontal,
-      initialRating: _model.ratingBarValue ??= serviceDistanceListItem.rating,
+      initialRating: _model.ratingBarValue ??= valueOrDefault<double>(
+        widget.parameter1,
+        0.0,
+      ),
       unratedColor: FlutterFlowTheme.of(context).accent3,
       itemCount: 5,
       itemSize: 20.0,
