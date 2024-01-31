@@ -121,7 +121,12 @@ class _RemarkFormViewWidgetState extends State<RemarkFormViewWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
-                      Navigator.pop(context, _model.textController.text);
+                      Navigator.pop(
+                          context,
+                          valueOrDefault<String>(
+                            _model.textController.text,
+                            '-',
+                          ));
                     },
                     text: 'บันทึก',
                     options: FFButtonOptions(
