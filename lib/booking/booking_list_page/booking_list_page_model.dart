@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
@@ -28,6 +29,8 @@ class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
   void updateServiceListAtIndex(
           int index, Function(ServiceListRecord) updateFn) =>
       serviceList[index] = updateFn(serviceList[index]);
+
+  bool isLoading = true;
 
   ///  State fields for stateful widgets in this page.
 
