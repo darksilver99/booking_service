@@ -176,12 +176,14 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                             BorderRadius.circular(8.0),
                                         child: Image.network(
                                           serviceDistanceListItem.image.first,
+                                          width: 80.0,
                                           height: 80.0,
                                           fit: BoxFit.cover,
                                           errorBuilder:
                                               (context, error, stackTrace) =>
                                                   Image.asset(
                                             'assets/images/error_image.jpg',
+                                            width: 80.0,
                                             height: 80.0,
                                             fit: BoxFit.cover,
                                           ),
