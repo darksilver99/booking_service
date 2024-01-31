@@ -22,18 +22,45 @@ class RegisterMoreDetailPageModel
   FocusNode? firstNameFocusNode;
   TextEditingController? firstNameController;
   String? Function(BuildContext, String?)? firstNameControllerValidator;
+  String? _firstNameControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for lastName widget.
   FocusNode? lastNameFocusNode;
   TextEditingController? lastNameController;
   String? Function(BuildContext, String?)? lastNameControllerValidator;
+  String? _lastNameControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for phone widget.
   FocusNode? phoneFocusNode;
   TextEditingController? phoneController;
   String? Function(BuildContext, String?)? phoneControllerValidator;
+  String? _phoneControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    firstNameControllerValidator = _firstNameControllerValidator;
+    lastNameControllerValidator = _lastNameControllerValidator;
+    phoneControllerValidator = _phoneControllerValidator;
+  }
 
   void dispose() {
     unfocusNode.dispose();
