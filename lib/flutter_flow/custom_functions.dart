@@ -18,3 +18,14 @@ double? getHeigthByDivide(
 ) {
   return width! / divide!;
 }
+
+String? getLocationLatLng(
+  LatLng? location,
+  String? type,
+) {
+  if (type == "lat") {
+    return location!.latitude.toString();
+  } else {
+    return location!.longitude.toString();
+  }
+}
