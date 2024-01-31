@@ -10,4 +10,7 @@ export '/booking/booking_list_page/booking_list_page_widget.dart'
     show BookingListPageWidget;
 export '/service/service_form_page/service_form_page_widget.dart'
     show ServiceFormPageWidget;
-export '/map_picker_page/map_picker_page_widget.dart' show MapPickerPageWidget;
+export '/service/map_picker_page/map_picker_page_widget.dart'
+    show MapPickerPageWidget;
+export '/booking_category_select_page/booking_category_select_page_widget.dart'
+    show BookingCategorySelectPageWidget;

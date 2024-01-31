@@ -91,6 +91,11 @@ class ServiceListRecord extends FirestoreRecord {
   String get category => _category ?? '';
   bool hasCategory() => _category != null;
 
+  // "distance" field.
+  double? _distance;
+  double get distance => _distance ?? 0.0;
+  bool hasDistance() => _distance != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -107,6 +112,7 @@ class ServiceListRecord extends FirestoreRecord {
     _location = snapshotData['location'] as LatLng?;
     _isOpen = snapshotData['is_open'] as bool?;
     _category = snapshotData['category'] as String?;
+    _distance = castToType<double>(snapshotData['distance']);
   }
 
   static CollectionReference get collection =>
@@ -158,6 +164,7 @@ Map<String, dynamic> createServiceListRecordData({
   LatLng? location,
   bool? isOpen,
   String? category,
+  double? distance,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -175,6 +182,7 @@ Map<String, dynamic> createServiceListRecordData({
       'location': location,
       'is_open': isOpen,
       'category': category,
+      'distance': distance,
     }.withoutNulls,
   );
 
@@ -201,7 +209,8 @@ class ServiceListRecordDocumentEquality implements Equality<ServiceListRecord> {
         listEquality.equals(e1?.image, e2?.image) &&
         e1?.location == e2?.location &&
         e1?.isOpen == e2?.isOpen &&
-        e1?.category == e2?.category;
+        e1?.category == e2?.category &&
+        e1?.distance == e2?.distance;
   }
 
   @override
@@ -220,7 +229,8 @@ class ServiceListRecordDocumentEquality implements Equality<ServiceListRecord> {
         e?.image,
         e?.location,
         e?.isOpen,
-        e?.category
+        e?.category,
+        e?.distance
       ]);
 
   @override

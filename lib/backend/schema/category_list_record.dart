@@ -26,9 +26,15 @@ class CategoryListRecord extends FirestoreRecord {
   int get status => _status ?? 0;
   bool hasStatus() => _status != null;
 
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _status = castToType<int>(snapshotData['status']);
+    _image = snapshotData['image'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -68,11 +74,13 @@ class CategoryListRecord extends FirestoreRecord {
 Map<String, dynamic> createCategoryListRecordData({
   String? name,
   int? status,
+  String? image,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'name': name,
       'status': status,
+      'image': image,
     }.withoutNulls,
   );
 
@@ -85,12 +93,14 @@ class CategoryListRecordDocumentEquality
 
   @override
   bool equals(CategoryListRecord? e1, CategoryListRecord? e2) {
-    return e1?.name == e2?.name && e1?.status == e2?.status;
+    return e1?.name == e2?.name &&
+        e1?.status == e2?.status &&
+        e1?.image == e2?.image;
   }
 
   @override
   int hash(CategoryListRecord? e) =>
-      const ListEquality().hash([e?.name, e?.status]);
+      const ListEquality().hash([e?.name, e?.status, e?.image]);
 
   @override
   bool isValidKey(Object? o) => o is CategoryListRecord;
