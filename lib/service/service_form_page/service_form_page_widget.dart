@@ -366,7 +366,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                     if (FFAppState().currentLocation != null)
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 8.0),
+                                            0.0, 0.0, 0.0, 8.0),
                                         child: Material(
                                           color: Colors.transparent,
                                           elevation: 1.0,
@@ -858,6 +858,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                       },
                                     ),
                                   });
+                                  FFAppState().currentLocation = null;
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
