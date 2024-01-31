@@ -61,7 +61,7 @@ class _MapPickerPageWidgetState extends State<MapPickerPageWidget> {
 
     context.watch<FFAppState>();
 
-    Location.LatLng newLocation = Location.LatLng(widget.currentLocation.latitude, widget.currentLocation.longitude);
+    Location.LatLng newLocation = Location.LatLng(widget.currentLocation!.latitude, widget.currentLocation!.longitude);
     cameraPosition = CameraPosition(
       target: newLocation,
       zoom: 14.4746,
