@@ -342,8 +342,13 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                               fillColor: FlutterFlowTheme.of(context).accent2,
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium,
+                            keyboardType: TextInputType.number,
                             validator: _model.textController3Validator
                                 .asValidator(context),
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp('[a-zA-Z0-9]'))
+                            ],
                           ),
                         ),
                         Padding(
