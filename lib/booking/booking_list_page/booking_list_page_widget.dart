@@ -90,14 +90,21 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
               ),
             );
           },
-        ).then((value) => setState(() {}));
+        ).then((value) => safeSetState(() => _model.isOK = value));
 
-        setState(() {
-          _model.serviceList = _model.serviceAfterGetDistanceList!
-              .toList()
-              .cast<ServiceListRecord>();
-          _model.isLoading = false;
-        });
+        if (_model.isOK!) {
+          setState(() {
+            _model.serviceList = _model.serviceAfterGetDistanceList!
+                .toList()
+                .cast<ServiceListRecord>();
+            _model.isLoading = false;
+          });
+        } else {
+          await actions.pushReplacementNamed(
+            context,
+            'HomePage',
+          );
+        }
       }
     });
   }
