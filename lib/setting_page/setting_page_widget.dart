@@ -74,7 +74,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
             },
           ),
           title: Text(
-            'Setting',
+            'ตั้งค่า',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Sora',
                   color: Colors.white,
