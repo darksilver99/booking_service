@@ -34,6 +34,12 @@ class FFAppState extends ChangeNotifier {
   set currentLocation(LatLng? _value) {
     _currentLocation = _value;
   }
+
+  bool _hasNearService = true;
+  bool get hasNearService => _hasNearService;
+  set hasNearService(bool _value) {
+    _hasNearService = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
