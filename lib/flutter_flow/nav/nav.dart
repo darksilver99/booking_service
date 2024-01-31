@@ -79,20 +79,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(),
+          builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
           name: 'LoginPage',
@@ -112,9 +110,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'SettingPage',
           path: '/settingPage',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'SettingPage')
-              : SettingPageWidget(),
+          builder: (context, params) => SettingPageWidget(),
+        ),
+        FFRoute(
+          name: 'BookingListPage',
+          path: '/bookingListPage',
+          builder: (context, params) => BookingListPageWidget(),
+        ),
+        FFRoute(
+          name: 'ServiceFormPage',
+          path: '/serviceFormPage',
+          builder: (context, params) => ServiceFormPageWidget(),
+        ),
+        FFRoute(
+          name: 'MapPickerPage',
+          path: '/mapPickerPage',
+          builder: (context, params) => MapPickerPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
