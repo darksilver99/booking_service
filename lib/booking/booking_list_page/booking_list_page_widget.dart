@@ -311,20 +311,26 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                             .center,
                                                     children: [
                                                       Container(
-                                                        width: 48.0,
+                                                        width: 32.0,
                                                         decoration:
                                                             BoxDecoration(),
                                                         child: Text(
-                                                          formatNumber(
-                                                            serviceDistanceListItem
-                                                                .rating,
-                                                            formatType:
-                                                                FormatType
-                                                                    .decimal,
-                                                            decimalType:
-                                                                DecimalType
-                                                                    .automatic,
+                                                          valueOrDefault<
+                                                              String>(
+                                                            formatNumber(
+                                                              serviceDistanceListItem
+                                                                  .rating,
+                                                              formatType:
+                                                                  FormatType
+                                                                      .decimal,
+                                                              decimalType:
+                                                                  DecimalType
+                                                                      .automatic,
+                                                            ),
+                                                            '-',
                                                           ),
+                                                          textAlign:
+                                                              TextAlign.end,
                                                           maxLines: 1,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
