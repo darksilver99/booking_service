@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/information_dialog_view_widget.dart';
+import '/components/remark_form_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -99,7 +100,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -114,7 +115,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                             widget.serviceDocument?.image?.toList() ?? [];
                         return Container(
                           width: double.infinity,
-                          height: 180.0,
+                          height: 200.0,
                           child: CarouselSlider.builder(
                             itemCount: imageList.length,
                             itemBuilder: (context, imageListIndex, _) {
@@ -140,7 +141,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                 CarouselController(),
                             options: CarouselOptions(
                               initialPage: min(1, imageList.length - 1),
-                              viewportFraction: 0.5,
+                              viewportFraction: 0.75,
                               disableCenter: true,
                               enlargeCenterPage: true,
                               enlargeFactor: 0.25,
@@ -162,140 +163,235 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget.serviceDocument?.title,
-                        '-',
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Inter',
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold,
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 8.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              widget.serviceDocument?.title,
+                              '-',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Inter',
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
-                    ),
-                  ),
-                  Text(
-                    valueOrDefault<String>(
-                      widget.serviceDocument?.detail,
-                      '-',
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Inter',
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w500,
                         ),
-                  ),
-                  Builder(
-                    builder: (context) => FFButtonWidget(
-                      onPressed: () async {
-                        final _datePickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: getCurrentTimestamp,
-                          firstDate: getCurrentTimestamp,
-                          lastDate: DateTime(2050),
-                          builder: (context, child) {
-                            return wrapInMaterialDatePickerTheme(
-                              context,
-                              child!,
-                              headerBackgroundColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              headerForegroundColor:
-                                  FlutterFlowTheme.of(context).info,
-                              headerTextStyle: FlutterFlowTheme.of(context)
-                                  .headlineLarge
-                                  .override(
-                                    fontFamily: 'Sora',
-                                    fontSize: 32.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                              pickerBackgroundColor:
-                                  FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                              pickerForegroundColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                              selectedDateTimeBackgroundColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              selectedDateTimeForegroundColor:
-                                  FlutterFlowTheme.of(context).info,
-                              actionButtonForegroundColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                              iconSize: 24.0,
-                            );
-                          },
-                        );
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 32.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              widget.serviceDocument?.detail,
+                              '-',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Inter',
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                        ),
+                        Builder(
+                          builder: (context) => FFButtonWidget(
+                            onPressed: () async {
+                              final _datePickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: getCurrentTimestamp,
+                                firstDate: getCurrentTimestamp,
+                                lastDate: DateTime(2050),
+                                builder: (context, child) {
+                                  return wrapInMaterialDatePickerTheme(
+                                    context,
+                                    child!,
+                                    headerBackgroundColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    headerForegroundColor:
+                                        FlutterFlowTheme.of(context).info,
+                                    headerTextStyle:
+                                        FlutterFlowTheme.of(context)
+                                            .headlineLarge
+                                            .override(
+                                              fontFamily: 'Sora',
+                                              fontSize: 32.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                    pickerBackgroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                    pickerForegroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    selectedDateTimeBackgroundColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    selectedDateTimeForegroundColor:
+                                        FlutterFlowTheme.of(context).info,
+                                    actionButtonForegroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                    iconSize: 24.0,
+                                  );
+                                },
+                              );
 
-                        if (_datePickedDate != null) {
-                          safeSetState(() {
-                            _model.datePicked = DateTime(
-                              _datePickedDate.year,
-                              _datePickedDate.month,
-                              _datePickedDate.day,
-                            );
-                          });
-                        }
-                        if (_model.datePicked != null) {
-                          await BookingListRecord.collection
-                              .doc()
-                              .set(createBookingListRecordData(
-                                createDate: getCurrentTimestamp,
-                                createBy: currentUserReference,
-                                status: 0,
-                                serviceRef: widget.serviceDocument?.reference,
-                                bookingDate: _model.datePicked,
-                              ));
-                          await showDialog(
-                            context: context,
-                            builder: (dialogContext) {
-                              return Dialog(
-                                elevation: 0,
-                                insetPadding: EdgeInsets.zero,
-                                backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
-                                    .resolve(Directionality.of(context)),
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
+                              TimeOfDay? _datePickedTime;
+                              if (_datePickedDate != null) {
+                                _datePickedTime = await showTimePicker(
+                                  context: context,
+                                  initialTime: TimeOfDay.fromDateTime(
+                                      getCurrentTimestamp),
+                                  builder: (context, child) {
+                                    return wrapInMaterialTimePickerTheme(
+                                      context,
+                                      child!,
+                                      headerBackgroundColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      headerForegroundColor:
+                                          FlutterFlowTheme.of(context).info,
+                                      headerTextStyle:
+                                          FlutterFlowTheme.of(context)
+                                              .headlineLarge
+                                              .override(
+                                                fontFamily: 'Sora',
+                                                fontSize: 32.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                      pickerBackgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                      pickerForegroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                      selectedDateTimeBackgroundColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      selectedDateTimeForegroundColor:
+                                          FlutterFlowTheme.of(context).info,
+                                      actionButtonForegroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                      iconSize: 24.0,
+                                    );
+                                  },
+                                );
+                              }
+
+                              if (_datePickedDate != null &&
+                                  _datePickedTime != null) {
+                                safeSetState(() {
+                                  _model.datePicked = DateTime(
+                                    _datePickedDate.year,
+                                    _datePickedDate.month,
+                                    _datePickedDate.day,
+                                    _datePickedTime!.hour,
+                                    _datePickedTime.minute,
+                                  );
+                                });
+                              }
+                              if (_model.datePicked != null) {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                  child: InformationDialogViewWidget(
-                                    title:
-                                        'จองเรียบร้อย กรุณาการติดต่อกลับจากเจ้าของบริการ',
-                                    status: 'success',
-                                  ),
-                                ),
-                              );
-                            },
-                          ).then((value) => setState(() {}));
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: RemarkFormViewWidget(
+                                          hintText: 'รายละเอียดถึงผู้ให้บริการ',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(
+                                    () => _model.remarkText = value));
 
-                          await actions.pushReplacementNamed(
-                            context,
-                            'HomePage',
-                          );
-                        }
-                      },
-                      text: 'จองบริการ',
-                      options: FFButtonOptions(
-                        width: double.infinity,
-                        height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Inter',
-                                  color: Colors.white,
-                                ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                                await BookingListRecord.collection
+                                    .doc()
+                                    .set(createBookingListRecordData(
+                                      createDate: getCurrentTimestamp,
+                                      createBy: currentUserReference,
+                                      status: 0,
+                                      serviceRef:
+                                          widget.serviceDocument?.reference,
+                                      bookingDate: _model.datePicked,
+                                      userDetail: _model.remarkText,
+                                    ));
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: InformationDialogViewWidget(
+                                          title:
+                                              'จองเรียบร้อย กรุณาการติดต่อกลับจากเจ้าของบริการ',
+                                          status: 'success',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
+
+                                await actions.pushReplacementNamed(
+                                  context,
+                                  'HomePage',
+                                );
+                              }
+
+                              setState(() {});
+                            },
+                            text: 'จองบริการ',
+                            options: FFButtonOptions(
+                              width: double.infinity,
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    color: Colors.white,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                      ],
                     ),
                   ),
                 ].addToEnd(SizedBox(height: 16.0)),
