@@ -11,7 +11,12 @@ import 'map_picker_page_model.dart';
 export 'map_picker_page_model.dart';
 
 class MapPickerPageWidget extends StatefulWidget {
-  const MapPickerPageWidget({super.key});
+  const MapPickerPageWidget({
+    super.key,
+    required this.currentLocation,
+  });
+
+  final LatLng? currentLocation;
 
   @override
   State<MapPickerPageWidget> createState() => _MapPickerPageWidgetState();

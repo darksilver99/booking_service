@@ -125,7 +125,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'MapPickerPage',
           path: '/mapPickerPage',
-          builder: (context, params) => MapPickerPageWidget(),
+          builder: (context, params) => MapPickerPageWidget(
+            currentLocation:
+                params.getParam('currentLocation', ParamType.LatLng),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
