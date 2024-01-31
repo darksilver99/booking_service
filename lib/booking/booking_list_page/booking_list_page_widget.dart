@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'booking_list_page_model.dart';
 export 'booking_list_page_model.dart';
@@ -58,6 +59,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
         _model.serviceList = _model.serviceAfterGetDistanceList!
             .toList()
             .cast<ServiceListRecord>();
+        _model.isLoading = false;
       });
     });
   }
@@ -120,194 +122,213 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-            child: Builder(
-              builder: (context) {
-                final serviceDistanceList = _model.serviceList.toList();
-                return ListView.builder(
-                  padding: EdgeInsets.fromLTRB(
-                    0,
-                    0,
-                    0,
-                    16.0,
-                  ),
-                  scrollDirection: Axis.vertical,
-                  itemCount: serviceDistanceList.length,
-                  itemBuilder: (context, serviceDistanceListIndex) {
-                    final serviceDistanceListItem =
-                        serviceDistanceList[serviceDistanceListIndex];
-                    return Material(
-                      color: Colors.transparent,
-                      elevation: 3.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Container(
-                        width: double.infinity,
-                        height: 120.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          borderRadius: BorderRadius.circular(8.0),
+          child: Stack(
+            children: [
+              if (!_model.isLoading)
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  child: Builder(
+                    builder: (context) {
+                      final serviceDistanceList = _model.serviceList.toList();
+                      return ListView.builder(
+                        padding: EdgeInsets.fromLTRB(
+                          0,
+                          0,
+                          0,
+                          16.0,
                         ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 8.0, 8.0, 8.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 8.0, 0.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.network(
-                                    serviceDistanceListItem.image.first,
-                                    height: 80.0,
-                                    fit: BoxFit.cover,
-                                    errorBuilder:
-                                        (context, error, stackTrace) =>
-                                            Image.asset(
-                                      'assets/images/error_image.jpg',
-                                      height: 80.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
+                        scrollDirection: Axis.vertical,
+                        itemCount: serviceDistanceList.length,
+                        itemBuilder: (context, serviceDistanceListIndex) {
+                          final serviceDistanceListItem =
+                              serviceDistanceList[serviceDistanceListIndex];
+                          return Material(
+                            color: Colors.transparent,
+                            elevation: 3.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Container(
+                              width: double.infinity,
+                              height: 120.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                              Expanded(
-                                child: Column(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 8.0, 8.0, 8.0),
+                                child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      serviceDistanceListItem.title,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 8.0, 0.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          serviceDistanceListItem.image.first,
+                                          height: 80.0,
+                                          fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'assets/images/error_image.jpg',
+                                            height: 80.0,
+                                            fit: BoxFit.cover,
                                           ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        serviceDistanceListItem.detail,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
+                                        ),
                                       ),
                                     ),
-                                    Text(
-                                      'เริ่มต้น ${formatNumber(
-                                        serviceDistanceListItem.startPrice,
-                                        formatType: FormatType.decimal,
-                                        decimalType: DecimalType.automatic,
-                                      )}.-',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
                                     Expanded(
-                                      child: Row(
+                                      child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 4.0, 0.0),
+                                          Text(
+                                            serviceDistanceListItem.title,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              serviceDistanceListItem.detail,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                          ),
+                                          Text(
+                                            'เริ่มต้น ${formatNumber(
+                                              serviceDistanceListItem
+                                                  .startPrice,
+                                              formatType: FormatType.decimal,
+                                              decimalType:
+                                                  DecimalType.automatic,
+                                            )}.-',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Expanded(
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
                                               children: [
-                                                Icon(
-                                                  Icons.location_on_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 20.0,
-                                                ),
-                                                Text(
-                                                  '${formatNumber(
-                                                    serviceDistanceListItem
-                                                        .distance,
-                                                    formatType:
-                                                        FormatType.decimal,
-                                                    decimalType:
-                                                        DecimalType.automatic,
-                                                  )} กม.',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 4.0, 0.0),
-                                            child: Text(
-                                              '|',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 4.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      Icon(
+                                                        Icons
+                                                            .location_on_rounded,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .accent3,
+                                                                .secondaryText,
+                                                        size: 20.0,
                                                       ),
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                formatNumber(
-                                                  serviceDistanceListItem
-                                                      .rating,
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.automatic,
+                                                      Text(
+                                                        '${formatNumber(
+                                                          serviceDistanceListItem
+                                                              .distance,
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .automatic,
+                                                        )} กม.',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 4.0, 0.0),
+                                                  child: Text(
+                                                    '|',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent3,
                                                         ),
-                                              ),
-                                              RatingViewWidget(
-                                                key: Key(
-                                                    'Keyd2v_${serviceDistanceListIndex}_of_${serviceDistanceList.length}'),
-                                                parameter1:
-                                                    serviceDistanceListItem
-                                                        .rating,
-                                              ),
-                                            ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      formatNumber(
+                                                        serviceDistanceListItem
+                                                            .rating,
+                                                        formatType:
+                                                            FormatType.decimal,
+                                                        decimalType: DecimalType
+                                                            .automatic,
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                    ),
+                                                    RatingViewWidget(
+                                                      key: Key(
+                                                          'Keyd2v_${serviceDistanceListIndex}_of_${serviceDistanceList.length}'),
+                                                      parameter1:
+                                                          serviceDistanceListItem
+                                                              .rating,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -315,15 +336,25 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                   ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              if (_model.isLoading)
+                Align(
+                  alignment: AlignmentDirectional(0.0, 0.0),
+                  child: Lottie.network(
+                    'https://assets2.lottiefiles.com/packages/lf20_aZTdD5.json',
+                    width: 150.0,
+                    height: 130.0,
+                    fit: BoxFit.cover,
+                    animate: true,
+                  ),
+                ),
+            ],
           ),
         ),
       ),
