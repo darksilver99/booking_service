@@ -44,6 +44,9 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
       currentUserLocationValue =
           await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
       _model.tmpLocation = currentUserLocationValue;
+      setState(() {
+        FFAppState().currentLocation = null;
+      });
     });
 
     _model.textController1 ??= TextEditingController();
@@ -799,7 +802,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                         Builder(
                           builder: (context) => Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 0.0, 0.0),
+                                0.0, 32.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 if (_model.formKey.currentState == null ||
@@ -858,7 +861,6 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                       },
                                     ),
                                   });
-                                  FFAppState().currentLocation = null;
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -881,7 +883,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                           child: InformationDialogViewWidget(
                                             title: 'บันทึกข้อมูลเรียบร้อยแล้ว',
                                             detail:
-                                                'ผู้ใช้จะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
+                                                'ผู้ใช้คนอื่นจะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
                                           ),
                                         ),
                                       );
@@ -923,7 +925,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                               text: 'บันทึกข้อมูล',
                               options: FFButtonOptions(
                                 width: double.infinity,
-                                height: 40.0,
+                                height: 50.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -934,6 +936,8 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                     .override(
                                       fontFamily: 'Inter',
                                       color: Colors.white,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                 elevation: 3.0,
                                 borderSide: BorderSide(
