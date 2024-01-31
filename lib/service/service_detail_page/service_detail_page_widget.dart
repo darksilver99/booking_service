@@ -322,47 +322,53 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                 ).then((value) => safeSetState(
                                     () => _model.remarkText = value));
 
-                                await BookingListRecord.collection
-                                    .doc()
-                                    .set(createBookingListRecordData(
-                                      createDate: getCurrentTimestamp,
-                                      createBy: currentUserReference,
-                                      status: 0,
-                                      serviceRef:
-                                          widget.serviceDocument?.reference,
-                                      bookingDate: _model.datePicked,
-                                      userDetail: _model.remarkText,
-                                    ));
-                                await showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return Dialog(
-                                      elevation: 0,
-                                      insetPadding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: InformationDialogViewWidget(
-                                          title:
-                                              'จองเรียบร้อย กรุณาการติดต่อกลับจากเจ้าของบริการ',
-                                          status: 'success',
+                                if (_model.remarkText != null &&
+                                    _model.remarkText != '') {
+                                  await BookingListRecord.collection
+                                      .doc()
+                                      .set(createBookingListRecordData(
+                                        createDate: getCurrentTimestamp,
+                                        createBy: currentUserReference,
+                                        status: 0,
+                                        serviceRef:
+                                            widget.serviceDocument?.reference,
+                                        bookingDate: _model.datePicked,
+                                        userDetail: _model.remarkText,
+                                      ));
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: InformationDialogViewWidget(
+                                            title:
+                                                'จองเรียบร้อย กรุณารอการติดต่อกลับจากเจ้าของบริการ',
+                                            status: 'success',
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => setState(() {}));
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
 
-                                await actions.pushReplacementNamed(
-                                  context,
-                                  'HomePage',
-                                );
+                                  await actions.pushReplacementNamed(
+                                    context,
+                                    'HomePage',
+                                  );
+                                }
                               }
 
                               setState(() {});
