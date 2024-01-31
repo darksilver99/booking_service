@@ -54,6 +54,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
               'category',
               isEqualTo: widget.category,
             ),
+        limit: 8,
       );
       _model.serviceAfterGetDistanceList = await actions.getServiceDistance(
         _model.serviceTmpList?.toList(),
@@ -311,7 +312,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                             .center,
                                                     children: [
                                                       Container(
-                                                        width: 32.0,
+                                                        width: 28.0,
                                                         decoration:
                                                             BoxDecoration(),
                                                         child: Text(
