@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -6,6 +7,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -19,10 +21,90 @@ class HomePageWidget extends StatefulWidget {
   State<HomePageWidget> createState() => _HomePageWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
+class _HomePageWidgetState extends State<HomePageWidget>
+    with TickerProviderStateMixin {
   late HomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'containerOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 300.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 300.ms,
+          begin: Offset(-30.0, -30.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(30.0, -30.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(30.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation4': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 500.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 500.ms,
+          begin: Offset(-30.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
@@ -98,7 +180,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
-                            ),
+                            ).animateOnPageLoad(animationsMap[
+                                'containerOnPageLoadAnimation1']!),
                         () => Material(
                               color: Colors.transparent,
                               elevation: 3.0,
@@ -108,14 +191,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               child: Container(
                                 width: double.infinity,
                                 height: functions.getHeigthByDivide(
-                                    MediaQuery.sizeOf(context).width, 4.0),
+                                    MediaQuery.sizeOf(context).width, 3.0),
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
-                            ),
+                            ).animateOnPageLoad(animationsMap[
+                                'containerOnPageLoadAnimation2']!),
                         () => Material(
                               color: Colors.transparent,
                               elevation: 3.0,
@@ -132,7 +216,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
-                            ),
+                            ).animateOnPageLoad(animationsMap[
+                                'containerOnPageLoadAnimation3']!),
                         () => Material(
                               color: Colors.transparent,
                               elevation: 3.0,
@@ -149,7 +234,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
-                            ),
+                            ).animateOnPageLoad(animationsMap[
+                                'containerOnPageLoadAnimation4']!),
                       ][index]();
                     },
                   ),
