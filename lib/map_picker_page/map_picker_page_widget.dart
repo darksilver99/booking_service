@@ -15,7 +15,12 @@ import 'package:map_picker/map_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as Location;
 
 class MapPickerPageWidget extends StatefulWidget {
-  const MapPickerPageWidget({super.key});
+  const MapPickerPageWidget({
+    super.key,
+    required this.currentLocation,
+  });
+
+  final LatLng? currentLocation;
 
   @override
   State<MapPickerPageWidget> createState() => _MapPickerPageWidgetState();

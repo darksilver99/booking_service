@@ -362,7 +362,15 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                   await requestPermission(locationPermission);
                                   if (await getPermissionStatus(
                                       locationPermission)) {
-                                    context.pushNamed('MapPickerPage');
+                                    context.pushNamed(
+                                      'MapPickerPage',
+                                      queryParameters: {
+                                        'currentLocation': serializeParam(
+                                          _model.tmpLocation,
+                                          ParamType.LatLng,
+                                        ),
+                                      }.withoutNulls,
+                                    );
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
