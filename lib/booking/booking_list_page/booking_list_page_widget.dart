@@ -255,15 +255,8 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                         size: 20.0,
                                                       ),
                                                       Text(
-                                                        '${formatNumber(
-                                                          serviceDistanceListItem
-                                                              .distance,
-                                                          formatType: FormatType
-                                                              .decimal,
-                                                          decimalType:
-                                                              DecimalType
-                                                                  .automatic,
-                                                        )} กม.',
+                                                        serviceDistanceListItem
+                                                            .distanceText,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
