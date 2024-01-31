@@ -90,8 +90,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               child: Container(
                                 width: double.infinity,
-                                height: functions.getHeigthByHalfWidth(
-                                    MediaQuery.sizeOf(context).width),
+                                height: functions.getHeigthByDivide(
+                                    MediaQuery.sizeOf(context).width, 2.0),
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -107,7 +107,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               child: Container(
                                 width: double.infinity,
-                                height: 200.0,
+                                height: MediaQuery.sizeOf(context).width,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -122,7 +122,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Container(
-                                height: 200.0,
+                                height: MediaQuery.sizeOf(context).width,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -137,8 +137,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Container(
-                                height: functions.getHeigthByHalfWidth(
-                                    MediaQuery.sizeOf(context).width),
+                                height: functions.getHeigthByDivide(
+                                    MediaQuery.sizeOf(context).width, 2.0),
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
