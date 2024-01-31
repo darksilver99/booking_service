@@ -33,6 +33,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
   late BookingListPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -41,6 +42,8 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      currentUserLocationValue =
+          await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
       _model.serviceTmpList = await queryServiceListRecordOnce(
         queryBuilder: (serviceListRecord) => serviceListRecord
             .where(
@@ -54,6 +57,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
       );
       _model.serviceAfterGetDistanceList = await actions.getServiceDistance(
         _model.serviceTmpList?.toList(),
+        currentUserLocationValue,
       );
       setState(() {
         _model.serviceList = _model.serviceAfterGetDistanceList!
