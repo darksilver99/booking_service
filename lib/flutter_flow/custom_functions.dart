@@ -12,6 +12,9 @@ import '/backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
-double? getHeigthByHalfWidth(double? width) {
-  return width! / 2;
+double? getHeigthByDivide(
+  double? width,
+  double? divide,
+) {
+  return width! / divide!;
 }
