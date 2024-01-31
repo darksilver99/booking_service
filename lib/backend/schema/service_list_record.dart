@@ -91,10 +91,15 @@ class ServiceListRecord extends FirestoreRecord {
   String get category => _category ?? '';
   bool hasCategory() => _category != null;
 
-  // "distance" field.
-  double? _distance;
-  double get distance => _distance ?? 0.0;
-  bool hasDistance() => _distance != null;
+  // "distanceText" field.
+  String? _distanceText;
+  String get distanceText => _distanceText ?? '';
+  bool hasDistanceText() => _distanceText != null;
+
+  // "distanceValue" field.
+  int? _distanceValue;
+  int get distanceValue => _distanceValue ?? 0;
+  bool hasDistanceValue() => _distanceValue != null;
 
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
@@ -112,7 +117,8 @@ class ServiceListRecord extends FirestoreRecord {
     _location = snapshotData['location'] as LatLng?;
     _isOpen = snapshotData['is_open'] as bool?;
     _category = snapshotData['category'] as String?;
-    _distance = castToType<double>(snapshotData['distance']);
+    _distanceText = snapshotData['distanceText'] as String?;
+    _distanceValue = castToType<int>(snapshotData['distanceValue']);
   }
 
   static CollectionReference get collection =>
@@ -164,7 +170,8 @@ Map<String, dynamic> createServiceListRecordData({
   LatLng? location,
   bool? isOpen,
   String? category,
-  double? distance,
+  String? distanceText,
+  int? distanceValue,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -182,7 +189,8 @@ Map<String, dynamic> createServiceListRecordData({
       'location': location,
       'is_open': isOpen,
       'category': category,
-      'distance': distance,
+      'distanceText': distanceText,
+      'distanceValue': distanceValue,
     }.withoutNulls,
   );
 
@@ -210,7 +218,8 @@ class ServiceListRecordDocumentEquality implements Equality<ServiceListRecord> {
         e1?.location == e2?.location &&
         e1?.isOpen == e2?.isOpen &&
         e1?.category == e2?.category &&
-        e1?.distance == e2?.distance;
+        e1?.distanceText == e2?.distanceText &&
+        e1?.distanceValue == e2?.distanceValue;
   }
 
   @override
@@ -230,7 +239,8 @@ class ServiceListRecordDocumentEquality implements Equality<ServiceListRecord> {
         e?.location,
         e?.isOpen,
         e?.category,
-        e?.distance
+        e?.distanceText,
+        e?.distanceValue
       ]);
 
   @override
