@@ -57,7 +57,7 @@ class _ConfirmViewWidgetState extends State<ConfirmViewWidget> {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 32.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 28.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -71,7 +71,7 @@ class _ConfirmViewWidgetState extends State<ConfirmViewWidget> {
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Inter',
-                        fontSize: 16.0,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -83,7 +83,10 @@ class _ConfirmViewWidgetState extends State<ConfirmViewWidget> {
                     '-',
                   ),
                   textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyMedium,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Inter',
+                        fontSize: 16.0,
+                      ),
                 ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
@@ -103,11 +106,7 @@ class _ConfirmViewWidgetState extends State<ConfirmViewWidget> {
                         child: Text(
                           'ยกเลิก',
                           textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    color: FlutterFlowTheme.of(context).error,
-                                  ),
+                          style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                       ),
                     ),
@@ -129,6 +128,7 @@ class _ConfirmViewWidgetState extends State<ConfirmViewWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Inter',
                                     color: Colors.white,
+                                    fontWeight: FontWeight.bold,
                                   ),
                           elevation: 3.0,
                           borderSide: BorderSide(
