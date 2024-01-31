@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'confirm_view_model.dart';
-export 'confirm_view_model.dart';
+import 'confirm_dialog_view_model.dart';
+export 'confirm_dialog_view_model.dart';
 
-class ConfirmViewWidget extends StatefulWidget {
-  const ConfirmViewWidget({
+class ConfirmDialogViewWidget extends StatefulWidget {
+  const ConfirmDialogViewWidget({
     super.key,
     required this.title,
     this.detail,
@@ -19,11 +19,12 @@ class ConfirmViewWidget extends StatefulWidget {
   final String? detail;
 
   @override
-  State<ConfirmViewWidget> createState() => _ConfirmViewWidgetState();
+  State<ConfirmDialogViewWidget> createState() =>
+      _ConfirmDialogViewWidgetState();
 }
 
-class _ConfirmViewWidgetState extends State<ConfirmViewWidget> {
-  late ConfirmViewModel _model;
+class _ConfirmDialogViewWidgetState extends State<ConfirmDialogViewWidget> {
+  late ConfirmDialogViewModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -34,7 +35,7 @@ class _ConfirmViewWidgetState extends State<ConfirmViewWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ConfirmViewModel());
+    _model = createModel(context, () => ConfirmDialogViewModel());
   }
 
   @override

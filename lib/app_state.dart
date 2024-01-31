@@ -28,6 +28,12 @@ class FFAppState extends ChangeNotifier {
   set test(String _value) {
     _test = _value;
   }
+
+  LatLng? _currentLocation;
+  LatLng? get currentLocation => _currentLocation;
+  set currentLocation(LatLng? _value) {
+    _currentLocation = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
