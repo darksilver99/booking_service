@@ -104,6 +104,25 @@ class _HomePageWidgetState extends State<HomePageWidget>
         ),
       ],
     ),
+    'containerOnPageLoadAnimation5': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 700.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 700.ms,
+          begin: Offset(30.0, 30.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
   };
 
   @override
@@ -161,7 +180,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     ),
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0,
-                    itemCount: 4,
+                    itemCount: 5,
                     itemBuilder: (context, index) {
                       return [
                         () => Material(
@@ -227,7 +246,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               child: Container(
                                 width: double.infinity,
                                 height: functions.getHeigthByDivide(
-                                    MediaQuery.sizeOf(context).width, 4.0),
+                                    MediaQuery.sizeOf(context).width, 2.0),
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -236,6 +255,24 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               ),
                             ).animateOnPageLoad(animationsMap[
                                 'containerOnPageLoadAnimation4']!),
+                        () => Material(
+                              color: Colors.transparent,
+                              elevation: 3.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Container(
+                                width: double.infinity,
+                                height: functions.getHeigthByDivide(
+                                    MediaQuery.sizeOf(context).width, 2.0),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ).animateOnPageLoad(animationsMap[
+                                'containerOnPageLoadAnimation5']!),
                       ][index]();
                     },
                   ),
