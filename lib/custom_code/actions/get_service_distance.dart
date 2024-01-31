@@ -11,4 +11,8 @@ import 'package:flutter/material.dart';
 Future<List<ServiceListRecord>> getServiceDistance(
     List<ServiceListRecord>? serviceList) async {
   // Add your function code here!
+  for (var i = 0; i < serviceList!.length; i++) {
+    print(serviceList[i].location!.latitude);
+  }
+  return serviceList!;
 }
