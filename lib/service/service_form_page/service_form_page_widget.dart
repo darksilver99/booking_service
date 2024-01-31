@@ -668,54 +668,87 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
 
                                   return;
                                 }
-
-                                await ServiceListRecord.collection.doc().set({
-                                  ...createServiceListRecordData(
-                                    createDate: getCurrentTimestamp,
-                                    createBy: currentUserReference,
-                                    status: 1,
-                                    rating: 0.0,
-                                    title: _model.textController1.text,
-                                    detail: _model.textController2.text,
-                                    startPrice: int.tryParse(
-                                        _model.textController3.text),
-                                    isOpen: true,
-                                    category: _model.dropDownValue,
-                                    location: FFAppState().currentLocation,
-                                  ),
-                                  ...mapToFirestore(
-                                    {
-                                      'image': _model.imageList,
-                                    },
-                                  ),
-                                });
-                                await showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return Dialog(
-                                      elevation: 0,
-                                      insetPadding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: InformationDialogViewWidget(
-                                          title: 'บันทึกข้อมูลเรียบร้อยแล้ว',
-                                          detail:
-                                              'ผู้ใช้จะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
+                                if (FFAppState().currentLocation != null) {
+                                  await ServiceListRecord.collection.doc().set({
+                                    ...createServiceListRecordData(
+                                      createDate: getCurrentTimestamp,
+                                      createBy: currentUserReference,
+                                      status: 1,
+                                      rating: 0.0,
+                                      title: _model.textController1.text,
+                                      detail: _model.textController2.text,
+                                      startPrice: int.tryParse(
+                                          _model.textController3.text),
+                                      isOpen: true,
+                                      category: _model.dropDownValue,
+                                      location: FFAppState().currentLocation,
+                                    ),
+                                    ...mapToFirestore(
+                                      {
+                                        'image': _model.imageList,
+                                      },
+                                    ),
+                                  });
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: InformationDialogViewWidget(
+                                            title: 'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                            detail:
+                                                'ผู้ใช้จะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => setState(() {}));
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
 
-                                context.safePop();
+                                  context.safePop();
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: InformationDialogViewWidget(
+                                            title:
+                                                'กรุณาเลือกสถานที่ตั้งบนแผนที่',
+                                            status: 'warning',
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                }
                               },
                               text: 'บันทึกข้อมูล',
                               options: FFButtonOptions(
