@@ -198,6 +198,36 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(16.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 4.0),
+                                        child: Icon(
+                                          Icons.settings_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 32.0,
+                                        ),
+                                      ),
+                                      Text(
+                                        'จองบริการ',
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              fontSize: 16.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ).animateOnPageLoad(animationsMap[
                                 'containerOnPageLoadAnimation1']!),

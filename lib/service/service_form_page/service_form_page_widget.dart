@@ -295,7 +295,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                               fillColor: FlutterFlowTheme.of(context).accent2,
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium,
-                            maxLines: 5,
+                            maxLines: 8,
                             keyboardType: TextInputType.multiline,
                             validator: _model.textController2Validator
                                 .asValidator(context),
@@ -683,116 +683,157 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                FFButtonWidget(
-                                  onPressed: () async {
-                                    final selectedMedia =
-                                        await selectMediaWithSourceBottomSheet(
-                                      context: context,
-                                      maxWidth: 600.00,
-                                      imageQuality: 80,
-                                      allowPhoto: true,
-                                    );
-                                    if (selectedMedia != null &&
-                                        selectedMedia.every((m) =>
-                                            validateFileFormat(
-                                                m.storagePath, context))) {
-                                      setState(
-                                          () => _model.isDataUploading = true);
-                                      var selectedUploadedFiles =
-                                          <FFUploadedFile>[];
-
-                                      var downloadUrls = <String>[];
-                                      try {
-                                        showUploadMessage(
-                                          context,
-                                          'Uploading file...',
-                                          showLoading: true,
-                                        );
-                                        selectedUploadedFiles = selectedMedia
-                                            .map((m) => FFUploadedFile(
-                                                  name: m.storagePath
-                                                      .split('/')
-                                                      .last,
-                                                  bytes: m.bytes,
-                                                  height: m.dimensions?.height,
-                                                  width: m.dimensions?.width,
-                                                  blurHash: m.blurHash,
-                                                ))
-                                            .toList();
-
-                                        downloadUrls = (await Future.wait(
-                                          selectedMedia.map(
-                                            (m) async => await uploadData(
-                                                m.storagePath, m.bytes),
-                                          ),
-                                        ))
-                                            .where((u) => u != null)
-                                            .map((u) => u!)
-                                            .toList();
-                                      } finally {
-                                        ScaffoldMessenger.of(context)
-                                            .hideCurrentSnackBar();
-                                        _model.isDataUploading = false;
-                                      }
-                                      if (selectedUploadedFiles.length ==
-                                              selectedMedia.length &&
-                                          downloadUrls.length ==
-                                              selectedMedia.length) {
-                                        setState(() {
-                                          _model.uploadedLocalFile =
-                                              selectedUploadedFiles.first;
-                                          _model.uploadedFileUrl =
-                                              downloadUrls.first;
-                                        });
-                                        showUploadMessage(context, 'Success!');
+                                Builder(
+                                  builder: (context) => FFButtonWidget(
+                                    onPressed: () async {
+                                      if (_model.imageList.length >= 5) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child:
+                                                    InformationDialogViewWidget(
+                                                  title: 'จำกัดรูปภาพ 5 รูป',
+                                                  status: 'warning',
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
                                       } else {
-                                        setState(() {});
-                                        showUploadMessage(
-                                            context, 'Failed to upload data');
-                                        return;
-                                      }
-                                    }
+                                        final selectedMedia =
+                                            await selectMediaWithSourceBottomSheet(
+                                          context: context,
+                                          maxWidth: 600.00,
+                                          imageQuality: 80,
+                                          allowPhoto: true,
+                                        );
+                                        if (selectedMedia != null &&
+                                            selectedMedia.every((m) =>
+                                                validateFileFormat(
+                                                    m.storagePath, context))) {
+                                          setState(() =>
+                                              _model.isDataUploading = true);
+                                          var selectedUploadedFiles =
+                                              <FFUploadedFile>[];
 
-                                    if (_model.uploadedFileUrl != null &&
-                                        _model.uploadedFileUrl != '') {
-                                      setState(() {
-                                        _model.addToImageList(
-                                            _model.uploadedFileUrl);
-                                      });
-                                      setState(() {
-                                        _model.isDataUploading = false;
-                                        _model.uploadedLocalFile =
-                                            FFUploadedFile(
-                                                bytes: Uint8List.fromList([]));
-                                        _model.uploadedFileUrl = '';
-                                      });
-                                    }
-                                  },
-                                  text: 'เพิ่มรูปภาพ',
-                                  icon: Icon(
-                                    Icons.image_rounded,
-                                    size: 22.0,
-                                  ),
-                                  options: FFButtonOptions(
-                                    height: 32.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color:
-                                        FlutterFlowTheme.of(context).tertiary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: Colors.white,
-                                        ),
-                                    elevation: 3.0,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
+                                          var downloadUrls = <String>[];
+                                          try {
+                                            showUploadMessage(
+                                              context,
+                                              'Uploading file...',
+                                              showLoading: true,
+                                            );
+                                            selectedUploadedFiles =
+                                                selectedMedia
+                                                    .map((m) => FFUploadedFile(
+                                                          name: m.storagePath
+                                                              .split('/')
+                                                              .last,
+                                                          bytes: m.bytes,
+                                                          height: m.dimensions
+                                                              ?.height,
+                                                          width: m.dimensions
+                                                              ?.width,
+                                                          blurHash: m.blurHash,
+                                                        ))
+                                                    .toList();
+
+                                            downloadUrls = (await Future.wait(
+                                              selectedMedia.map(
+                                                (m) async => await uploadData(
+                                                    m.storagePath, m.bytes),
+                                              ),
+                                            ))
+                                                .where((u) => u != null)
+                                                .map((u) => u!)
+                                                .toList();
+                                          } finally {
+                                            ScaffoldMessenger.of(context)
+                                                .hideCurrentSnackBar();
+                                            _model.isDataUploading = false;
+                                          }
+                                          if (selectedUploadedFiles.length ==
+                                                  selectedMedia.length &&
+                                              downloadUrls.length ==
+                                                  selectedMedia.length) {
+                                            setState(() {
+                                              _model.uploadedLocalFile =
+                                                  selectedUploadedFiles.first;
+                                              _model.uploadedFileUrl =
+                                                  downloadUrls.first;
+                                            });
+                                            showUploadMessage(
+                                                context, 'Success!');
+                                          } else {
+                                            setState(() {});
+                                            showUploadMessage(context,
+                                                'Failed to upload data');
+                                            return;
+                                          }
+                                        }
+
+                                        if (_model.uploadedFileUrl != null &&
+                                            _model.uploadedFileUrl != '') {
+                                          setState(() {
+                                            _model.addToImageList(
+                                                _model.uploadedFileUrl);
+                                          });
+                                          setState(() {
+                                            _model.isDataUploading = false;
+                                            _model.uploadedLocalFile =
+                                                FFUploadedFile(
+                                                    bytes:
+                                                        Uint8List.fromList([]));
+                                            _model.uploadedFileUrl = '';
+                                          });
+                                        }
+                                      }
+                                    },
+                                    text: 'เพิ่มรูปภาพ',
+                                    icon: Icon(
+                                      Icons.image_rounded,
+                                      size: 22.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    options: FFButtonOptions(
+                                      height: 32.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            color: Colors.white,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
                                   ),
                                 ),
                               ],

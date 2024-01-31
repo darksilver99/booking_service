@@ -115,7 +115,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'BookingListPage',
           path: '/bookingListPage',
-          builder: (context, params) => BookingListPageWidget(),
+          builder: (context, params) => BookingListPageWidget(
+            category: params.getParam('category', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'ServiceFormPage',
@@ -129,6 +131,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             currentLocation:
                 params.getParam('currentLocation', ParamType.LatLng),
           ),
+        ),
+        FFRoute(
+          name: 'BookingCategorySelectPage',
+          path: '/bookingCategorySelectPage',
+          builder: (context, params) => BookingCategorySelectPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
