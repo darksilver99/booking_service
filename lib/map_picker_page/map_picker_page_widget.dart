@@ -1,6 +1,3 @@
-import 'package:geocoding/geocoding.dart';
-import 'package:map_picker/map_picker.dart';
-
 import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -12,6 +9,10 @@ import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:provider/provider.dart';
 import 'map_picker_page_model.dart';
 export 'map_picker_page_model.dart';
+
+import 'package:geocoding/geocoding.dart';
+import 'package:map_picker/map_picker.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as Location;
 
 class MapPickerPageWidget extends StatefulWidget {
   const MapPickerPageWidget({super.key});
@@ -54,6 +55,12 @@ class _MapPickerPageWidgetState extends State<MapPickerPageWidget> {
     }
 
     context.watch<FFAppState>();
+
+    Location.LatLng newLocation = Location.LatLng(widget.currentLocation.latitude, widget.currentLocation.longitude);
+    cameraPosition = CameraPosition(
+      target: newLocation,
+      zoom: 14.4746,
+    );
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
