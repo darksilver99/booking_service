@@ -96,10 +96,18 @@ class ServiceListRecord extends FirestoreRecord {
   String get distanceText => _distanceText ?? '';
   bool hasDistanceText() => _distanceText != null;
 
+  set distanceText(String _value) {
+    _distanceText = _value;
+  }
+
   // "distanceValue" field.
   int? _distanceValue;
   int get distanceValue => _distanceValue ?? 0;
   bool hasDistanceValue() => _distanceValue != null;
+
+  set distanceValue(int _value) {
+    _distanceValue = _value;
+  }
 
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
