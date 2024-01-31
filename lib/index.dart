@@ -14,3 +14,5 @@ export '/service/map_picker_page/map_picker_page_widget.dart'
     show MapPickerPageWidget;
 export '/booking_category_select_page/booking_category_select_page_widget.dart'
     show BookingCategorySelectPageWidget;
+export '/service/service_detail_page/service_detail_page_widget.dart'
+    show ServiceDetailPageWidget;

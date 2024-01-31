@@ -136,6 +136,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'BookingCategorySelectPage',
           path: '/bookingCategorySelectPage',
           builder: (context, params) => BookingCategorySelectPageWidget(),
+        ),
+        FFRoute(
+          name: 'ServiceDetailPage',
+          path: '/serviceDetailPage',
+          asyncParams: {
+            'serviceDocument':
+                getDoc(['service_list'], ServiceListRecord.fromSnapshot),
+          },
+          builder: (context, params) => ServiceDetailPageWidget(
+            serviceDocument:
+                params.getParam('serviceDocument', ParamType.Document),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
