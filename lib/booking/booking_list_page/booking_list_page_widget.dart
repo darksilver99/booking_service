@@ -5,11 +5,9 @@ import '/components/review_form_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'booking_list_page_model.dart';
@@ -68,7 +66,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.chevron_left_rounded,
               color: Colors.white,
               size: 30.0,
@@ -85,7 +83,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                   fontSize: 22.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -106,7 +104,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                   .orderBy('status')
                   .orderBy('create_date', descending: true),
             ),
-            padding: EdgeInsets.fromLTRB(
+            padding: const EdgeInsets.fromLTRB(
               0,
               16.0,
               0,
@@ -114,7 +112,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
             ),
             reverse: false,
             scrollDirection: Axis.vertical,
-            separatorBuilder: (_, __) => SizedBox(height: 8.0),
+            separatorBuilder: (_, __) => const SizedBox(height: 8.0),
             builderDelegate: PagedChildBuilderDelegate<BookingListRecord>(
               // Customize what your widget looks like when it's loading the first page.
               firstPageProgressIndicatorBuilder: (_) => Center(
@@ -140,14 +138,14 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                   ),
                 ),
               ),
-              noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(
+              noItemsFoundIndicatorBuilder: (_) => const NoDataViewWidget(
                 msg: 'ยังไม่มีรายการจอง',
               ),
               itemBuilder: (context, _, listViewIndex) {
                 final listViewBookingListRecord =
                     _model.listViewPagingController!.itemList![listViewIndex];
                 return Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -197,7 +195,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                         child: Stack(
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 8.0, 16.0, 8.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -208,7 +206,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 8.0, 0.0),
                                           child: Icon(
                                             Icons.circle_rounded,
@@ -284,7 +282,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 8.0),
                                                     child: Text(
@@ -369,9 +367,9 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(1.0, 1.0),
+                              alignment: const AlignmentDirectional(1.0, 1.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 16.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,

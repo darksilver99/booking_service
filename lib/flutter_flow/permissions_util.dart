@@ -9,14 +9,14 @@ const kPermissionStateToBool = {
   PermissionStatus.permanentlyDenied: false,
 };
 
-final locationPermission = Permission.location;
+const locationPermission = Permission.location;
 
 Future<bool> getPermissionStatus(Permission setting) async {
   if (kIsWeb) {
     return true;
   }
-  final _status = await setting.status;
-  return kPermissionStateToBool[_status]!;
+  final status = await setting.status;
+  return kPermissionStateToBool[status]!;
 }
 
 Future<void> requestPermission(Permission setting) async {

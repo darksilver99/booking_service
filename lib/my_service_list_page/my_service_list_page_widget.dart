@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'my_service_list_page_model.dart';
 export 'my_service_list_page_model.dart';
@@ -67,7 +66,7 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.chevron_left_rounded,
               color: Colors.white,
               size: 30.0,
@@ -84,7 +83,7 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                   fontSize: 22.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -94,7 +93,7 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 8.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -104,16 +103,16 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                         context.pushNamed('ServiceFormPage');
                       },
                       text: 'เพิ่มบริการของคุณ',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.add_rounded,
                         size: 14.0,
                       ),
                       options: FFButtonOptions(
                         height: 32.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -122,7 +121,7 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                                   fontSize: 14.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -163,12 +162,12 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                     List<ServiceListRecord> listViewServiceListRecordList =
                         snapshot.data!;
                     if (listViewServiceListRecordList.isEmpty) {
-                      return NoDataViewWidget(
+                      return const NoDataViewWidget(
                         msg: 'คุณยังไม่ได้สร้างบริการ',
                       );
                     }
                     return ListView.separated(
-                      padding: EdgeInsets.fromLTRB(
+                      padding: const EdgeInsets.fromLTRB(
                         0,
                         0,
                         0,
@@ -176,12 +175,12 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                       ),
                       scrollDirection: Axis.vertical,
                       itemCount: listViewServiceListRecordList.length,
-                      separatorBuilder: (_, __) => SizedBox(height: 8.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 8.0),
                       itemBuilder: (context, listViewIndex) {
                         final listViewServiceListRecord =
                             listViewServiceListRecordList[listViewIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -217,7 +216,7 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 8.0, 8.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -225,7 +224,7 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 8.0, 0.0),
                                         child: ClipRRect(
                                           borderRadius:

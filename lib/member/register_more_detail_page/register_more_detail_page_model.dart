@@ -1,16 +1,7 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'register_more_detail_page_widget.dart'
     show RegisterMoreDetailPageWidget;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class RegisterMoreDetailPageModel
     extends FlutterFlowModel<RegisterMoreDetailPageWidget> {
@@ -56,12 +47,14 @@ class RegisterMoreDetailPageModel
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     firstNameControllerValidator = _firstNameControllerValidator;
     lastNameControllerValidator = _lastNameControllerValidator;
     phoneControllerValidator = _phoneControllerValidator;
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     firstNameFocusNode?.dispose();

@@ -3,17 +3,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
@@ -46,8 +42,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 300.ms,
-          begin: Offset(-30.0, -30.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(-30.0, -30.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -65,8 +61,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 400.ms,
-          begin: Offset(30.0, -30.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(30.0, -30.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -84,8 +80,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 600.ms,
-          begin: Offset(30.0, 0.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(30.0, 0.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -103,8 +99,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 500.ms,
-          begin: Offset(-30.0, 0.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(-30.0, 0.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -122,8 +118,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 700.ms,
-          begin: Offset(30.0, 30.0),
-          end: Offset(0.0, 0.0),
+          begin: const Offset(30.0, 30.0),
+          end: const Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -136,7 +132,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (currentPhoneNumber == null || currentPhoneNumber == '') {
+      if (currentPhoneNumber == '') {
         context.pushNamed('RegisterMoreDetailPage');
       } else {
         _model.rsBookingStatusList = await queryBookingStatusRecordOnce(
@@ -180,14 +176,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 15.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 15.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Expanded(
                   child: MasonryGridView.builder(
                     gridDelegate:
-                        SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
                     crossAxisSpacing: 10.0,
@@ -219,7 +215,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -227,7 +223,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 4.0),
                                           child: Icon(
                                             Icons.settings_rounded,
@@ -278,7 +274,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: FutureBuilder<int>(
                                       future: queryBookingListRecordCount(
                                         queryBuilder: (bookingListRecord) =>
@@ -315,7 +311,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         return Stack(
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -324,7 +320,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 4.0),
                                                     child: Icon(
@@ -354,7 +350,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             ),
                                             if (stackCount > 0)
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     1.0, -1.0),
                                                 child: Container(
                                                   width: 36.0,
@@ -428,7 +424,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -436,7 +432,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 4.0),
                                           child: Icon(
                                             Icons.settings_rounded,
@@ -487,7 +483,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: FutureBuilder<int>(
                                       future: queryBookingListRecordCount(
                                         queryBuilder: (bookingListRecord) =>
@@ -524,7 +520,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         return Stack(
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -533,7 +529,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 4.0),
                                                     child: Icon(
@@ -563,7 +559,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             ),
                                             if (stackCount > 0)
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     1.0, -1.0),
                                                 child: Container(
                                                   width: 36.0,
@@ -637,7 +633,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -645,7 +641,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 4.0),
                                           child: Icon(
                                             Icons.settings_rounded,

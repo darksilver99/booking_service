@@ -1,16 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/approve_from_view_widget.dart';
-import '/components/confirm_dialog_view_widget.dart';
 import '/components/no_data_view_widget.dart';
+import '/components/update_booking_status_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'booking_coming_list_page_model.dart';
@@ -71,7 +69,7 @@ class _BookingComingListPageWidgetState
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.chevron_left_rounded,
               color: Colors.white,
               size: 30.0,
@@ -88,7 +86,7 @@ class _BookingComingListPageWidgetState
                   fontSize: 22.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -109,7 +107,7 @@ class _BookingComingListPageWidgetState
                   .orderBy('status')
                   .orderBy('create_date', descending: true),
             ),
-            padding: EdgeInsets.fromLTRB(
+            padding: const EdgeInsets.fromLTRB(
               0,
               16.0,
               0,
@@ -117,7 +115,7 @@ class _BookingComingListPageWidgetState
             ),
             reverse: false,
             scrollDirection: Axis.vertical,
-            separatorBuilder: (_, __) => SizedBox(height: 8.0),
+            separatorBuilder: (_, __) => const SizedBox(height: 8.0),
             builderDelegate: PagedChildBuilderDelegate<BookingListRecord>(
               // Customize what your widget looks like when it's loading the first page.
               firstPageProgressIndicatorBuilder: (_) => Center(
@@ -143,298 +141,285 @@ class _BookingComingListPageWidgetState
                   ),
                 ),
               ),
-              noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(
+              noItemsFoundIndicatorBuilder: (_) => const NoDataViewWidget(
                 msg: 'ยังไม่มีรายการจองเข้ามา',
               ),
               itemBuilder: (context, _, listViewIndex) {
                 final listViewBookingListRecord =
                     _model.listViewPagingController!.itemList![listViewIndex];
-                return Builder(
-                  builder: (context) => Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        if (listViewBookingListRecord.status == 0) {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: ApproveFromViewWidget(
-                                    bookingRef:
-                                        listViewBookingListRecord.reference,
-                                  ),
+                return Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      if (listViewBookingListRecord.status == 0) {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () => _model.unfocusNode.canRequestFocus
+                                  ? FocusScope.of(context)
+                                      .requestFocus(_model.unfocusNode)
+                                  : FocusScope.of(context).unfocus(),
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: ApproveFromViewWidget(
+                                  bookingRef:
+                                      listViewBookingListRecord.reference,
                                 ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        } else if (listViewBookingListRecord.status == 1) {
-                          await showDialog(
-                            context: context,
-                            builder: (dialogContext) {
-                              return Dialog(
-                                elevation: 0,
-                                insetPadding: EdgeInsets.zero,
-                                backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
-                                    .resolve(Directionality.of(context)),
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: ConfirmDialogViewWidget(
-                                    title: 'ต',
-                                    detail: '',
-                                  ),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
+                      } else if (listViewBookingListRecord.status == 1) {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () => _model.unfocusNode.canRequestFocus
+                                  ? FocusScope.of(context)
+                                      .requestFocus(_model.unfocusNode)
+                                  : FocusScope.of(context).unfocus(),
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: UpdateBookingStatusViewWidget(
+                                  bookingRef:
+                                      listViewBookingListRecord.reference,
                                 ),
-                              );
-                            },
-                          ).then((value) => setState(() {}));
-                        }
-                      },
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 3.0,
-                        shape: RoundedRectangleBorder(
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
+                      }
+                    },
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 3.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Container(
+                        width: double.infinity,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        child: Container(
-                          width: double.infinity,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Stack(
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 8.0, 16.0, 8.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 8.0, 0.0),
-                                            child: Icon(
-                                              Icons.circle_rounded,
-                                              color: () {
-                                                if (listViewBookingListRecord
-                                                        .status ==
-                                                    0) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .warning;
-                                                } else if (listViewBookingListRecord
-                                                        .status ==
-                                                    1) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .success;
-                                                } else if (listViewBookingListRecord
-                                                        .status ==
-                                                    3) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .warning;
-                                                } else if (listViewBookingListRecord
-                                                        .status ==
-                                                    4) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondary;
-                                                } else {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .error;
-                                                }
-                                              }(),
-                                              size: 24.0,
-                                            ),
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 8.0, 16.0, 8.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 8.0, 0.0),
+                                          child: Icon(
+                                            Icons.circle_rounded,
+                                            color: () {
+                                              if (listViewBookingListRecord
+                                                      .status ==
+                                                  0) {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .warning;
+                                              } else if (listViewBookingListRecord
+                                                      .status ==
+                                                  1) {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .success;
+                                              } else if (listViewBookingListRecord
+                                                      .status ==
+                                                  3) {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .warning;
+                                              } else if (listViewBookingListRecord
+                                                      .status ==
+                                                  4) {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .secondary;
+                                              } else {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .error;
+                                              }
+                                            }(),
+                                            size: 24.0,
                                           ),
-                                          Expanded(
-                                            child: StreamBuilder<
-                                                ServiceListRecord>(
-                                              stream:
-                                                  ServiceListRecord.getDocument(
-                                                      listViewBookingListRecord
-                                                          .serviceRef!),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        valueColor:
-                                                            AlwaysStoppedAnimation<
-                                                                Color>(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
+                                        ),
+                                        Expanded(
+                                          child:
+                                              StreamBuilder<ServiceListRecord>(
+                                            stream:
+                                                ServiceListRecord.getDocument(
+                                                    listViewBookingListRecord
+                                                        .serviceRef!),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                              Color>(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
                                                       ),
                                                     ),
-                                                  );
-                                                }
-                                                final columnServiceListRecord =
-                                                    snapshot.data!;
-                                                return Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  8.0),
-                                                      child: Text(
-                                                        columnServiceListRecord
-                                                            .category,
-                                                        maxLines: 1,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontSize: 16.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      columnServiceListRecord
-                                                          .title,
-                                                      maxLines: 1,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium,
-                                                    ),
-                                                  ],
+                                                  ),
                                                 );
-                                              },
-                                            ),
+                                              }
+                                              final columnServiceListRecord =
+                                                  snapshot.data!;
+                                              return Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 8.0),
+                                                    child: Text(
+                                                      columnServiceListRecord
+                                                          .category,
+                                                      maxLines: 1,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Inter',
+                                                            fontSize: 16.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    columnServiceListRecord
+                                                        .title,
+                                                    maxLines: 1,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
+                                                ],
+                                              );
+                                            },
                                           ),
-                                          Text(
-                                            valueOrDefault<String>(
-                                              functions.getBookingStatus(
-                                                  listViewBookingListRecord
-                                                      .status),
-                                              '-',
-                                            ),
-                                            maxLines: 1,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: () {
-                                                    if (listViewBookingListRecord
-                                                            .status ==
-                                                        0) {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .warning;
-                                                    } else if (listViewBookingListRecord
-                                                            .status ==
-                                                        1) {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .success;
-                                                    } else if (listViewBookingListRecord
-                                                            .status ==
-                                                        3) {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .warning;
-                                                    } else if (listViewBookingListRecord
-                                                            .status ==
-                                                        4) {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondary;
-                                                    } else {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .error;
-                                                    }
-                                                  }(),
-                                                  fontSize: 18.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                        ),
+                                        Text(
+                                          valueOrDefault<String>(
+                                            functions.getBookingStatus(
+                                                listViewBookingListRecord
+                                                    .status),
+                                            '-',
                                           ),
-                                        ],
+                                          maxLines: 1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color: () {
+                                                  if (listViewBookingListRecord
+                                                          .status ==
+                                                      0) {
+                                                    return FlutterFlowTheme.of(
+                                                            context)
+                                                        .warning;
+                                                  } else if (listViewBookingListRecord
+                                                          .status ==
+                                                      1) {
+                                                    return FlutterFlowTheme.of(
+                                                            context)
+                                                        .success;
+                                                  } else if (listViewBookingListRecord
+                                                          .status ==
+                                                      3) {
+                                                    return FlutterFlowTheme.of(
+                                                            context)
+                                                        .warning;
+                                                  } else if (listViewBookingListRecord
+                                                          .status ==
+                                                      4) {
+                                                    return FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary;
+                                                  } else {
+                                                    return FlutterFlowTheme.of(
+                                                            context)
+                                                        .error;
+                                                  }
+                                                }(),
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(1.0, 1.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 16.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      valueOrDefault<String>(
+                                        functions.getThaiDatetime(
+                                            listViewBookingListRecord
+                                                .bookingDate),
+                                        '-',
                                       ),
+                                      maxLines: 1,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent3,
+                                            fontSize: 12.0,
+                                          ),
                                     ),
                                   ],
                                 ),
                               ),
-                              Align(
-                                alignment: AlignmentDirectional(1.0, 1.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 16.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        valueOrDefault<String>(
-                                          functions.getThaiDatetime(
-                                              listViewBookingListRecord
-                                                  .bookingDate),
-                                          '-',
-                                        ),
-                                        maxLines: 1,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent3,
-                                              fontSize: 12.0,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

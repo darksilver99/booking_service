@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'setting_page_model.dart';
 export 'setting_page_model.dart';
@@ -64,7 +63,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.chevron_left_rounded,
               color: Colors.white,
               size: 30.0,
@@ -81,14 +80,14 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                   fontSize: 22.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -96,7 +95,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                   Builder(
                     builder: (context) => FFButtonWidget(
                       onPressed: () async {
-                        Function() _navigate = () {};
+                        Function() navigate = () {};
                         await showDialog(
                           context: context,
                           builder: (dialogContext) {
@@ -104,14 +103,14 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: AlignmentDirectional(0.0, 0.0)
+                              alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: GestureDetector(
                                 onTap: () => _model.unfocusNode.canRequestFocus
                                     ? FocusScope.of(context)
                                         .requestFocus(_model.unfocusNode)
                                     : FocusScope.of(context).unfocus(),
-                                child: ConfirmDialogViewWidget(
+                                child: const ConfirmDialogViewWidget(
                                   title: 'ต้องการออกจากระบบ?',
                                 ),
                               ),
@@ -125,13 +124,13 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          _navigate = () =>
+                          navigate = () =>
                               context.goNamedAuth('LoginPage', context.mounted);
                         } else {
                           setState(() {});
                         }
 
-                        _navigate();
+                        navigate();
 
                         setState(() {});
                       },
@@ -139,10 +138,10 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).error,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -150,7 +149,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   color: Colors.white,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -158,7 +157,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                       ),
                     ),
                   ),
-                ].addToEnd(SizedBox(height: 16.0)),
+                ].addToEnd(const SizedBox(height: 16.0)),
               ),
             ),
           ),
