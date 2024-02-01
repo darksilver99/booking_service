@@ -334,6 +334,8 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                             widget.serviceDocument?.reference,
                                         bookingDate: _model.datePicked,
                                         userDetail: _model.remarkText,
+                                        ownerRef:
+                                            widget.serviceDocument?.createBy,
                                       ));
                                   await showDialog(
                                     context: context,

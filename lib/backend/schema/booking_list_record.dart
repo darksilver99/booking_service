@@ -71,6 +71,11 @@ class BookingListRecord extends FirestoreRecord {
   String get ownerDetail => _ownerDetail ?? '';
   bool hasOwnerDetail() => _ownerDetail != null;
 
+  // "owner_ref" field.
+  DocumentReference? _ownerRef;
+  DocumentReference? get ownerRef => _ownerRef;
+  bool hasOwnerRef() => _ownerRef != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -83,6 +88,7 @@ class BookingListRecord extends FirestoreRecord {
     _bookingDate = snapshotData['booking_date'] as DateTime?;
     _userDetail = snapshotData['user_detail'] as String?;
     _ownerDetail = snapshotData['owner_detail'] as String?;
+    _ownerRef = snapshotData['owner_ref'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -131,6 +137,7 @@ Map<String, dynamic> createBookingListRecordData({
   DateTime? bookingDate,
   String? userDetail,
   String? ownerDetail,
+  DocumentReference? ownerRef,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -145,6 +152,7 @@ Map<String, dynamic> createBookingListRecordData({
       'booking_date': bookingDate,
       'user_detail': userDetail,
       'owner_detail': ownerDetail,
+      'owner_ref': ownerRef,
     }.withoutNulls,
   );
 
@@ -166,7 +174,8 @@ class BookingListRecordDocumentEquality implements Equality<BookingListRecord> {
         e1?.serviceRef == e2?.serviceRef &&
         e1?.bookingDate == e2?.bookingDate &&
         e1?.userDetail == e2?.userDetail &&
-        e1?.ownerDetail == e2?.ownerDetail;
+        e1?.ownerDetail == e2?.ownerDetail &&
+        e1?.ownerRef == e2?.ownerRef;
   }
 
   @override
@@ -181,7 +190,8 @@ class BookingListRecordDocumentEquality implements Equality<BookingListRecord> {
         e?.serviceRef,
         e?.bookingDate,
         e?.userDetail,
-        e?.ownerDetail
+        e?.ownerDetail,
+        e?.ownerRef
       ]);
 
   @override
