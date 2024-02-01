@@ -439,7 +439,7 @@ class _ServiceCategorySelectPageWidgetState
                                                             fontFamily: 'Inter',
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .error,
+                                                                .primaryText,
                                                             fontSize: 20.0,
                                                             fontWeight:
                                                                 FontWeight.bold,

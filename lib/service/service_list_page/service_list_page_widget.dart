@@ -671,7 +671,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                                       'Inter',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .error,
+                                                                      .primaryText,
                                                                   fontSize:
                                                                       20.0,
                                                                   fontWeight:
