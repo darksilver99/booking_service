@@ -93,6 +93,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
         ).then((value) => safeSetState(() => _model.isOK = value));
 
         if (_model.isOK != null) {
+          await Future.delayed(const Duration(milliseconds: 1000));
           setState(() {
             _model.serviceList = _model.serviceAfterGetDistanceList!
                 .toList()
