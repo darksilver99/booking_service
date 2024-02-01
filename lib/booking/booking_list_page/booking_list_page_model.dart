@@ -7,9 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'booking_list_page_widget.dart' show BookingListPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +35,19 @@ class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
 
   bool isLoading = true;
 
+  List<ServiceListRecord> serviceSearchedList = [];
+  void addToServiceSearchedList(ServiceListRecord item) =>
+      serviceSearchedList.add(item);
+  void removeFromServiceSearchedList(ServiceListRecord item) =>
+      serviceSearchedList.remove(item);
+  void removeAtIndexFromServiceSearchedList(int index) =>
+      serviceSearchedList.removeAt(index);
+  void insertAtIndexInServiceSearchedList(int index, ServiceListRecord item) =>
+      serviceSearchedList.insert(index, item);
+  void updateServiceSearchedListAtIndex(
+          int index, Function(ServiceListRecord) updateFn) =>
+      serviceSearchedList[index] = updateFn(serviceSearchedList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -42,6 +57,10 @@ class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
   List<ServiceListRecord>? serviceAfterGetDistanceList;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in BookingListPage widget.
   bool? isOK;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -49,6 +68,8 @@ class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
   }
 
   /// Action blocks are added here.
