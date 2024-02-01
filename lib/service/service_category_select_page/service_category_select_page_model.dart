@@ -3,15 +3,15 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'booking_category_select_page_widget.dart'
-    show BookingCategorySelectPageWidget;
+import 'service_category_select_page_widget.dart'
+    show ServiceCategorySelectPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class BookingCategorySelectPageModel
-    extends FlutterFlowModel<BookingCategorySelectPageWidget> {
+class ServiceCategorySelectPageModel
+    extends FlutterFlowModel<ServiceCategorySelectPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

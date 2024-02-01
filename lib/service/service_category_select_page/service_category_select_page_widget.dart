@@ -7,27 +7,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'booking_category_select_page_model.dart';
-export 'booking_category_select_page_model.dart';
+import 'service_category_select_page_model.dart';
+export 'service_category_select_page_model.dart';
 
-class BookingCategorySelectPageWidget extends StatefulWidget {
-  const BookingCategorySelectPageWidget({super.key});
+class ServiceCategorySelectPageWidget extends StatefulWidget {
+  const ServiceCategorySelectPageWidget({super.key});
 
   @override
-  State<BookingCategorySelectPageWidget> createState() =>
-      _BookingCategorySelectPageWidgetState();
+  State<ServiceCategorySelectPageWidget> createState() =>
+      _ServiceCategorySelectPageWidgetState();
 }
 
-class _BookingCategorySelectPageWidgetState
-    extends State<BookingCategorySelectPageWidget> {
-  late BookingCategorySelectPageModel _model;
+class _ServiceCategorySelectPageWidgetState
+    extends State<ServiceCategorySelectPageWidget> {
+  late ServiceCategorySelectPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => BookingCategorySelectPageModel());
+    _model = createModel(context, () => ServiceCategorySelectPageModel());
   }
 
   @override
@@ -136,7 +136,7 @@ class _BookingCategorySelectPageWidgetState
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           context.pushNamed(
-                            'BookingListPage',
+                            'ServiceListPage',
                             queryParameters: {
                               'category': serializeParam(
                                 listViewCategoryListRecord.name,

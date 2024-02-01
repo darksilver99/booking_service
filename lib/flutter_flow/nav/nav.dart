@@ -113,9 +113,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SettingPageWidget(),
         ),
         FFRoute(
-          name: 'BookingListPage',
-          path: '/bookingListPage',
-          builder: (context, params) => BookingListPageWidget(
+          name: 'ServiceListPage',
+          path: '/serviceListPage',
+          builder: (context, params) => ServiceListPageWidget(
             category: params.getParam('category', ParamType.String),
           ),
         ),
@@ -133,9 +133,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'BookingCategorySelectPage',
-          path: '/bookingCategorySelectPage',
-          builder: (context, params) => BookingCategorySelectPageWidget(),
+          name: 'ServiceCategorySelectPage',
+          path: '/serviceCategorySelectPage',
+          builder: (context, params) => ServiceCategorySelectPageWidget(),
         ),
         FFRoute(
           name: 'ServiceDetailPage',
