@@ -149,8 +149,10 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(
-                            msg: 'ยังไม่มีรายการจอง',
+                          noItemsFoundIndicatorBuilder: (_) => Center(
+                            child: NoDataViewWidget(
+                              msg: 'ยังไม่มีรายการจอง',
+                            ),
                           ),
                           itemBuilder: (context, _, listViewIndex) {
                             final listViewBookingListRecord = _model
