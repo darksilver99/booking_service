@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/approve_from_view_widget.dart';
+import '/components/finish_booking_detail_view_widget.dart';
 import '/components/no_data_view_widget.dart';
 import '/components/update_booking_status_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';

@@ -180,6 +180,7 @@ class _ReviewFormViewWidgetState extends State<ReviewFormViewWidget> {
                               serviceRef: widget.serviceRef,
                               comment: _model.textController.text,
                               star: _model.ratingBarValue,
+                              bookingRef: widget.bookingRef,
                             ));
                         await actions.updateAverateRating(
                           widget.serviceRef,
@@ -199,7 +200,7 @@ class _ReviewFormViewWidgetState extends State<ReviewFormViewWidget> {
                               alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: InformationDialogViewWidget(
-                                title: 'รีวิวร้านค้าเรียบร้อยแล้ว',
+                                title: 'รีวิวบริการเรียบร้อยแล้ว',
                                 status: 'success',
                               ),
                             );

@@ -46,6 +46,11 @@ class ReviewListRecord extends FirestoreRecord {
   double get star => _star ?? 0.0;
   bool hasStar() => _star != null;
 
+  // "booking_ref" field.
+  DocumentReference? _bookingRef;
+  DocumentReference? get bookingRef => _bookingRef;
+  bool hasBookingRef() => _bookingRef != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -53,6 +58,7 @@ class ReviewListRecord extends FirestoreRecord {
     _serviceRef = snapshotData['service_ref'] as DocumentReference?;
     _comment = snapshotData['comment'] as String?;
     _star = castToType<double>(snapshotData['star']);
+    _bookingRef = snapshotData['booking_ref'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -96,6 +102,7 @@ Map<String, dynamic> createReviewListRecordData({
   DocumentReference? serviceRef,
   String? comment,
   double? star,
+  DocumentReference? bookingRef,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -105,6 +112,7 @@ Map<String, dynamic> createReviewListRecordData({
       'service_ref': serviceRef,
       'comment': comment,
       'star': star,
+      'booking_ref': bookingRef,
     }.withoutNulls,
   );
 
@@ -121,7 +129,8 @@ class ReviewListRecordDocumentEquality implements Equality<ReviewListRecord> {
         e1?.status == e2?.status &&
         e1?.serviceRef == e2?.serviceRef &&
         e1?.comment == e2?.comment &&
-        e1?.star == e2?.star;
+        e1?.star == e2?.star &&
+        e1?.bookingRef == e2?.bookingRef;
   }
 
   @override
@@ -131,7 +140,8 @@ class ReviewListRecordDocumentEquality implements Equality<ReviewListRecord> {
         e?.status,
         e?.serviceRef,
         e?.comment,
-        e?.star
+        e?.star,
+        e?.bookingRef
       ]);
 
   @override
