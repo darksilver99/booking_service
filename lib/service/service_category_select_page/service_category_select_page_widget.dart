@@ -45,7 +45,7 @@ class _ServiceCategorySelectPageWidgetState
           isEqualTo: 1,
         ),
       );
-      await Future.delayed(const Duration(milliseconds: 1000));
+      await Future.delayed(const Duration(milliseconds: 1500));
       setState(() {
         _model.isLoading = false;
         _model.categoryList =
