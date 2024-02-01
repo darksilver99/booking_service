@@ -29,3 +29,10 @@ String? getLocationLatLng(
     return location!.longitude.toString();
   }
 }
+
+List<ServiceListRecord>? getFilterTitleInServiceList(
+  String? keyword,
+  List<ServiceListRecord>? serviceList,
+) {
+  return serviceList;
+}
