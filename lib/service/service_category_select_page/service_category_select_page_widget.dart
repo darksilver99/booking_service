@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/no_data_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -208,6 +209,9 @@ class _ServiceCategorySelectPageWidgetState
                           builder: (context) {
                             final categoryViewList =
                                 _model.categoryList.toList();
+                            if (categoryViewList.isEmpty) {
+                              return NoDataViewWidget();
+                            }
                             return ListView.builder(
                               padding: EdgeInsets.fromLTRB(
                                 0,
@@ -337,6 +341,9 @@ class _ServiceCategorySelectPageWidgetState
                           builder: (context) {
                             final categorySearchedViewList =
                                 _model.categorySearchedList.toList();
+                            if (categorySearchedViewList.isEmpty) {
+                              return NoDataViewWidget();
+                            }
                             return ListView.builder(
                               padding: EdgeInsets.fromLTRB(
                                 0,
@@ -473,8 +480,8 @@ class _ServiceCategorySelectPageWidgetState
               if (_model.isLoading)
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
-                  child: Lottie.network(
-                    'https://assets2.lottiefiles.com/packages/lf20_aZTdD5.json',
+                  child: Lottie.asset(
+                    'assets/lottie_animations/Animation_-_1706758696837.json',
                     width: 150.0,
                     height: 130.0,
                     fit: BoxFit.cover,

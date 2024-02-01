@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/information_dialog_view_widget.dart';
+import '/components/no_data_view_widget.dart';
 import '/components/rating_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -270,6 +271,9 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                             builder: (context) {
                               final serviceDistanceList =
                                   _model.serviceList.toList();
+                              if (serviceDistanceList.isEmpty) {
+                                return NoDataViewWidget();
+                              }
                               return ListView.builder(
                                 padding: EdgeInsets.fromLTRB(
                                   0,
@@ -562,6 +566,9 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                             builder: (context) {
                               final serviceDistanceSearchedList =
                                   _model.serviceSearchedList.toList();
+                              if (serviceDistanceSearchedList.isEmpty) {
+                                return NoDataViewWidget();
+                              }
                               return ListView.builder(
                                 padding: EdgeInsets.fromLTRB(
                                   0,
@@ -859,8 +866,8 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                 if (_model.isLoading)
                   Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Lottie.network(
-                      'https://assets2.lottiefiles.com/packages/lf20_aZTdD5.json',
+                    child: Lottie.asset(
+                      'assets/lottie_animations/Animation_-_1706758786278.json',
                       width: 150.0,
                       height: 130.0,
                       fit: BoxFit.cover,
