@@ -189,7 +189,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                           focusNode: _model.textFieldFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
-                            Duration(milliseconds: 2000),
+                            Duration(milliseconds: 300),
                             () async {
                               setState(() {
                                 _model.serviceSearchedList = functions
@@ -263,7 +263,8 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                               .asValidator(context),
                         ),
                       ),
-                      if (!_model.isLoading)
+                      if (!_model.isLoading &&
+                          !(_model.serviceSearchedList.isNotEmpty))
                         Expanded(
                           child: Builder(
                             builder: (context) {
