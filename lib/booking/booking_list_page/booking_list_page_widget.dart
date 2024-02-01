@@ -262,7 +262,12 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                             MainAxisAlignment.end,
                                         children: [
                                           Text(
-                                            '${dateTimeFormat('d/M/y', listViewBookingListRecord.bookingDate)} ${dateTimeFormat('Hm', listViewBookingListRecord.bookingDate)}',
+                                            valueOrDefault<String>(
+                                              functions.getThaiDatetime(
+                                                  listViewBookingListRecord
+                                                      .bookingDate),
+                                              '-',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
