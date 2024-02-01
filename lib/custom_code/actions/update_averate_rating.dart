@@ -9,9 +9,17 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future updateAverateRating(
-  DocumentReference? serviceRef,
-  double? star,
-) async {
+Future updateAverateRating(DocumentReference? serviceRef) async {
   // Add your function code here!
+  var rs = await FirebaseFirestore.instance
+      .collection("review_list")
+      .where("service_ref", isEqualTo: serviceRef)
+      .where("status", isEqualTo: 1)
+      .get();
+  double totalStar = 0;
+  for (var i = 0; i < rs.size; i++) {
+    totalStar = totalStar + rs.docs[i].data()["star"];
+  }
+  double avg = totalStar / rs.size;
+  serviceRef!.update({"rating": avg});
 }
