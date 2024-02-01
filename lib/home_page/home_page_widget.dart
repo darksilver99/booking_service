@@ -400,10 +400,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     child: FutureBuilder<int>(
                                       future: queryBookingListRecordCount(
                                         queryBuilder: (bookingListRecord) =>
-                                            bookingListRecord.where(
-                                          'owner_ref',
-                                          isEqualTo: currentUserReference,
-                                        ),
+                                            bookingListRecord
+                                                .where(
+                                                  'owner_ref',
+                                                  isEqualTo:
+                                                      currentUserReference,
+                                                )
+                                                .where(
+                                                  'status',
+                                                  isEqualTo: 0,
+                                                ),
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
