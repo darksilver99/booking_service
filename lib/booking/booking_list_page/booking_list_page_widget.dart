@@ -171,9 +171,37 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                           0.0, 0.0, 8.0, 0.0),
                                                   child: Icon(
                                                     Icons.circle_rounded,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondary,
+                                                    color: () {
+                                                      if (listViewBookingListRecord
+                                                              .status ==
+                                                          0) {
+                                                        return FlutterFlowTheme
+                                                                .of(context)
+                                                            .warning;
+                                                      } else if (listViewBookingListRecord
+                                                              .status ==
+                                                          1) {
+                                                        return FlutterFlowTheme
+                                                                .of(context)
+                                                            .success;
+                                                      } else if (listViewBookingListRecord
+                                                              .status ==
+                                                          3) {
+                                                        return FlutterFlowTheme
+                                                                .of(context)
+                                                            .warning;
+                                                      } else if (listViewBookingListRecord
+                                                              .status ==
+                                                          4) {
+                                                        return FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondary;
+                                                      } else {
+                                                        return FlutterFlowTheme
+                                                                .of(context)
+                                                            .error;
+                                                      }
+                                                    }(),
                                                     size: 24.0,
                                                   ),
                                                 ),
