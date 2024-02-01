@@ -49,6 +49,8 @@ class ServiceListPageModel extends FlutterFlowModel<ServiceListPageWidget> {
           int index, Function(ServiceListRecord) updateFn) =>
       serviceSearchedList[index] = updateFn(serviceSearchedList[index]);
 
+  bool isSearched = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -206,6 +206,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                         _model.serviceList.toList())!
                                     .toList()
                                     .cast<ServiceListRecord>();
+                                _model.isSearched = true;
                               });
                             },
                           ),
@@ -256,6 +257,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                 _model.serviceList.toList())!
                                             .toList()
                                             .cast<ServiceListRecord>();
+                                        _model.isSearched = true;
                                       });
                                       setState(() {});
                                     },
@@ -271,8 +273,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                               .asValidator(context),
                         ),
                       ),
-                      if (!_model.isLoading &&
-                          !(_model.serviceSearchedList.isNotEmpty))
+                      if (!_model.isLoading && !_model.isSearched)
                         Expanded(
                           child: Builder(
                             builder: (context) {
@@ -567,7 +568,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                             },
                           ),
                         ),
-                      if (_model.serviceSearchedList.length != 0)
+                      if (_model.isSearched)
                         Expanded(
                           child: Builder(
                             builder: (context) {
