@@ -213,25 +213,35 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Text(
-                                                        columnServiceListRecord
-                                                            .category,
-                                                        maxLines: 1,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontSize: 16.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    8.0),
+                                                        child: Text(
+                                                          columnServiceListRecord
+                                                              .category,
+                                                          maxLines: 1,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Inter',
+                                                                fontSize: 16.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
                                                       ),
                                                       Text(
                                                         columnServiceListRecord
                                                             .title,
+                                                        maxLines: 1,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -249,9 +259,41 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                         .status),
                                                 '-',
                                               ),
+                                              maxLines: 1,
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        color: () {
+                                                          if (listViewBookingListRecord
+                                                                  .status ==
+                                                              0) {
+                                                            return FlutterFlowTheme
+                                                                    .of(context)
+                                                                .warning;
+                                                          } else if (listViewBookingListRecord
+                                                                  .status ==
+                                                              1) {
+                                                            return FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondary;
+                                                          } else if (listViewBookingListRecord
+                                                                  .status ==
+                                                              3) {
+                                                            return FlutterFlowTheme
+                                                                    .of(context)
+                                                                .success;
+                                                          } else {
+                                                            return FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error;
+                                                          }
+                                                        }(),
+                                                        fontSize: 18.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                             ),
                                           ],
                                         ),
@@ -268,10 +310,14 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                       .bookingDate),
                                               '-',
                                             ),
+                                            maxLines: 1,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Inter',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .accent3,
                                                   fontSize: 12.0,
                                                 ),
                                           ),
