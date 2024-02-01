@@ -92,12 +92,11 @@ class _BookingComingListPageWidgetState
         ),
         body: SafeArea(
           top: true,
-          child: Stack(
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-                child: PagedListView<DocumentSnapshot<Object?>?,
-                    BookingListRecord>(
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+            child: Stack(
+              children: [
+                PagedListView<DocumentSnapshot<Object?>?, BookingListRecord>(
                   pagingController: _model.setListViewController(
                     BookingListRecord.collection
                         .where(
@@ -390,8 +389,8 @@ class _BookingComingListPageWidgetState
                     },
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
