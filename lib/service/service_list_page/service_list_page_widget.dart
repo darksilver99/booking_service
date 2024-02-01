@@ -17,11 +17,11 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'booking_list_page_model.dart';
-export 'booking_list_page_model.dart';
+import 'service_list_page_model.dart';
+export 'service_list_page_model.dart';
 
-class BookingListPageWidget extends StatefulWidget {
-  const BookingListPageWidget({
+class ServiceListPageWidget extends StatefulWidget {
+  const ServiceListPageWidget({
     super.key,
     required this.category,
   });
@@ -29,11 +29,11 @@ class BookingListPageWidget extends StatefulWidget {
   final String? category;
 
   @override
-  State<BookingListPageWidget> createState() => _BookingListPageWidgetState();
+  State<ServiceListPageWidget> createState() => _ServiceListPageWidgetState();
 }
 
-class _BookingListPageWidgetState extends State<BookingListPageWidget> {
-  late BookingListPageModel _model;
+class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
+  late ServiceListPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? currentUserLocationValue;
@@ -41,7 +41,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => BookingListPageModel());
+    _model = createModel(context, () => ServiceListPageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {

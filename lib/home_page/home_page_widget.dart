@@ -189,7 +189,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('BookingCategorySelectPage');
+                                context.pushNamed('ServiceCategorySelectPage');
                               },
                               child: Material(
                                 color: Colors.transparent,

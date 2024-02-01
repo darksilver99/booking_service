@@ -8,7 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'booking_list_page_widget.dart' show BookingListPageWidget;
+import 'service_list_page_widget.dart' show ServiceListPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -19,7 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
+class ServiceListPageModel extends FlutterFlowModel<ServiceListPageWidget> {
   ///  Local state fields for this page.
 
   List<ServiceListRecord> serviceList = [];
@@ -51,11 +51,11 @@ class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Firestore Query - Query a collection] action in BookingListPage widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in ServiceListPage widget.
   List<ServiceListRecord>? serviceTmpList;
-  // Stores action output result for [Custom Action - getServiceDistance] action in BookingListPage widget.
+  // Stores action output result for [Custom Action - getServiceDistance] action in ServiceListPage widget.
   List<ServiceListRecord>? serviceAfterGetDistanceList;
-  // Stores action output result for [Alert Dialog - Custom Dialog] action in BookingListPage widget.
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in ServiceListPage widget.
   bool? isOK;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
