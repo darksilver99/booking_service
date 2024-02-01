@@ -44,3 +44,12 @@ List<CategoryListRecord>? getFilterNameInCategoryList(
 ) {
   return categoryList!.where((item) => item.name.contains(keyword!)).toList();
 }
+
+String? getBookingStatus(int? statusID) {
+  for (var item in FFAppState().statusTypeList) {
+    if (item.id == statusID) {
+      return item.name;
+    }
+  }
+  return '-';
+}
