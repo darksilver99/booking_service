@@ -60,7 +60,8 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
             ),
         limit: 8,
       );
-      if (_model.serviceList.isNotEmpty) {
+      if (_model.serviceTmpList != null &&
+          (_model.serviceTmpList)!.isNotEmpty) {
         _model.serviceAfterGetDistanceList = await actions.getServiceDistance(
           _model.serviceTmpList?.toList(),
           currentUserLocationValue,
