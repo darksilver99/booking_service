@@ -150,8 +150,10 @@ class _BookingComingListPageWidgetState
                               ),
                             ),
                           ),
-                          noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(
-                            msg: 'ยังไม่มีรายการจองเข้ามา',
+                          noItemsFoundIndicatorBuilder: (_) => Center(
+                            child: NoDataViewWidget(
+                              msg: 'ยังไม่มีรายการจองเข้ามา',
+                            ),
                           ),
                           itemBuilder: (context, _, listViewIndex) {
                             final listViewBookingListRecord = _model
