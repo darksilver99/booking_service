@@ -175,9 +175,12 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),
                                               child: ReviewFormViewWidget(
-                                                serviceDocument:
+                                                serviceRef:
                                                     listViewBookingListRecord
                                                         .serviceRef!,
+                                                bookingRef:
+                                                    listViewBookingListRecord
+                                                        .reference,
                                               ),
                                             ),
                                           );

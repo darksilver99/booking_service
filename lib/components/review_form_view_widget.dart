@@ -16,10 +16,12 @@ export 'review_form_view_model.dart';
 class ReviewFormViewWidget extends StatefulWidget {
   const ReviewFormViewWidget({
     super.key,
-    required this.serviceDocument,
+    required this.serviceRef,
+    required this.bookingRef,
   });
 
-  final DocumentReference? serviceDocument;
+  final DocumentReference? serviceRef;
+  final DocumentReference? bookingRef;
 
   @override
   State<ReviewFormViewWidget> createState() => _ReviewFormViewWidgetState();
@@ -86,7 +88,7 @@ class _ReviewFormViewWidgetState extends State<ReviewFormViewWidget> {
                         color: FlutterFlowTheme.of(context).warning,
                       ),
                       direction: Axis.horizontal,
-                      initialRating: _model.ratingBarValue ??= 3.0,
+                      initialRating: _model.ratingBarValue ??= 5.0,
                       unratedColor: FlutterFlowTheme.of(context).accent3,
                       itemCount: 5,
                       itemSize: 40.0,
@@ -149,14 +151,19 @@ class _ReviewFormViewWidgetState extends State<ReviewFormViewWidget> {
                             createDate: getCurrentTimestamp,
                             createBy: currentUserReference,
                             status: 1,
-                            serviceRef: widget.serviceDocument,
+                            serviceRef: widget.serviceRef,
                             comment: _model.textController.text,
                             star: _model.ratingBarValue,
                           ));
                       await actions.updateAverateRating(
-                        widget.serviceDocument,
+                        widget.serviceRef,
                         _model.ratingBarValue,
                       );
+
+                      await widget.bookingRef!
+                          .update(createBookingListRecordData(
+                        status: 4,
+                      ));
                       Navigator.pop(context);
                     },
                     text: 'บันทึก',
