@@ -54,3 +54,11 @@ String? getBookingStatus(int? statusID) {
   }
   return '-';
 }
+
+String? getThaiDatetime(DateTime? date) {
+  var newDateTime = dateTimeFormat("d MMM y HH:mm", date, locale: "TH_th");
+  var tmpNewDate = newDateTime.split(" ");
+  var newYear = int.parse(tmpNewDate[2]) + 543;
+  return newDateTime =
+      '${tmpNewDate[0]} ${tmpNewDate[1]} $newYear ${tmpNewDate[3]}';
+}
