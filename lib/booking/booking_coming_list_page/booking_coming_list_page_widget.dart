@@ -247,7 +247,7 @@ class _BookingComingListPageWidgetState
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 8.0, 16.0, 8.0),
+                                    16.0, 8.0, 4.0, 8.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -430,7 +430,7 @@ class _BookingComingListPageWidgetState
                                 alignment: AlignmentDirectional(1.0, 1.0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 16.0, 8.0),
+                                      0.0, 0.0, 32.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
