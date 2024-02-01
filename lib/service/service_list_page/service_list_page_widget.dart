@@ -60,43 +60,12 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
             ),
         limit: 8,
       );
-      _model.serviceAfterGetDistanceList = await actions.getServiceDistance(
-        _model.serviceTmpList?.toList(),
-        currentUserLocationValue,
-      );
-      if (FFAppState().hasNearService) {
-        setState(() {
-          _model.serviceList = _model.serviceAfterGetDistanceList!
-              .toList()
-              .cast<ServiceListRecord>();
-          _model.isLoading = false;
-        });
-      } else {
-        await showDialog(
-          context: context,
-          builder: (dialogContext) {
-            return Dialog(
-              elevation: 0,
-              insetPadding: EdgeInsets.zero,
-              backgroundColor: Colors.transparent,
-              alignment: AlignmentDirectional(0.0, 0.0)
-                  .resolve(Directionality.of(context)),
-              child: GestureDetector(
-                onTap: () => _model.unfocusNode.canRequestFocus
-                    ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                    : FocusScope.of(context).unfocus(),
-                child: InformationDialogViewWidget(
-                  title: 'ขออภัย ไม่มีบริการใกล้เคียงกับที่อยู่ของคุณ',
-                  status: 'warning',
-                  detail: 'ลองค้นหาให้ไกลขึ้น?',
-                ),
-              ),
-            );
-          },
-        ).then((value) => safeSetState(() => _model.isOK = value));
-
-        if (_model.isOK != null) {
-          await Future.delayed(const Duration(milliseconds: 1000));
+      if (_model.serviceList.isNotEmpty) {
+        _model.serviceAfterGetDistanceList = await actions.getServiceDistance(
+          _model.serviceTmpList?.toList(),
+          currentUserLocationValue,
+        );
+        if (FFAppState().hasNearService) {
           setState(() {
             _model.serviceList = _model.serviceAfterGetDistanceList!
                 .toList()
@@ -104,11 +73,48 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
             _model.isLoading = false;
           });
         } else {
-          await actions.pushReplacementNamed(
-            context,
-            'HomePage',
-          );
+          await showDialog(
+            context: context,
+            builder: (dialogContext) {
+              return Dialog(
+                elevation: 0,
+                insetPadding: EdgeInsets.zero,
+                backgroundColor: Colors.transparent,
+                alignment: AlignmentDirectional(0.0, 0.0)
+                    .resolve(Directionality.of(context)),
+                child: GestureDetector(
+                  onTap: () => _model.unfocusNode.canRequestFocus
+                      ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                      : FocusScope.of(context).unfocus(),
+                  child: InformationDialogViewWidget(
+                    title: 'ขออภัย ไม่มีบริการใกล้เคียงกับที่อยู่ของคุณ',
+                    status: 'warning',
+                    detail: 'ลองค้นหาให้ไกลขึ้น?',
+                  ),
+                ),
+              );
+            },
+          ).then((value) => safeSetState(() => _model.isOK = value));
+
+          if (_model.isOK != null) {
+            await Future.delayed(const Duration(milliseconds: 1000));
+            setState(() {
+              _model.serviceList = _model.serviceAfterGetDistanceList!
+                  .toList()
+                  .cast<ServiceListRecord>();
+              _model.isLoading = false;
+            });
+          } else {
+            await actions.pushReplacementNamed(
+              context,
+              'HomePage',
+            );
+          }
         }
+      } else {
+        setState(() {
+          _model.isLoading = false;
+        });
       }
     });
 
