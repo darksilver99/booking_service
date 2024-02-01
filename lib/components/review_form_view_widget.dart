@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/information_dialog_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -143,49 +144,67 @@ class _ReviewFormViewWidgetState extends State<ReviewFormViewWidget> {
                           _model.textControllerValidator.asValidator(context),
                     ),
                   ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      await ReviewListRecord.collection
-                          .doc()
-                          .set(createReviewListRecordData(
-                            createDate: getCurrentTimestamp,
-                            createBy: currentUserReference,
-                            status: 1,
-                            serviceRef: widget.serviceRef,
-                            comment: _model.textController.text,
-                            star: _model.ratingBarValue,
-                          ));
-                      await actions.updateAverateRating(
-                        widget.serviceRef,
-                        _model.ratingBarValue,
-                      );
+                  Builder(
+                    builder: (context) => FFButtonWidget(
+                      onPressed: () async {
+                        await ReviewListRecord.collection
+                            .doc()
+                            .set(createReviewListRecordData(
+                              createDate: getCurrentTimestamp,
+                              createBy: currentUserReference,
+                              status: 1,
+                              serviceRef: widget.serviceRef,
+                              comment: _model.textController.text,
+                              star: _model.ratingBarValue,
+                            ));
+                        await actions.updateAverateRating(
+                          widget.serviceRef,
+                        );
 
-                      await widget.bookingRef!
-                          .update(createBookingListRecordData(
-                        status: 4,
-                      ));
-                      Navigator.pop(context);
-                    },
-                    text: 'บันทึก',
-                    options: FFButtonOptions(
-                      width: double.infinity,
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Inter',
-                                color: Colors.white,
+                        await widget.bookingRef!
+                            .update(createBookingListRecordData(
+                          status: 4,
+                        ));
+                        await showDialog(
+                          context: context,
+                          builder: (dialogContext) {
+                            return Dialog(
+                              elevation: 0,
+                              insetPadding: EdgeInsets.zero,
+                              backgroundColor: Colors.transparent,
+                              alignment: AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
+                              child: InformationDialogViewWidget(
+                                title: 'รีวิวร้านค้าเรียบร้อยแล้ว',
+                                status: 'success',
                               ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                            );
+                          },
+                        ).then((value) => setState(() {}));
+
+                        Navigator.pop(context);
+                      },
+                      text: 'บันทึก',
+                      options: FFButtonOptions(
+                        width: double.infinity,
+                        height: 40.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Inter',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                 ],
