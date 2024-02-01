@@ -31,6 +31,24 @@
           "order": "DESCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "booking_list",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "owner_ref",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "create_date",
+          "order": "DESCENDING"
+        }
+      ]
     }
   ]
 }

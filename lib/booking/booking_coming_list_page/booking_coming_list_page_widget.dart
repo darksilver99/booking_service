@@ -9,25 +9,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'booking_list_page_model.dart';
-export 'booking_list_page_model.dart';
+import 'booking_coming_list_page_model.dart';
+export 'booking_coming_list_page_model.dart';
 
-class BookingListPageWidget extends StatefulWidget {
-  const BookingListPageWidget({super.key});
+class BookingComingListPageWidget extends StatefulWidget {
+  const BookingComingListPageWidget({super.key});
 
   @override
-  State<BookingListPageWidget> createState() => _BookingListPageWidgetState();
+  State<BookingComingListPageWidget> createState() =>
+      _BookingComingListPageWidgetState();
 }
 
-class _BookingListPageWidgetState extends State<BookingListPageWidget> {
-  late BookingListPageModel _model;
+class _BookingComingListPageWidgetState
+    extends State<BookingComingListPageWidget> {
+  late BookingComingListPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => BookingListPageModel());
+    _model = createModel(context, () => BookingComingListPageModel());
   }
 
   @override
@@ -75,7 +77,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
             },
           ),
           title: Text(
-            'รายการจองของฉัน',
+            'รายการจองที่เข้ามา',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Sora',
                   color: Colors.white,
@@ -99,7 +101,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                       stream: queryBookingListRecord(
                         queryBuilder: (bookingListRecord) => bookingListRecord
                             .where(
-                              'create_by',
+                              'owner_ref',
                               isEqualTo: currentUserReference,
                             )
                             .where(

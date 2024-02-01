@@ -202,56 +202,18 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                 ),
                           ),
                         ),
-                        Builder(
-                          builder: (context) => FFButtonWidget(
-                            onPressed: () async {
-                              final _datePickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: getCurrentTimestamp,
-                                firstDate: getCurrentTimestamp,
-                                lastDate: DateTime(2050),
-                                builder: (context, child) {
-                                  return wrapInMaterialDatePickerTheme(
-                                    context,
-                                    child!,
-                                    headerBackgroundColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    headerForegroundColor:
-                                        FlutterFlowTheme.of(context).info,
-                                    headerTextStyle:
-                                        FlutterFlowTheme.of(context)
-                                            .headlineLarge
-                                            .override(
-                                              fontFamily: 'Sora',
-                                              fontSize: 32.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                    pickerBackgroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                    pickerForegroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                    selectedDateTimeBackgroundColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    selectedDateTimeForegroundColor:
-                                        FlutterFlowTheme.of(context).info,
-                                    actionButtonForegroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                    iconSize: 24.0,
-                                  );
-                                },
-                              );
-
-                              TimeOfDay? _datePickedTime;
-                              if (_datePickedDate != null) {
-                                _datePickedTime = await showTimePicker(
+                        if (widget.serviceDocument?.createBy !=
+                            currentUserReference)
+                          Builder(
+                            builder: (context) => FFButtonWidget(
+                              onPressed: () async {
+                                final _datePickedDate = await showDatePicker(
                                   context: context,
-                                  initialTime: TimeOfDay.fromDateTime(
-                                      getCurrentTimestamp),
+                                  initialDate: getCurrentTimestamp,
+                                  firstDate: getCurrentTimestamp,
+                                  lastDate: DateTime(2050),
                                   builder: (context, child) {
-                                    return wrapInMaterialTimePickerTheme(
+                                    return wrapInMaterialDatePickerTheme(
                                       context,
                                       child!,
                                       headerBackgroundColor:
@@ -283,120 +245,166 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                     );
                                   },
                                 );
-                              }
 
-                              if (_datePickedDate != null &&
-                                  _datePickedTime != null) {
-                                safeSetState(() {
-                                  _model.datePicked = DateTime(
-                                    _datePickedDate.year,
-                                    _datePickedDate.month,
-                                    _datePickedDate.day,
-                                    _datePickedTime!.hour,
-                                    _datePickedTime.minute,
-                                  );
-                                });
-                              }
-                              if (_model.datePicked != null) {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  context: context,
-                                  builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: RemarkFormViewWidget(
-                                          hintText: 'รายละเอียดถึงผู้ให้บริการ',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(
-                                    () => _model.remarkText = value));
-
-                                if (_model.remarkText != null &&
-                                    _model.remarkText != '') {
-                                  await BookingListRecord.collection
-                                      .doc()
-                                      .set(createBookingListRecordData(
-                                        createDate: getCurrentTimestamp,
-                                        createBy: currentUserReference,
-                                        status: 0,
-                                        serviceRef:
-                                            widget.serviceDocument?.reference,
-                                        bookingDate: _model.datePicked,
-                                        userDetail: _model.remarkText,
-                                      ));
-                                  await showDialog(
+                                TimeOfDay? _datePickedTime;
+                                if (_datePickedDate != null) {
+                                  _datePickedTime = await showTimePicker(
                                     context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                        child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
-                                          child: InformationDialogViewWidget(
-                                            title:
-                                                'จองเรียบร้อย กรุณารอการติดต่อกลับจากเจ้าของบริการ',
-                                            status: 'success',
+                                    initialTime: TimeOfDay.fromDateTime(
+                                        getCurrentTimestamp),
+                                    builder: (context, child) {
+                                      return wrapInMaterialTimePickerTheme(
+                                        context,
+                                        child!,
+                                        headerBackgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        headerForegroundColor:
+                                            FlutterFlowTheme.of(context).info,
+                                        headerTextStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .headlineLarge
+                                                .override(
+                                                  fontFamily: 'Sora',
+                                                  fontSize: 32.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                        pickerBackgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                        pickerForegroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                        selectedDateTimeBackgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        selectedDateTimeForegroundColor:
+                                            FlutterFlowTheme.of(context).info,
+                                        actionButtonForegroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                        iconSize: 24.0,
+                                      );
+                                    },
+                                  );
+                                }
+
+                                if (_datePickedDate != null &&
+                                    _datePickedTime != null) {
+                                  safeSetState(() {
+                                    _model.datePicked = DateTime(
+                                      _datePickedDate.year,
+                                      _datePickedDate.month,
+                                      _datePickedDate.day,
+                                      _datePickedTime!.hour,
+                                      _datePickedTime.minute,
+                                    );
+                                  });
+                                }
+                                if (_model.datePicked != null) {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    enableDrag: false,
+                                    context: context,
+                                    builder: (context) {
+                                      return GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: RemarkFormViewWidget(
+                                            hintText:
+                                                'รายละเอียดถึงผู้ให้บริการ',
                                           ),
                                         ),
                                       );
                                     },
-                                  ).then((value) => setState(() {}));
+                                  ).then((value) => safeSetState(
+                                      () => _model.remarkText = value));
 
-                                  await actions.pushReplacementNamed(
-                                    context,
-                                    'HomePage',
-                                  );
+                                  if (_model.remarkText != null &&
+                                      _model.remarkText != '') {
+                                    await BookingListRecord.collection
+                                        .doc()
+                                        .set(createBookingListRecordData(
+                                          createDate: getCurrentTimestamp,
+                                          createBy: currentUserReference,
+                                          status: 0,
+                                          serviceRef:
+                                              widget.serviceDocument?.reference,
+                                          bookingDate: _model.datePicked,
+                                          userDetail: _model.remarkText,
+                                          ownerRef:
+                                              widget.serviceDocument?.createBy,
+                                        ));
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: InformationDialogViewWidget(
+                                              title:
+                                                  'จองเรียบร้อย กรุณารอการติดต่อกลับจากเจ้าของบริการ',
+                                              status: 'success',
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+
+                                    await actions.pushReplacementNamed(
+                                      context,
+                                      'HomePage',
+                                    );
+                                  }
                                 }
-                              }
 
-                              setState(() {});
-                            },
-                            text: 'จองบริการ',
-                            options: FFButtonOptions(
-                              width: double.infinity,
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: Colors.white,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                setState(() {});
+                              },
+                              text: 'จองบริการ',
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Colors.white,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),
