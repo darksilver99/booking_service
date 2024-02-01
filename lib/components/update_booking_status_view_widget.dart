@@ -9,11 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'approve_from_view_model.dart';
-export 'approve_from_view_model.dart';
+import 'update_booking_status_view_model.dart';
+export 'update_booking_status_view_model.dart';
 
-class ApproveFromViewWidget extends StatefulWidget {
-  const ApproveFromViewWidget({
+class UpdateBookingStatusViewWidget extends StatefulWidget {
+  const UpdateBookingStatusViewWidget({
     super.key,
     required this.bookingRef,
   });
@@ -21,11 +21,13 @@ class ApproveFromViewWidget extends StatefulWidget {
   final DocumentReference? bookingRef;
 
   @override
-  State<ApproveFromViewWidget> createState() => _ApproveFromViewWidgetState();
+  State<UpdateBookingStatusViewWidget> createState() =>
+      _UpdateBookingStatusViewWidgetState();
 }
 
-class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
-  late ApproveFromViewModel _model;
+class _UpdateBookingStatusViewWidgetState
+    extends State<UpdateBookingStatusViewWidget> {
+  late UpdateBookingStatusViewModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -36,10 +38,7 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ApproveFromViewModel());
-
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model = createModel(context, () => UpdateBookingStatusViewModel());
   }
 
   @override
@@ -75,58 +74,10 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                    child: TextFormField(
-                      controller: _model.textController,
-                      focusNode: _model.textFieldFocusNode,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                        hintText: 'รายละเอียดถึงผู้จอง',
-                        hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        filled: true,
-                        fillColor: FlutterFlowTheme.of(context).accent2,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium,
-                      maxLines: 6,
-                      keyboardType: TextInputType.multiline,
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
-                    ),
-                  ),
                   Builder(
                     builder: (context) => Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           await showDialog(
@@ -140,7 +91,9 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                                     .resolve(Directionality.of(context)),
                                 child: ConfirmDialogViewWidget(
                                   title:
-                                      'ระบบจะส่งแจ้งเตือนไปยังผู้จอง ต้องการยืนยันหรือไม่',
+                                      'ระบบจะส่งแจ้งเตือนไปยังผู้จองเพื่อให้รีวิว',
+                                  detail:
+                                      'เมื่อผู้จองรีวิวเสร็จสถานะจะเปลี่ยนเป็นเสร็จสิ้น',
                                 ),
                               );
                             },
@@ -150,17 +103,16 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                           if ((_model.isConfirm != null) && _model.isConfirm!) {
                             await widget.bookingRef!
                                 .update(createBookingListRecordData(
-                              ownerDetail: _model.textController.text,
                               updateDate: getCurrentTimestamp,
                               updateBy: currentUserReference,
-                              status: 1,
+                              status: 3,
                             ));
                             Navigator.pop(context);
                           }
 
                           setState(() {});
                         },
-                        text: 'อนุมัติรายการจอง',
+                        text: 'เปลี่ยนสถาะเป็นรอรีวิว',
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 40.0,
