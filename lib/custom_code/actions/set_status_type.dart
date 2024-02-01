@@ -9,10 +9,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future pushReplacementNamed(
-  BuildContext context,
-  String? name,
-) async {
+Future setStatusType(List<BookingStatusRecord>? statusList) async {
   // Add your function code here!
-  context.pushReplacementNamed(name!);
 }

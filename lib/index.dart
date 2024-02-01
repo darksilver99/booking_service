@@ -16,3 +16,5 @@ export '/service/service_category_select_page/service_category_select_page_widge
     show ServiceCategorySelectPageWidget;
 export '/service/service_detail_page/service_detail_page_widget.dart'
     show ServiceDetailPageWidget;
+export '/booking_list_page/booking_list_page_widget.dart'
+    show BookingListPageWidget;

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -148,6 +149,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             serviceDocument:
                 params.getParam('serviceDocument', ParamType.Document),
           ),
+        ),
+        FFRoute(
+          name: 'BookingListPage',
+          path: '/bookingListPage',
+          builder: (context, params) => BookingListPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

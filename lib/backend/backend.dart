@@ -9,6 +9,7 @@ import 'schema/users_record.dart';
 import 'schema/service_list_record.dart';
 import 'schema/booking_list_record.dart';
 import 'schema/category_list_record.dart';
+import 'schema/booking_status_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,6 +21,7 @@ export 'schema/users_record.dart';
 export 'schema/service_list_record.dart';
 export 'schema/booking_list_record.dart';
 export 'schema/category_list_record.dart';
+export 'schema/booking_status_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -164,6 +166,43 @@ Future<List<CategoryListRecord>> queryCategoryListRecordOnce({
     queryCollectionOnce(
       CategoryListRecord.collection,
       CategoryListRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query BookingStatusRecords (as a Stream and as a Future).
+Future<int> queryBookingStatusRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      BookingStatusRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<BookingStatusRecord>> queryBookingStatusRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      BookingStatusRecord.collection,
+      BookingStatusRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<BookingStatusRecord>> queryBookingStatusRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      BookingStatusRecord.collection,
+      BookingStatusRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
