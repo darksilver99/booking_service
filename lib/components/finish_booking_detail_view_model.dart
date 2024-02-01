@@ -12,11 +12,6 @@ import 'package:provider/provider.dart';
 
 class FinishBookingDetailViewModel
     extends FlutterFlowModel<FinishBookingDetailViewWidget> {
-  ///  State fields for stateful widgets in this component.
-
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue;
-
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}

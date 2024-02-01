@@ -141,21 +141,17 @@ class _FinishBookingDetailViewWidgetState
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
-                            child: RatingBar.builder(
-                              onRatingUpdate: (newValue) => setState(
-                                  () => _model.ratingBarValue = newValue),
+                            child: RatingBarIndicator(
                               itemBuilder: (context, index) => Icon(
                                 Icons.star_rounded,
                                 color: FlutterFlowTheme.of(context).warning,
                               ),
                               direction: Axis.horizontal,
-                              initialRating: _model.ratingBarValue ??=
-                                  columnReviewListRecord!.star,
+                              rating: columnReviewListRecord!.star,
                               unratedColor:
                                   FlutterFlowTheme.of(context).accent3,
                               itemCount: 5,
                               itemSize: 40.0,
-                              glowColor: FlutterFlowTheme.of(context).warning,
                             ),
                           ),
                           if (columnReviewListRecord?.comment != null &&
