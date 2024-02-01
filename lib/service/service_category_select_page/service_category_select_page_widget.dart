@@ -201,7 +201,7 @@ class _ServiceCategorySelectPageWidgetState
                             _model.textControllerValidator.asValidator(context),
                       ),
                     ),
-                    if (_model.isLoading &&
+                    if (!_model.isLoading &&
                         !(_model.categorySearchedList.isNotEmpty))
                       Expanded(
                         child: Builder(
