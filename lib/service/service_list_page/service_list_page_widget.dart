@@ -242,12 +242,13 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                     onTap: () async {
                                       _model.textController?.clear();
                                       setState(() {
-                                        _model.serviceSearchedList = functions
+                                        /*_model.serviceSearchedList = functions
                                             .getFilterTitleInServiceList(
                                                 _model.textController.text,
                                                 _model.serviceList.toList())!
                                             .toList()
-                                            .cast<ServiceListRecord>();
+                                            .cast<ServiceListRecord>();*/
+                                        _model.serviceSearchedList.clear();
                                       });
                                       setState(() {});
                                     },
