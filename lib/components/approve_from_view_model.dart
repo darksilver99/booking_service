@@ -22,7 +22,7 @@ class ApproveFromViewModel extends FlutterFlowModel<ApproveFromViewWidget> {
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   bool? isConfirm;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
-  bool? isConfirm;
+  bool? isConfirm2;
 
   /// Initialization and disposal methods.
 

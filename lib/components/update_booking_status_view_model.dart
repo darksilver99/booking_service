@@ -20,7 +20,7 @@ class UpdateBookingStatusViewModel
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   bool? isConfirm;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
-  bool? isConfirm;
+  bool? isConfirm3;
 
   /// Initialization and disposal methods.
 

@@ -154,9 +154,9 @@ class _UpdateBookingStatusViewWidgetState
                             );
                           },
                         ).then((value) =>
-                            safeSetState(() => _model.isConfirm = value));
+                            safeSetState(() => _model.isConfirm3 = value));
 
-                        if ((_model.isConfirm != null) && _model.isConfirm!) {
+                        if ((_model.isConfirm3 != null) && _model.isConfirm3!) {
                           await widget.bookingRef!
                               .update(createBookingListRecordData(
                             updateDate: getCurrentTimestamp,

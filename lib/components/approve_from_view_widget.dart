@@ -202,9 +202,9 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                             );
                           },
                         ).then((value) =>
-                            safeSetState(() => _model.isConfirm = value));
+                            safeSetState(() => _model.isConfirm2 = value));
 
-                        if ((_model.isConfirm != null) && _model.isConfirm!) {
+                        if ((_model.isConfirm2 != null) && _model.isConfirm2!) {
                           await widget.bookingRef!
                               .update(createBookingListRecordData(
                             updateDate: getCurrentTimestamp,
