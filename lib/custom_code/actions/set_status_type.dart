@@ -11,4 +11,10 @@ import 'package:flutter/material.dart';
 
 Future setStatusType(List<BookingStatusRecord>? statusList) async {
   // Add your function code here!
+  FFAppState().statusTypeList = statusList!
+      .map((item) => StatusTypeStruct(
+            id: item.id,
+            name: item.name,
+          ))
+      .toList();
 }
