@@ -6,9 +6,11 @@ import '/components/update_booking_status_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'booking_coming_list_page_model.dart';
@@ -69,7 +71,7 @@ class _BookingComingListPageWidgetState
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.chevron_left_rounded,
               color: Colors.white,
               size: 30.0,
@@ -86,7 +88,7 @@ class _BookingComingListPageWidgetState
                   fontSize: 22.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -107,7 +109,7 @@ class _BookingComingListPageWidgetState
                   .orderBy('status')
                   .orderBy('create_date', descending: true),
             ),
-            padding: const EdgeInsets.fromLTRB(
+            padding: EdgeInsets.fromLTRB(
               0,
               16.0,
               0,
@@ -115,7 +117,7 @@ class _BookingComingListPageWidgetState
             ),
             reverse: false,
             scrollDirection: Axis.vertical,
-            separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+            separatorBuilder: (_, __) => SizedBox(height: 8.0),
             builderDelegate: PagedChildBuilderDelegate<BookingListRecord>(
               // Customize what your widget looks like when it's loading the first page.
               firstPageProgressIndicatorBuilder: (_) => Center(
@@ -141,14 +143,14 @@ class _BookingComingListPageWidgetState
                   ),
                 ),
               ),
-              noItemsFoundIndicatorBuilder: (_) => const NoDataViewWidget(
+              noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(
                 msg: 'ยังไม่มีรายการจองเข้ามา',
               ),
               itemBuilder: (context, _, listViewIndex) {
                 final listViewBookingListRecord =
                     _model.listViewPagingController!.itemList![listViewIndex];
                 return Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -218,7 +220,7 @@ class _BookingComingListPageWidgetState
                         child: Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 8.0, 16.0, 8.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -229,7 +231,7 @@ class _BookingComingListPageWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 8.0, 0.0),
                                           child: Icon(
                                             Icons.circle_rounded,
@@ -305,7 +307,7 @@ class _BookingComingListPageWidgetState
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 8.0),
                                                     child: Text(
@@ -390,9 +392,9 @@ class _BookingComingListPageWidgetState
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(1.0, 1.0),
+                              alignment: AlignmentDirectional(1.0, 1.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 16.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,

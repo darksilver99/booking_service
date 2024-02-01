@@ -2,6 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'confirm_dialog_view_model.dart';
 export 'confirm_dialog_view_model.dart';
@@ -48,7 +50,7 @@ class _ConfirmDialogViewWidgetState extends State<ConfirmDialogViewWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: MediaQuery.sizeOf(context).width * 0.7,
         decoration: BoxDecoration(
@@ -56,12 +58,12 @@ class _ConfirmDialogViewWidgetState extends State<ConfirmDialogViewWidget> {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 28.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 28.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                 child: Text(
                   valueOrDefault<String>(
                     widget.title,
@@ -88,7 +90,7 @@ class _ConfirmDialogViewWidgetState extends State<ConfirmDialogViewWidget> {
                       ),
                 ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -118,9 +120,9 @@ class _ConfirmDialogViewWidgetState extends State<ConfirmDialogViewWidget> {
                         text: 'ยืนยัน',
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).success,
                           textStyle:
@@ -130,7 +132,7 @@ class _ConfirmDialogViewWidgetState extends State<ConfirmDialogViewWidget> {
                                     fontWeight: FontWeight.bold,
                                   ),
                           elevation: 3.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

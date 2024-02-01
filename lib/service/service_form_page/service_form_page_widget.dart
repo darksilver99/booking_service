@@ -11,10 +11,12 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'service_form_page_model.dart';
 export 'service_form_page_model.dart';
@@ -40,7 +42,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       currentUserLocationValue =
-          await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
+          await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
       _model.tmpLocation = currentUserLocationValue;
       setState(() {
         FFAppState().currentLocation = null;
@@ -92,7 +94,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.chevron_left_rounded,
               color: Colors.white,
               size: 30.0,
@@ -109,14 +111,14 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                   fontSize: 22.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -128,7 +130,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: FutureBuilder<List<CategoryListRecord>>(
                             future: queryCategoryListRecordOnce(
@@ -189,7 +191,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 2.0,
                                 borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                margin: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 isOverButton: true,
@@ -200,7 +202,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: TextFormField(
                             controller: _model.textController1,
@@ -249,7 +251,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: TextFormField(
                             controller: _model.textController2,
@@ -300,7 +302,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: TextFormField(
                             controller: _model.textController3,
@@ -354,7 +356,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -366,7 +368,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                   children: [
                                     if (FFAppState().currentLocation != null)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 8.0),
                                         child: Material(
                                           color: Colors.transparent,
@@ -385,7 +387,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 8.0, 16.0, 8.0),
                                               child: Row(
@@ -393,7 +395,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: InkWell(
@@ -474,7 +476,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -491,7 +493,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                                   context)
                                                               .unfocus(),
                                                       child:
-                                                          const InformationDialogViewWidget(
+                                                          InformationDialogViewWidget(
                                                         title:
                                                             'กรุณาอนุญาตการเข้าถึงตำแหน่ง',
                                                         status: 'warning',
@@ -512,7 +514,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -527,7 +529,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                         : FocusScope.of(context)
                                                             .unfocus(),
                                                     child:
-                                                        const InformationDialogViewWidget(
+                                                        InformationDialogViewWidget(
                                                       title:
                                                           'กรุณาอนุญาตการเข้าถึงตำแหน่ง',
                                                       status: 'warning',
@@ -539,17 +541,17 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                           }
                                         },
                                         text: 'เลือกสถานที่ตั้งบนแผนที่',
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.location_on_rounded,
                                           size: 22.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 32.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .tertiary,
@@ -561,7 +563,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                     color: Colors.white,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -586,7 +588,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                 if (_model.imageList.isNotEmpty)
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 8.0),
                                       child: Builder(
                                         builder: (context) {
@@ -609,7 +611,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                               final imageTmpListItem =
                                                   imageTmpList[
                                                       imageTmpListIndex];
-                                              return SizedBox(
+                                              return Container(
                                                 width: 80.0,
                                                 height: 80.0,
                                                 child: Stack(
@@ -626,11 +628,11 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               1.0, -1.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -694,7 +696,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -707,7 +709,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                     : FocusScope.of(context)
                                                         .unfocus(),
                                                 child:
-                                                    const InformationDialogViewWidget(
+                                                    InformationDialogViewWidget(
                                                   title: 'จำกัดรูปภาพ 5 รูป',
                                                   status: 'warning',
                                                 ),
@@ -788,7 +790,8 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                           }
                                         }
 
-                                        if (_model.uploadedFileUrl != '') {
+                                        if (_model.uploadedFileUrl != null &&
+                                            _model.uploadedFileUrl != '') {
                                           setState(() {
                                             _model.addToImageList(
                                                 _model.uploadedFileUrl);
@@ -805,16 +808,16 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                       }
                                     },
                                     text: 'เพิ่มรูปภาพ',
-                                    icon: const Icon(
+                                    icon: Icon(
                                       Icons.image_rounded,
                                       size: 22.0,
                                     ),
                                     options: FFButtonOptions(
                                       height: 32.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).tertiary,
@@ -825,7 +828,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                             color: Colors.white,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -839,7 +842,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                         ),
                         Builder(
                           builder: (context) => Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 32.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -856,7 +859,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
@@ -867,7 +870,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                       _model.unfocusNode)
                                               : FocusScope.of(context)
                                                   .unfocus(),
-                                          child: const InformationDialogViewWidget(
+                                          child: InformationDialogViewWidget(
                                             title: 'กรุณาเลือกหมวดบริการ',
                                             status: 'warning',
                                           ),
@@ -909,7 +912,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
+                                          alignment: AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -921,7 +924,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                         _model.unfocusNode)
                                                 : FocusScope.of(context)
                                                     .unfocus(),
-                                            child: const InformationDialogViewWidget(
+                                            child: InformationDialogViewWidget(
                                               title:
                                                   'บันทึกข้อมูลเรียบร้อยแล้ว',
                                               detail:
@@ -941,7 +944,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
+                                          alignment: AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -953,7 +956,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                         _model.unfocusNode)
                                                 : FocusScope.of(context)
                                                     .unfocus(),
-                                            child: const InformationDialogViewWidget(
+                                            child: InformationDialogViewWidget(
                                               title: 'กรุณาเลือกรูปภาพ',
                                               status: 'warning',
                                             ),
@@ -971,7 +974,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
@@ -982,7 +985,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                       _model.unfocusNode)
                                               : FocusScope.of(context)
                                                   .unfocus(),
-                                          child: const InformationDialogViewWidget(
+                                          child: InformationDialogViewWidget(
                                             title:
                                                 'กรุณาเลือกสถานที่ตั้งบนแผนที่',
                                             status: 'warning',
@@ -997,9 +1000,9 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).secondary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -1011,7 +1014,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -1023,7 +1026,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                       ],
                     ),
                   ),
-                ].addToEnd(const SizedBox(height: 16.0)),
+                ].addToEnd(SizedBox(height: 16.0)),
               ),
             ),
           ),

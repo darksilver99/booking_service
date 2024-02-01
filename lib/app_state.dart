@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -23,49 +26,49 @@ class FFAppState extends ChangeNotifier {
 
   String _test = '';
   String get test => _test;
-  set test(String value) {
-    _test = value;
+  set test(String _value) {
+    _test = _value;
   }
 
   LatLng? _currentLocation;
   LatLng? get currentLocation => _currentLocation;
-  set currentLocation(LatLng? value) {
-    _currentLocation = value;
+  set currentLocation(LatLng? _value) {
+    _currentLocation = _value;
   }
 
   bool _hasNearService = true;
   bool get hasNearService => _hasNearService;
-  set hasNearService(bool value) {
-    _hasNearService = value;
+  set hasNearService(bool _value) {
+    _hasNearService = _value;
   }
 
   List<StatusTypeStruct> _statusTypeList = [];
   List<StatusTypeStruct> get statusTypeList => _statusTypeList;
-  set statusTypeList(List<StatusTypeStruct> value) {
-    _statusTypeList = value;
+  set statusTypeList(List<StatusTypeStruct> _value) {
+    _statusTypeList = _value;
   }
 
-  void addToStatusTypeList(StatusTypeStruct value) {
-    _statusTypeList.add(value);
+  void addToStatusTypeList(StatusTypeStruct _value) {
+    _statusTypeList.add(_value);
   }
 
-  void removeFromStatusTypeList(StatusTypeStruct value) {
-    _statusTypeList.remove(value);
+  void removeFromStatusTypeList(StatusTypeStruct _value) {
+    _statusTypeList.remove(_value);
   }
 
-  void removeAtIndexFromStatusTypeList(int index) {
-    _statusTypeList.removeAt(index);
+  void removeAtIndexFromStatusTypeList(int _index) {
+    _statusTypeList.removeAt(_index);
   }
 
   void updateStatusTypeListAtIndex(
-    int index,
+    int _index,
     StatusTypeStruct Function(StatusTypeStruct) updateFn,
   ) {
-    _statusTypeList[index] = updateFn(_statusTypeList[index]);
+    _statusTypeList[_index] = updateFn(_statusTypeList[_index]);
   }
 
-  void insertAtIndexInStatusTypeList(int index, StatusTypeStruct value) {
-    _statusTypeList.insert(index, value);
+  void insertAtIndexInStatusTypeList(int _index, StatusTypeStruct _value) {
+    _statusTypeList.insert(_index, _value);
   }
 }
 

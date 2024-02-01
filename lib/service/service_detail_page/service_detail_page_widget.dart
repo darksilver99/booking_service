@@ -8,8 +8,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'service_detail_page_model.dart';
 export 'service_detail_page_model.dart';
@@ -73,7 +76,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.chevron_left_rounded,
               color: Colors.white,
               size: 30.0,
@@ -90,14 +93,14 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                   fontSize: 22.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -105,12 +108,12 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Builder(
                       builder: (context) {
                         final imageList =
-                            widget.serviceDocument?.image.toList() ?? [];
-                        return SizedBox(
+                            widget.serviceDocument?.image?.toList() ?? [];
+                        return Container(
                           width: double.infinity,
                           height: 200.0,
                           child: CarouselSlider.builder(
@@ -146,9 +149,9 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                               scrollDirection: Axis.horizontal,
                               autoPlay: true,
                               autoPlayAnimationDuration:
-                                  const Duration(milliseconds: 800),
+                                  Duration(milliseconds: 800),
                               autoPlayInterval:
-                                  const Duration(milliseconds: (800 + 4000)),
+                                  Duration(milliseconds: (800 + 4000)),
                               autoPlayCurve: Curves.linear,
                               pauseAutoPlayInFiniteScroll: true,
                               onPageChanged: (index, _) =>
@@ -161,12 +164,12 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 8.0),
                           child: Text(
                             valueOrDefault<String>(
@@ -183,7 +186,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 32.0),
                           child: Text(
                             valueOrDefault<String>(
@@ -204,7 +207,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                           Builder(
                             builder: (context) => FFButtonWidget(
                               onPressed: () async {
-                                final datePickedDate = await showDatePicker(
+                                final _datePickedDate = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
                                   firstDate: getCurrentTimestamp,
@@ -243,9 +246,9 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                   },
                                 );
 
-                                TimeOfDay? datePickedTime;
-                                if (datePickedDate != null) {
-                                  datePickedTime = await showTimePicker(
+                                TimeOfDay? _datePickedTime;
+                                if (_datePickedDate != null) {
+                                  _datePickedTime = await showTimePicker(
                                     context: context,
                                     initialTime: TimeOfDay.fromDateTime(
                                         getCurrentTimestamp),
@@ -286,15 +289,15 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                   );
                                 }
 
-                                if (datePickedDate != null &&
-                                    datePickedTime != null) {
+                                if (_datePickedDate != null &&
+                                    _datePickedTime != null) {
                                   safeSetState(() {
                                     _model.datePicked = DateTime(
-                                      datePickedDate.year,
-                                      datePickedDate.month,
-                                      datePickedDate.day,
-                                      datePickedTime!.hour,
-                                      datePickedTime.minute,
+                                      _datePickedDate.year,
+                                      _datePickedDate.month,
+                                      _datePickedDate.day,
+                                      _datePickedTime!.hour,
+                                      _datePickedTime.minute,
                                     );
                                   });
                                 }
@@ -315,7 +318,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: const RemarkFormViewWidget(
+                                          child: RemarkFormViewWidget(
                                             hintText:
                                                 'รายละเอียดถึงผู้ให้บริการ',
                                           ),
@@ -347,7 +350,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
+                                          alignment: AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -359,7 +362,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                                         _model.unfocusNode)
                                                 : FocusScope.of(context)
                                                     .unfocus(),
-                                            child: const InformationDialogViewWidget(
+                                            child: InformationDialogViewWidget(
                                               title:
                                                   'จองเรียบร้อย กรุณารอการติดต่อกลับจากเจ้าของบริการ',
                                               status: 'success',
@@ -382,9 +385,9 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -394,7 +397,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                       color: Colors.white,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -405,7 +408,7 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                       ],
                     ),
                   ),
-                ].addToEnd(const SizedBox(height: 16.0)),
+                ].addToEnd(SizedBox(height: 16.0)),
               ),
             ),
           ),

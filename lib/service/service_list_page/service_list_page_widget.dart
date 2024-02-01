@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/information_dialog_view_widget.dart';
 import '/components/no_data_view_widget.dart';
@@ -5,12 +6,16 @@ import '/components/rating_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'service_list_page_model.dart';
@@ -42,7 +47,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       currentUserLocationValue =
-          await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
+          await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
       _model.serviceTmpList = await queryServiceListRecordOnce(
         queryBuilder: (serviceListRecord) => serviceListRecord
             .where(
@@ -80,13 +85,13 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                 elevation: 0,
                 insetPadding: EdgeInsets.zero,
                 backgroundColor: Colors.transparent,
-                alignment: const AlignmentDirectional(0.0, 0.0)
+                alignment: AlignmentDirectional(0.0, 0.0)
                     .resolve(Directionality.of(context)),
                 child: GestureDetector(
                   onTap: () => _model.unfocusNode.canRequestFocus
                       ? FocusScope.of(context).requestFocus(_model.unfocusNode)
                       : FocusScope.of(context).unfocus(),
-                  child: const InformationDialogViewWidget(
+                  child: InformationDialogViewWidget(
                     title: 'ขออภัย ไม่มีบริการใกล้เคียงกับที่อยู่ของคุณ',
                     status: 'warning',
                     detail: 'ลองค้นหาให้ไกลขึ้น?',
@@ -158,7 +163,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
               borderRadius: 30.0,
               borderWidth: 1.0,
               buttonSize: 60.0,
-              icon: const Icon(
+              icon: Icon(
                 Icons.chevron_left_rounded,
                 color: Colors.white,
                 size: 30.0,
@@ -175,7 +180,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                     fontSize: 22.0,
                   ),
             ),
-            actions: const [],
+            actions: [],
             centerTitle: true,
             elevation: 2.0,
           ),
@@ -188,13 +193,13 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 8.0),
                       child: TextFormField(
                         controller: _model.textController,
                         focusNode: _model.textFieldFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textController',
-                          const Duration(milliseconds: 300),
+                          Duration(milliseconds: 300),
                           () async {
                             setState(() {
                               _model.serviceSearchedList = functions
@@ -257,7 +262,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                     });
                                     setState(() {});
                                   },
-                                  child: const Icon(
+                                  child: Icon(
                                     Icons.clear,
                                     size: 22.0,
                                   ),
@@ -276,10 +281,10 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                             final serviceDistanceList =
                                 _model.serviceList.toList();
                             if (serviceDistanceList.isEmpty) {
-                              return const NoDataViewWidget();
+                              return NoDataViewWidget();
                             }
                             return ListView.separated(
-                              padding: const EdgeInsets.fromLTRB(
+                              padding: EdgeInsets.fromLTRB(
                                 0,
                                 0,
                                 0,
@@ -288,13 +293,13 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: serviceDistanceList.length,
                               separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 8.0),
+                                  SizedBox(height: 8.0),
                               itemBuilder: (context, serviceDistanceListIndex) {
                                 final serviceDistanceListItem =
                                     serviceDistanceList[
                                         serviceDistanceListIndex];
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -334,7 +339,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 8.0, 8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -342,7 +347,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 8.0, 0.0),
                                                 child: ClipRRect(
@@ -428,7 +433,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -468,7 +473,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -502,7 +507,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                               Container(
                                                                 width: 28.0,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Text(
                                                                   valueOrDefault<
                                                                       String>(
@@ -567,10 +572,10 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                             final serviceDistanceSearchedList =
                                 _model.serviceSearchedList.toList();
                             if (serviceDistanceSearchedList.isEmpty) {
-                              return const NoDataViewWidget();
+                              return NoDataViewWidget();
                             }
                             return ListView.separated(
-                              padding: const EdgeInsets.fromLTRB(
+                              padding: EdgeInsets.fromLTRB(
                                 0,
                                 0,
                                 0,
@@ -579,14 +584,14 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: serviceDistanceSearchedList.length,
                               separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 8.0),
+                                  SizedBox(height: 8.0),
                               itemBuilder:
                                   (context, serviceDistanceSearchedListIndex) {
                                 final serviceDistanceSearchedListItem =
                                     serviceDistanceSearchedList[
                                         serviceDistanceSearchedListIndex];
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -626,7 +631,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 8.0, 8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -634,7 +639,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 8.0, 0.0),
                                                 child: ClipRRect(
@@ -723,7 +728,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -763,7 +768,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -797,7 +802,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                                                               Container(
                                                                 width: 28.0,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Text(
                                                                   valueOrDefault<
                                                                       String>(
@@ -859,7 +864,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                 ),
                 if (_model.isLoading)
                   Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Lottie.asset(
                       'assets/lottie_animations/Animation_-_1706758786278.json',
                       width: 150.0,

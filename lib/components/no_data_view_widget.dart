@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'no_data_view_model.dart';
 export 'no_data_view_model.dart';
@@ -9,7 +11,7 @@ class NoDataViewWidget extends StatefulWidget {
   const NoDataViewWidget({
     super.key,
     String? msg,
-  }) : msg = msg ?? 'ไม่มีข้อมูล';
+  }) : this.msg = msg ?? 'ไม่มีข้อมูล';
 
   final String msg;
 
@@ -44,14 +46,14 @@ class _NoDataViewWidgetState extends State<NoDataViewWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        decoration: const BoxDecoration(),
+        decoration: BoxDecoration(),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
               child: Icon(
                 Icons.error_rounded,
                 color: FlutterFlowTheme.of(context).accent3,

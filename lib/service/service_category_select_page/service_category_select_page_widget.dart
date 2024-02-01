@@ -1,13 +1,18 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/no_data_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'service_category_select_page_model.dart';
@@ -87,7 +92,7 @@ class _ServiceCategorySelectPageWidgetState
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.chevron_left_rounded,
               color: Colors.white,
               size: 30.0,
@@ -104,7 +109,7 @@ class _ServiceCategorySelectPageWidgetState
                   fontSize: 22.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -117,13 +122,13 @@ class _ServiceCategorySelectPageWidgetState
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 8.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 8.0),
                     child: TextFormField(
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.textController',
-                        const Duration(milliseconds: 300),
+                        Duration(milliseconds: 300),
                         () async {
                           setState(() {
                             _model.categorySearchedList = functions
@@ -186,7 +191,7 @@ class _ServiceCategorySelectPageWidgetState
                                   });
                                   setState(() {});
                                 },
-                                child: const Icon(
+                                child: Icon(
                                   Icons.clear,
                                   size: 22.0,
                                 ),
@@ -204,10 +209,10 @@ class _ServiceCategorySelectPageWidgetState
                         builder: (context) {
                           final categoryViewList = _model.categoryList.toList();
                           if (categoryViewList.isEmpty) {
-                            return const NoDataViewWidget();
+                            return NoDataViewWidget();
                           }
                           return ListView.separated(
-                            padding: const EdgeInsets.fromLTRB(
+                            padding: EdgeInsets.fromLTRB(
                               0,
                               0,
                               0,
@@ -215,12 +220,12 @@ class _ServiceCategorySelectPageWidgetState
                             ),
                             scrollDirection: Axis.vertical,
                             itemCount: categoryViewList.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 8.0),
                             itemBuilder: (context, categoryViewListIndex) {
                               final categoryViewListItem =
                                   categoryViewList[categoryViewListIndex];
                               return Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -254,20 +259,20 @@ class _ServiceCategorySelectPageWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 8.0, 8.0, 8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 16.0, 0.0),
                                               child: Container(
                                                 width: 60.0,
                                                 height: 60.0,
                                                 clipBehavior: Clip.antiAlias,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: Image.network(
@@ -332,10 +337,10 @@ class _ServiceCategorySelectPageWidgetState
                           final categorySearchedViewList =
                               _model.categorySearchedList.toList();
                           if (categorySearchedViewList.isEmpty) {
-                            return const NoDataViewWidget();
+                            return NoDataViewWidget();
                           }
                           return ListView.separated(
-                            padding: const EdgeInsets.fromLTRB(
+                            padding: EdgeInsets.fromLTRB(
                               0,
                               0,
                               0,
@@ -343,14 +348,14 @@ class _ServiceCategorySelectPageWidgetState
                             ),
                             scrollDirection: Axis.vertical,
                             itemCount: categorySearchedViewList.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 8.0),
                             itemBuilder:
                                 (context, categorySearchedViewListIndex) {
                               final categorySearchedViewListItem =
                                   categorySearchedViewList[
                                       categorySearchedViewListIndex];
                               return Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -384,20 +389,20 @@ class _ServiceCategorySelectPageWidgetState
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 8.0, 8.0, 8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 16.0, 0.0),
                                               child: Container(
                                                 width: 60.0,
                                                 height: 60.0,
                                                 clipBehavior: Clip.antiAlias,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: Image.network(
@@ -464,7 +469,7 @@ class _ServiceCategorySelectPageWidgetState
               ),
               if (_model.isLoading)
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Lottie.asset(
                     'assets/lottie_animations/Animation_-_1706758696837.json',
                     width: 150.0,
