@@ -132,7 +132,7 @@ class _BookingComingListPageWidgetState
                               listViewBookingListRecordList = snapshot.data!;
                           if (listViewBookingListRecordList.isEmpty) {
                             return NoDataViewWidget(
-                              msg: 'ยังไม่มีรายการของเข้ามา',
+                              msg: 'ยังไม่มีรายการจองเข้ามา',
                             );
                           }
                           return ListView.builder(
