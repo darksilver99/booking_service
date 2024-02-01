@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -39,6 +40,35 @@ class FFAppState extends ChangeNotifier {
   bool get hasNearService => _hasNearService;
   set hasNearService(bool _value) {
     _hasNearService = _value;
+  }
+
+  List<StatusTypeStruct> _statusTypeList = [];
+  List<StatusTypeStruct> get statusTypeList => _statusTypeList;
+  set statusTypeList(List<StatusTypeStruct> _value) {
+    _statusTypeList = _value;
+  }
+
+  void addToStatusTypeList(StatusTypeStruct _value) {
+    _statusTypeList.add(_value);
+  }
+
+  void removeFromStatusTypeList(StatusTypeStruct _value) {
+    _statusTypeList.remove(_value);
+  }
+
+  void removeAtIndexFromStatusTypeList(int _index) {
+    _statusTypeList.removeAt(_index);
+  }
+
+  void updateStatusTypeListAtIndex(
+    int _index,
+    StatusTypeStruct Function(StatusTypeStruct) updateFn,
+  ) {
+    _statusTypeList[_index] = updateFn(_statusTypeList[_index]);
+  }
+
+  void insertAtIndexInStatusTypeList(int _index, StatusTypeStruct _value) {
+    _statusTypeList.insert(_index, _value);
   }
 }
 
