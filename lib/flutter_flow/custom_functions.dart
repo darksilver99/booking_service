@@ -34,5 +34,12 @@ List<ServiceListRecord>? getFilterTitleInServiceList(
   String? keyword,
   List<ServiceListRecord>? serviceList,
 ) {
-  return serviceList;
+  return serviceList!.where((item) => item.title.contains(keyword!)).toList();
+}
+
+List<CategoryListRecord>? getFilterNameInCategoryList(
+  String? keyword,
+  List<CategoryListRecord>? categoryList,
+) {
+  return categoryList!.where((item) => item.name.contains(keyword!)).toList();
 }
