@@ -46,8 +46,6 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      currentUserLocationValue =
-          await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
       _model.serviceTmpList = await queryServiceListRecordOnce(
         queryBuilder: (serviceListRecord) => serviceListRecord
             .where(
@@ -61,6 +59,8 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
         limit: 8,
       );
       if (_model.serviceList.isNotEmpty) {
+        currentUserLocationValue =
+        await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
         _model.serviceAfterGetDistanceList = await actions.getServiceDistance(
           _model.serviceTmpList?.toList(),
           currentUserLocationValue,
