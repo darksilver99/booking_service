@@ -130,7 +130,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                               listViewBookingListRecordList = snapshot.data!;
                           if (listViewBookingListRecordList.isEmpty) {
                             return NoDataViewWidget(
-                              msg: 'คุณยังไม่ได้จองขอใช้บริการ',
+                              msg: 'ยังไม่มีรายการจอง',
                             );
                           }
                           return ListView.builder(
