@@ -61,5 +61,5 @@ String? getThaiDatetime(DateTime? date) {
   var tmpNewDate = newDateTime.split(" ");
   var newYear = int.parse(tmpNewDate[2]) + 543;
   return newDateTime =
-      '${tmpNewDate[0]} ${tmpNewDate[1]} $newYear ${tmpNewDate[3]}';
+      '${tmpNewDate[0]} ${tmpNewDate[1]} $newYear ${tmpNewDate[3]} น.';
 }
