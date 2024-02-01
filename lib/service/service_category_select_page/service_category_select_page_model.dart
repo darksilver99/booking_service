@@ -49,6 +49,8 @@ class ServiceCategorySelectPageModel
 
   bool isLoading = true;
 
+  bool isSearched = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

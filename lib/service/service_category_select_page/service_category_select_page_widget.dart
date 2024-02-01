@@ -138,6 +138,7 @@ class _ServiceCategorySelectPageWidgetState
                                       _model.categoryList.toList())!
                                   .toList()
                                   .cast<CategoryListRecord>();
+                              _model.isSearched = true;
                             });
                           },
                         ),
@@ -187,6 +188,7 @@ class _ServiceCategorySelectPageWidgetState
                                               _model.categoryList.toList())!
                                           .toList()
                                           .cast<CategoryListRecord>();
+                                      _model.isSearched = true;
                                     });
                                     setState(() {});
                                   },
@@ -202,8 +204,7 @@ class _ServiceCategorySelectPageWidgetState
                             _model.textControllerValidator.asValidator(context),
                       ),
                     ),
-                    if (!_model.isLoading &&
-                        !(_model.categorySearchedList.isNotEmpty))
+                    if (!_model.isLoading && !_model.isSearched)
                       Expanded(
                         child: Builder(
                           builder: (context) {
@@ -335,7 +336,7 @@ class _ServiceCategorySelectPageWidgetState
                           },
                         ),
                       ),
-                    if (_model.categorySearchedList.isNotEmpty)
+                    if (_model.isSearched)
                       Expanded(
                         child: Builder(
                           builder: (context) {
