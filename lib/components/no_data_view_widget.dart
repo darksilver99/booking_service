@@ -8,7 +8,12 @@ import 'no_data_view_model.dart';
 export 'no_data_view_model.dart';
 
 class NoDataViewWidget extends StatefulWidget {
-  const NoDataViewWidget({super.key});
+  const NoDataViewWidget({
+    super.key,
+    String? msg,
+  }) : this.msg = msg ?? 'ไม่มีข้อมูล';
+
+  final String msg;
 
   @override
   State<NoDataViewWidget> createState() => _NoDataViewWidgetState();
@@ -56,7 +61,7 @@ class _NoDataViewWidgetState extends State<NoDataViewWidget> {
               ),
             ),
             Text(
-              'ไม่มีข้อมูล',
+              widget.msg,
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Inter',

@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/no_data_view_widget.dart';
 import '/components/rating_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -163,6 +164,11 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                       }
                       List<ServiceListRecord> listViewServiceListRecordList =
                           snapshot.data!;
+                      if (listViewServiceListRecordList.isEmpty) {
+                        return NoDataViewWidget(
+                          msg: 'คุณยังไม่ได้สร้างบริการ',
+                        );
+                      }
                       return ListView.builder(
                         padding: EdgeInsets.fromLTRB(
                           0,
@@ -297,7 +303,7 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Text(
                                                       formatNumber(
