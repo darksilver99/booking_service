@@ -106,7 +106,7 @@ class _BookingComingHistoryListPageWidgetState
                     isEqualTo: currentUserReference,
                   )
                   .whereIn('status', FFAppConstants.bookingComingPassStatus)
-                  .orderBy('booking_date', descending: true),
+                  .orderBy('booking_date'),
             ),
             padding: EdgeInsets.fromLTRB(
               0,
