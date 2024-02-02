@@ -323,7 +323,7 @@ class _ServiceRatingListPageWidgetState
                                 'is_open',
                                 isEqualTo: true,
                               )
-                              .orderBy('create_date', descending: true),
+                              .orderBy('rating', descending: true),
                         ),
                         padding: EdgeInsets.fromLTRB(
                           0,
@@ -580,7 +580,7 @@ class _ServiceRatingListPageWidgetState
                                 isLessThanOrEqualTo: _model.keyword,
                               )
                               .orderBy('title')
-                              .orderBy('create_date', descending: true),
+                              .orderBy('rating', descending: true),
                         ),
                         padding: EdgeInsets.fromLTRB(
                           0,
