@@ -147,15 +147,18 @@ class _CancelBookingDetailViewWidgetState
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'สาเหตุที่ยกเลิก',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                        child: Text(
+                          'สาเหตุที่ยกเลิก',
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        ),
                       ),
                       Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          color: FlutterFlowTheme.of(context).alternate,
                           borderRadius: BorderRadius.circular(8.0),
                           border: Border.all(
                             color: FlutterFlowTheme.of(context).alternate,

@@ -230,7 +230,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                           ).then((value) =>
                               safeSetState(() => _model.isCancel = value));
 
-                          if (_model.isCancel != null) {
+                          if ((_model.isCancel != null) && _model.isCancel!) {
                             await showDialog(
                               context: context,
                               builder: (dialogContext) {
@@ -253,7 +253,8 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                             ).then((value) =>
                                 safeSetState(() => _model.isCancel2 = value));
 
-                            if (_model.isCancel != null) {
+                            if (_model.isCancel2 != null &&
+                                _model.isCancel2 != '') {
                               await listViewBookingListRecord.reference
                                   .update(createBookingListRecordData(
                                 status: 5,
