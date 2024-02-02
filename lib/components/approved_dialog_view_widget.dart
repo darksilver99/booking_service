@@ -102,12 +102,12 @@ class _ApprovedDialogViewWidgetState extends State<ApprovedDialogViewWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              'เวลาจอง : ${functions.getThaiDatetime(widget.bookingDocument?.bookingDate)}',
+                              'วัน-เวลาจอง : ${functions.getThaiDatetime(widget.bookingDocument?.bookingDate)}',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ],
