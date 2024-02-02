@@ -577,7 +577,7 @@ class _ServiceRatingListPageWidgetState
                               )
                               .where(
                                 'title',
-                                isLessThanOrEqualTo: _model.keyword,
+                                isLessThanOrEqualTo: "${_model.keyword}\uf8ff",
                               )
                               .orderBy('title')
                               .orderBy('rating', descending: true),
