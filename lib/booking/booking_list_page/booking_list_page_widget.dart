@@ -355,7 +355,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Icon(
-                                        Icons.circle,
+                                        Icons.info_rounded,
                                         color:
                                             FlutterFlowTheme.of(context).error,
                                         size: 18.0,
