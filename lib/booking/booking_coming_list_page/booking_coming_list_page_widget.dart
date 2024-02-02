@@ -269,7 +269,8 @@ class _BookingComingListPageWidgetState
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
                                   child: InformationDialogViewWidget(
-                                    title: 'รอผู้ใช้บริการรีวิวบริการของคุณ',
+                                    title: 'รอผู้จองรีวิวบริการของคุณ',
+                                    status: 'warning',
                                   ),
                                 ),
                               );
