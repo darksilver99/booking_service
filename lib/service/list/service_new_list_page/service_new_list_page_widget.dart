@@ -595,7 +595,6 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                           0,
                           16.0,
                         ),
-                        shrinkWrap: true,
                         reverse: false,
                         scrollDirection: Axis.vertical,
                         separatorBuilder: (_, __) => SizedBox(height: 8.0),
