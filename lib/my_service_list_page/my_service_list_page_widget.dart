@@ -1,11 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/information_dialog_view_widget.dart';
 import '/components/no_data_view_widget.dart';
 import '/components/rating_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -99,34 +102,81 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    FFButtonWidget(
-                      onPressed: () async {
-                        context.pushNamed('ServiceFormPage');
-                      },
-                      text: 'เพิ่มบริการของคุณ',
-                      icon: Icon(
-                        Icons.add_rounded,
-                        size: 14.0,
-                      ),
-                      options: FFButtonOptions(
-                        height: 32.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Inter',
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                    Builder(
+                      builder: (context) => FFButtonWidget(
+                        onPressed: () async {
+                          _model.totalCurrentService =
+                              await queryServiceListRecordCount(
+                            queryBuilder: (serviceListRecord) =>
+                                serviceListRecord
+                                    .where(
+                                      'create_by',
+                                      isEqualTo: currentUserReference,
+                                    )
+                                    .where(
+                                      'status',
+                                      isEqualTo: 1,
+                                    ),
+                          );
+                          if (_model.totalCurrentService! >=
+                              valueOrDefault(
+                                  currentUserDocument?.totalCanCreateService,
+                                  0)) {
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: InformationDialogViewWidget(
+                                      title:
+                                          'ขออภัยบัญชีของคุณจำกัด ${valueOrDefault(currentUserDocument?.totalCanCreateService, 0).toString()} บริการ',
+                                      status: 'error',
+                                    ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => setState(() {}));
+                          } else {
+                            context.pushNamed('ServiceFormPage');
+                          }
+
+                          setState(() {});
+                        },
+                        text: 'เพิ่มบริการของคุณ',
+                        icon: Icon(
+                          Icons.add_rounded,
+                          size: 14.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        options: FFButtonOptions(
+                          height: 32.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Inter',
+                                    color: Colors.white,
+                                    fontSize: 14.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
                       ),
                     ),
                   ],

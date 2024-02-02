@@ -262,6 +262,7 @@ class _RegisterMoreDetailPageWidgetState
                                 lastName: _model.lastNameController.text,
                                 displayName:
                                     '${_model.firstNameController.text} ${_model.lastNameController.text}',
+                                totalCanCreateService: 3,
                               ));
                               await actions.pushReplacementNamed(
                                 context,
