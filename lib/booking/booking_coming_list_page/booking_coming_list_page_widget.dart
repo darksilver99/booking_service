@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/components/approve_from_view_widget.dart';
 import '/components/cancel_booking_detail_view_widget.dart';
 import '/components/finish_booking_detail_view_widget.dart';
+import '/components/information_dialog_view_widget.dart';
 import '/components/no_data_view_widget.dart';
 import '/components/update_booking_status_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -246,6 +247,29 @@ class _BookingComingListPageWidgetState
                                           : FocusScope.of(context).unfocus(),
                                   child: CancelBookingDetailViewWidget(
                                     bookingDocument: listViewBookingListRecord,
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        } else if (listViewBookingListRecord.status == 3) {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: InformationDialogViewWidget(
+                                    title: 'รอผู้ใช้บริการรีวิวบริการของคุณ',
                                   ),
                                 ),
                               );
