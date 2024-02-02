@@ -27,7 +27,7 @@
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "create_date",
+          "fieldPath": "booking_date",
           "order": "DESCENDING"
         }
       ]
@@ -45,7 +45,7 @@
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "create_date",
+          "fieldPath": "booking_date",
           "order": "DESCENDING"
         }
       ]
