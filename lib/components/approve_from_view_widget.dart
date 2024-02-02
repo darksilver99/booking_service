@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/confirm_cancel_dialog_view_widget.dart';
 import '/components/confirm_dialog_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -220,20 +221,20 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                               backgroundColor: Colors.transparent,
                               alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: ConfirmDialogViewWidget(
-                                title: 'ต้องการยกเลิกรายการ?',
-                              ),
+                              child: ConfirmCancelDialogViewWidget(),
                             );
                           },
                         ).then((value) =>
                             safeSetState(() => _model.isConfirm2 = value));
 
-                        if ((_model.isConfirm2 != null) && _model.isConfirm2!) {
+                        if (_model.isConfirm2 != null &&
+                            _model.isConfirm2 != '') {
                           await widget.bookingRef!
                               .update(createBookingListRecordData(
-                            updateDate: getCurrentTimestamp,
-                            updateBy: currentUserReference,
                             status: 5,
+                            cancelDate: getCurrentTimestamp,
+                            cancelBy: currentUserReference,
+                            cancelDetail: _model.isConfirm2,
                           ));
                           Navigator.pop(context);
                         }

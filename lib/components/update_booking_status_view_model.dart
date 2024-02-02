@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/confirm_cancel_dialog_view_widget.dart';
 import '/components/confirm_dialog_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -20,7 +21,7 @@ class UpdateBookingStatusViewModel
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
   bool? isConfirm;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
-  bool? isConfirm3;
+  String? isConfirm3;
 
   /// Initialization and disposal methods.
 
