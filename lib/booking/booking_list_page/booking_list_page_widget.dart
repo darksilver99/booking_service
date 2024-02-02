@@ -346,6 +346,23 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                           ),
                           child: Stack(
                             children: [
+                              if (listViewBookingListRecord.status == 3)
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 4.0, 4.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Icon(
+                                        Icons.circle,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        size: 18.0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 8.0, 16.0, 8.0),
