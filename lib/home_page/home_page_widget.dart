@@ -136,6 +136,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 1000));
       if (currentPhoneNumber == null || currentPhoneNumber == '') {
         context.pushNamed('RegisterMoreDetailPage');
       } else {
