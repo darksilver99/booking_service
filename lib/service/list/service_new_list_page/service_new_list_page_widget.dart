@@ -262,8 +262,26 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 4.0, 0.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              if (Navigator.of(context).canPop()) {
+                                context.pop();
+                              }
+                              context.pushNamed(
+                                'ServiceRatingListPage',
+                                queryParameters: {
+                                  'category': serializeParam(
+                                    widget.category,
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
                             },
                             text: 'มาแรง',
                             options: FFButtonOptions(
