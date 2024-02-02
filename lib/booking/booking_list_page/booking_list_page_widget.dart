@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/cancel_booking_detail_view_widget.dart';
+import '/components/confirm_cancel_dialog_view_widget.dart';
 import '/components/no_data_view_widget.dart';
 import '/components/review_form_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -8,6 +9,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -204,7 +206,42 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                               );
                             },
                           ).then((value) => setState(() {}));
+                        } else if (listViewBookingListRecord.status == 0) {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: ConfirmCancelDialogViewWidget(),
+                                ),
+                              );
+                            },
+                          ).then((value) =>
+                              safeSetState(() => _model.isCancel = value));
+
+                          if (_model.isCancel != null &&
+                              _model.isCancel != '') {
+                            await listViewBookingListRecord.reference
+                                .update(createBookingListRecordData(
+                              status: 5,
+                              cancelDate: getCurrentTimestamp,
+                              cancelBy: currentUserReference,
+                              cancelDetail: _model.isCancel,
+                            ));
+                          }
                         }
+
+                        setState(() {});
                       },
                       child: Material(
                         color: Colors.transparent,
