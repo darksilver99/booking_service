@@ -76,6 +76,21 @@ class BookingListRecord extends FirestoreRecord {
   DocumentReference? get ownerRef => _ownerRef;
   bool hasOwnerRef() => _ownerRef != null;
 
+  // "cancel_date" field.
+  DateTime? _cancelDate;
+  DateTime? get cancelDate => _cancelDate;
+  bool hasCancelDate() => _cancelDate != null;
+
+  // "cancel_by" field.
+  DocumentReference? _cancelBy;
+  DocumentReference? get cancelBy => _cancelBy;
+  bool hasCancelBy() => _cancelBy != null;
+
+  // "cancel_detail" field.
+  String? _cancelDetail;
+  String get cancelDetail => _cancelDetail ?? '';
+  bool hasCancelDetail() => _cancelDetail != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
@@ -89,6 +104,9 @@ class BookingListRecord extends FirestoreRecord {
     _userDetail = snapshotData['user_detail'] as String?;
     _ownerDetail = snapshotData['owner_detail'] as String?;
     _ownerRef = snapshotData['owner_ref'] as DocumentReference?;
+    _cancelDate = snapshotData['cancel_date'] as DateTime?;
+    _cancelBy = snapshotData['cancel_by'] as DocumentReference?;
+    _cancelDetail = snapshotData['cancel_detail'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -138,6 +156,9 @@ Map<String, dynamic> createBookingListRecordData({
   String? userDetail,
   String? ownerDetail,
   DocumentReference? ownerRef,
+  DateTime? cancelDate,
+  DocumentReference? cancelBy,
+  String? cancelDetail,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -153,6 +174,9 @@ Map<String, dynamic> createBookingListRecordData({
       'user_detail': userDetail,
       'owner_detail': ownerDetail,
       'owner_ref': ownerRef,
+      'cancel_date': cancelDate,
+      'cancel_by': cancelBy,
+      'cancel_detail': cancelDetail,
     }.withoutNulls,
   );
 
@@ -175,7 +199,10 @@ class BookingListRecordDocumentEquality implements Equality<BookingListRecord> {
         e1?.bookingDate == e2?.bookingDate &&
         e1?.userDetail == e2?.userDetail &&
         e1?.ownerDetail == e2?.ownerDetail &&
-        e1?.ownerRef == e2?.ownerRef;
+        e1?.ownerRef == e2?.ownerRef &&
+        e1?.cancelDate == e2?.cancelDate &&
+        e1?.cancelBy == e2?.cancelBy &&
+        e1?.cancelDetail == e2?.cancelDetail;
   }
 
   @override
@@ -191,7 +218,10 @@ class BookingListRecordDocumentEquality implements Equality<BookingListRecord> {
         e?.bookingDate,
         e?.userDetail,
         e?.ownerDetail,
-        e?.ownerRef
+        e?.ownerRef,
+        e?.cancelDate,
+        e?.cancelBy,
+        e?.cancelDetail
       ]);
 
   @override
