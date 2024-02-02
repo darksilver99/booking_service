@@ -114,9 +114,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SettingPageWidget(),
         ),
         FFRoute(
-          name: 'ServiceListPage',
-          path: '/serviceListPage',
-          builder: (context, params) => ServiceListPageWidget(
+          name: 'ServiceNearMeListPage',
+          path: '/serviceNearMeListPage',
+          builder: (context, params) => ServiceNearMeListPageWidget(
             category: params.getParam('category', ParamType.String),
           ),
         ),
@@ -174,6 +174,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'BookingComingHistoryListPage',
           path: '/bookingComingHistoryListPage',
           builder: (context, params) => BookingComingHistoryListPageWidget(),
+        ),
+        FFRoute(
+          name: 'ServiceNewListPage',
+          path: '/serviceNewListPage',
+          builder: (context, params) => ServiceNewListPageWidget(
+            category: params.getParam('category', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'ServiceRatingListPage',
+          path: '/serviceRatingListPage',
+          builder: (context, params) => ServiceRatingListPageWidget(
+            category: params.getParam('category', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

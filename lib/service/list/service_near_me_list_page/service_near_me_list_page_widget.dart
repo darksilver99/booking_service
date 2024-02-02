@@ -18,11 +18,11 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'service_list_page_model.dart';
-export 'service_list_page_model.dart';
+import 'service_near_me_list_page_model.dart';
+export 'service_near_me_list_page_model.dart';
 
-class ServiceListPageWidget extends StatefulWidget {
-  const ServiceListPageWidget({
+class ServiceNearMeListPageWidget extends StatefulWidget {
+  const ServiceNearMeListPageWidget({
     super.key,
     required this.category,
   });
@@ -30,11 +30,13 @@ class ServiceListPageWidget extends StatefulWidget {
   final String? category;
 
   @override
-  State<ServiceListPageWidget> createState() => _ServiceListPageWidgetState();
+  State<ServiceNearMeListPageWidget> createState() =>
+      _ServiceNearMeListPageWidgetState();
 }
 
-class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
-  late ServiceListPageModel _model;
+class _ServiceNearMeListPageWidgetState
+    extends State<ServiceNearMeListPageWidget> {
+  late ServiceNearMeListPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? currentUserLocationValue;
@@ -42,7 +44,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ServiceListPageModel());
+    _model = createModel(context, () => ServiceNearMeListPageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -173,7 +175,7 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
               },
             ),
             title: Text(
-              'บริการใกล้ฉัน',
+              'บริการ : ใกล้ฉัน',
               style: FlutterFlowTheme.of(context).headlineMedium.override(
                     fontFamily: 'Sora',
                     color: Colors.white,
@@ -272,6 +274,119 @@ class _ServiceListPageWidgetState extends State<ServiceListPageWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium,
                         validator:
                             _model.textControllerValidator.asValidator(context),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 4.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed(
+                                  'ServiceNewListPage',
+                                  queryParameters: {
+                                    'category': serializeParam(
+                                      widget.category,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              text: 'มาใหม่',
+                              options: FFButtonOptions(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    4.0, 0.0, 4.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).accent3,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Colors.white,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 4.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed(
+                                  'ServiceNearMeListPage',
+                                  queryParameters: {
+                                    'category': serializeParam(
+                                      widget.category,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              text: 'ใกล้ฉัน',
+                              options: FFButtonOptions(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    4.0, 0.0, 4.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Colors.white,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 4.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: 'มาแรง',
+                              options: FFButtonOptions(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    4.0, 0.0, 4.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).accent3,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Colors.white,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     if (!_model.isLoading && !_model.isSearched)

@@ -234,7 +234,7 @@ class _ServiceCategorySelectPageWidgetState
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'ServiceListPage',
+                                      'ServiceNearMeListPage',
                                       queryParameters: {
                                         'category': serializeParam(
                                           categoryViewListItem.name,
@@ -364,7 +364,7 @@ class _ServiceCategorySelectPageWidgetState
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'ServiceListPage',
+                                      'ServiceNearMeListPage',
                                       queryParameters: {
                                         'category': serializeParam(
                                           categorySearchedViewListItem.name,
