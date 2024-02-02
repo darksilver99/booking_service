@@ -22,3 +22,5 @@ export '/my_service_list_page/my_service_list_page_widget.dart'
     show MyServiceListPageWidget;
 export '/booking/booking_coming_list_page/booking_coming_list_page_widget.dart'
     show BookingComingListPageWidget;
+export '/booking/booking_history_list_page/booking_history_list_page_widget.dart'
+    show BookingHistoryListPageWidget;

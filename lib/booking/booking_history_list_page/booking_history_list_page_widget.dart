@@ -18,25 +18,27 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
-import 'booking_list_page_model.dart';
-export 'booking_list_page_model.dart';
+import 'booking_history_list_page_model.dart';
+export 'booking_history_list_page_model.dart';
 
-class BookingListPageWidget extends StatefulWidget {
-  const BookingListPageWidget({super.key});
+class BookingHistoryListPageWidget extends StatefulWidget {
+  const BookingHistoryListPageWidget({super.key});
 
   @override
-  State<BookingListPageWidget> createState() => _BookingListPageWidgetState();
+  State<BookingHistoryListPageWidget> createState() =>
+      _BookingHistoryListPageWidgetState();
 }
 
-class _BookingListPageWidgetState extends State<BookingListPageWidget> {
-  late BookingListPageModel _model;
+class _BookingHistoryListPageWidgetState
+    extends State<BookingHistoryListPageWidget> {
+  late BookingHistoryListPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => BookingListPageModel());
+    _model = createModel(context, () => BookingHistoryListPageModel());
   }
 
   @override
@@ -84,32 +86,14 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
             },
           ),
           title: Text(
-            'รายการจองของฉัน',
+            'ประวัติการจองของฉัน',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Sora',
                   color: Colors.white,
                   fontSize: 22.0,
                 ),
           ),
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
-              child: FlutterFlowIconButton(
-                borderColor: FlutterFlowTheme.of(context).primary,
-                borderRadius: 20.0,
-                borderWidth: 1.0,
-                buttonSize: 40.0,
-                icon: Icon(
-                  Icons.history_rounded,
-                  color: FlutterFlowTheme.of(context).accent2,
-                  size: 24.0,
-                ),
-                onPressed: () async {
-                  context.pushNamed('BookingHistoryListPage');
-                },
-              ),
-            ),
-          ],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -123,7 +107,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                     'create_by',
                     isEqualTo: currentUserReference,
                   )
-                  .whereIn('status', FFAppConstants.bookingActiveStatus)
+                  .whereIn('status', FFAppConstants.bookingPassStatus)
                   .orderBy('create_date', descending: true),
             ),
             padding: EdgeInsets.fromLTRB(
