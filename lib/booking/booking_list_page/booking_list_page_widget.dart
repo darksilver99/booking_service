@@ -260,7 +260,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                 status: 5,
                                 cancelDate: getCurrentTimestamp,
                                 cancelBy: currentUserReference,
-                                cancelDetail: _model.isCancel?.toString(),
+                                cancelDetail: _model.isCancel2,
                               ));
                             }
                           }
