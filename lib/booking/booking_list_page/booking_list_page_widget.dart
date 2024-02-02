@@ -4,6 +4,7 @@ import '/components/cancel_booking_detail_view_widget.dart';
 import '/components/confirm_cancel_dialog_view_widget.dart';
 import '/components/no_data_view_widget.dart';
 import '/components/review_form_view_widget.dart';
+import '/components/waite_booking_dialog_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -222,22 +223,45 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                  child: ConfirmCancelDialogViewWidget(),
+                                  child: WaiteBookingDialogViewWidget(),
                                 ),
                               );
                             },
                           ).then((value) =>
                               safeSetState(() => _model.isCancel = value));
 
-                          if (_model.isCancel != null &&
-                              _model.isCancel != '') {
-                            await listViewBookingListRecord.reference
-                                .update(createBookingListRecordData(
-                              status: 5,
-                              cancelDate: getCurrentTimestamp,
-                              cancelBy: currentUserReference,
-                              cancelDetail: _model.isCancel,
-                            ));
+                          if (_model.isCancel != null) {
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: ConfirmCancelDialogViewWidget(),
+                                  ),
+                                );
+                              },
+                            ).then((value) =>
+                                safeSetState(() => _model.isCancel2 = value));
+
+                            if (_model.isCancel != null) {
+                              await listViewBookingListRecord.reference
+                                  .update(createBookingListRecordData(
+                                status: 5,
+                                cancelDate: getCurrentTimestamp,
+                                cancelBy: currentUserReference,
+                                cancelDetail: _model.isCancel?.toString(),
+                              ));
+                            }
                           }
                         }
 
@@ -269,46 +293,6 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 8.0, 0.0),
-                                            child: Icon(
-                                              Icons.circle_rounded,
-                                              color: () {
-                                                if (listViewBookingListRecord
-                                                        .status ==
-                                                    0) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .warning;
-                                                } else if (listViewBookingListRecord
-                                                        .status ==
-                                                    1) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .success;
-                                                } else if (listViewBookingListRecord
-                                                        .status ==
-                                                    3) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .warning;
-                                                } else if (listViewBookingListRecord
-                                                        .status ==
-                                                    4) {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondary;
-                                                } else {
-                                                  return FlutterFlowTheme.of(
-                                                          context)
-                                                      .error;
-                                                }
-                                              }(),
-                                              size: 24.0,
-                                            ),
-                                          ),
                                           Expanded(
                                             child: StreamBuilder<
                                                 ServiceListRecord>(
@@ -346,30 +330,19 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  8.0),
-                                                      child: Text(
-                                                        columnServiceListRecord
-                                                            .category,
-                                                        maxLines: 1,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontSize: 16.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                      ),
+                                                    Text(
+                                                      columnServiceListRecord
+                                                          .category,
+                                                      maxLines: 1,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Inter',
+                                                            fontSize: 16.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
                                                     ),
                                                     Text(
                                                       columnServiceListRecord
@@ -442,18 +415,19 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                 alignment: AlignmentDirectional(1.0, 1.0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 16.0, 8.0),
+                                      16.0, 0.0, 16.0, 8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        valueOrDefault<String>(
+                                        'วันที่จอง ${valueOrDefault<String>(
                                           functions.getThaiDatetime(
                                               listViewBookingListRecord
                                                   .bookingDate),
                                           '-',
-                                        ),
+                                        )}',
                                         maxLines: 1,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -463,6 +437,21 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .accent3,
                                               fontSize: 12.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        'รายละเอียดเพิ่มเติม',
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .accent3,
+                                              fontSize: 12.0,
+                                              decoration:
+                                                  TextDecoration.underline,
                                             ),
                                       ),
                                     ],

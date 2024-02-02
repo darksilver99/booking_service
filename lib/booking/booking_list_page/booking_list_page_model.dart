@@ -4,6 +4,7 @@ import '/components/cancel_booking_detail_view_widget.dart';
 import '/components/confirm_cancel_dialog_view_widget.dart';
 import '/components/no_data_view_widget.dart';
 import '/components/review_form_view_widget.dart';
+import '/components/waite_booking_dialog_view_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -29,7 +30,9 @@ class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
   List<StreamSubscription?> listViewStreamSubscriptions = [];
 
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Container widget.
-  String? isCancel;
+  bool? isCancel;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Container widget.
+  String? isCancel2;
 
   /// Initialization and disposal methods.
 

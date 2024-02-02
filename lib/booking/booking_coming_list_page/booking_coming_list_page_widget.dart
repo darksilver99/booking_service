@@ -368,59 +368,52 @@ class _BookingComingListPageWidgetState
                                               },
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 4.0, 0.0),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                functions.getBookingStatus(
-                                                    listViewBookingListRecord
-                                                        .status),
-                                                '-',
-                                              ),
-                                              maxLines: 1,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color: () {
-                                                          if (listViewBookingListRecord
-                                                                  .status ==
-                                                              0) {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .warning;
-                                                          } else if (listViewBookingListRecord
-                                                                  .status ==
-                                                              1) {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .success;
-                                                          } else if (listViewBookingListRecord
-                                                                  .status ==
-                                                              3) {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .warning;
-                                                          } else if (listViewBookingListRecord
-                                                                  .status ==
-                                                              4) {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondary;
-                                                          } else {
-                                                            return FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error;
-                                                          }
-                                                        }(),
-                                                        fontSize: 18.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                          Text(
+                                            valueOrDefault<String>(
+                                              functions.getBookingStatus(
+                                                  listViewBookingListRecord
+                                                      .status),
+                                              '-',
                                             ),
+                                            maxLines: 1,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  color: () {
+                                                    if (listViewBookingListRecord
+                                                            .status ==
+                                                        0) {
+                                                      return FlutterFlowTheme
+                                                              .of(context)
+                                                          .warning;
+                                                    } else if (listViewBookingListRecord
+                                                            .status ==
+                                                        1) {
+                                                      return FlutterFlowTheme
+                                                              .of(context)
+                                                          .success;
+                                                    } else if (listViewBookingListRecord
+                                                            .status ==
+                                                        3) {
+                                                      return FlutterFlowTheme
+                                                              .of(context)
+                                                          .warning;
+                                                    } else if (listViewBookingListRecord
+                                                            .status ==
+                                                        4) {
+                                                      return FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondary;
+                                                    } else {
+                                                      return FlutterFlowTheme
+                                                              .of(context)
+                                                          .error;
+                                                    }
+                                                  }(),
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
                                         ],
                                       ),
