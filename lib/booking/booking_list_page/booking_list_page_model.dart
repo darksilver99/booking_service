@@ -1,7 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/approved_dialog_view_widget.dart';
 import '/components/cancel_booking_detail_view_widget.dart';
 import '/components/confirm_cancel_dialog_view_widget.dart';
+import '/components/finish_booking_detail_view_widget.dart';
 import '/components/no_data_view_widget.dart';
 import '/components/review_form_view_widget.dart';
 import '/components/waite_booking_dialog_view_widget.dart';

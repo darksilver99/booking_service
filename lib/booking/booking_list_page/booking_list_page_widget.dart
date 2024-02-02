@@ -1,7 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/approved_dialog_view_widget.dart';
 import '/components/cancel_booking_detail_view_widget.dart';
 import '/components/confirm_cancel_dialog_view_widget.dart';
+import '/components/finish_booking_detail_view_widget.dart';
 import '/components/no_data_view_widget.dart';
 import '/components/review_form_view_widget.dart';
 import '/components/waite_booking_dialog_view_widget.dart';
@@ -160,54 +162,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        if (listViewBookingListRecord.status == 3) {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: ReviewFormViewWidget(
-                                    serviceRef:
-                                        listViewBookingListRecord.serviceRef!,
-                                    bookingRef:
-                                        listViewBookingListRecord.reference,
-                                  ),
-                                ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        } else if (listViewBookingListRecord.status == 5) {
-                          await showDialog(
-                            context: context,
-                            builder: (dialogContext) {
-                              return Dialog(
-                                elevation: 0,
-                                insetPadding: EdgeInsets.zero,
-                                backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
-                                    .resolve(Directionality.of(context)),
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: CancelBookingDetailViewWidget(
-                                    bookingDocument: listViewBookingListRecord,
-                                  ),
-                                ),
-                              );
-                            },
-                          ).then((value) => setState(() {}));
-                        } else if (listViewBookingListRecord.status == 0) {
+                        if (listViewBookingListRecord.status == 0) {
                           await showDialog(
                             context: context,
                             builder: (dialogContext) {
@@ -264,6 +219,99 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                               ));
                             }
                           }
+                        } else if (listViewBookingListRecord.status == 1) {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: ApprovedDialogViewWidget(
+                                    bookingDocument: listViewBookingListRecord,
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        } else if (listViewBookingListRecord.status == 3) {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: ReviewFormViewWidget(
+                                    serviceRef:
+                                        listViewBookingListRecord.serviceRef!,
+                                    bookingRef:
+                                        listViewBookingListRecord.reference,
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
+                        } else if (listViewBookingListRecord.status == 4) {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: FinishBookingDetailViewWidget(
+                                    bookingDocument: listViewBookingListRecord,
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        } else if (listViewBookingListRecord.status == 5) {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: CancelBookingDetailViewWidget(
+                                    bookingDocument: listViewBookingListRecord,
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
                         }
 
                         setState(() {});
