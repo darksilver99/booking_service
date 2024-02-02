@@ -53,12 +53,13 @@ class _WaiteBookingDialogViewWidgetState
         child: Stack(
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 28.0),
+              padding: EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 16.0, 16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Text(
                       'กำลังรอผู้ให้บริการตรวจสอบโปรดรอ...',
                       textAlign: TextAlign.center,
@@ -87,6 +88,7 @@ class _WaiteBookingDialogViewWidgetState
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
                                     color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 12.0,
                                     decoration: TextDecoration.underline,
                                   ),
                         ),

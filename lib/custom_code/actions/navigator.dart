@@ -12,5 +12,5 @@ import 'package:flutter/material.dart';
 Future navigator(LatLng? location) async {
   // Add your function code here!
   await launchURL(
-      'https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}');
+      'https://www.google.com/maps/dir/?api=1&destination=${location!.latitude},${location.longitude}');
 }
