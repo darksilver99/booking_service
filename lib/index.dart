@@ -6,8 +6,8 @@ export '/member/register_more_detail_page/register_more_detail_page_widget.dart'
 export '/member/register_page/register_page_widget.dart'
     show RegisterPageWidget;
 export '/setting_page/setting_page_widget.dart' show SettingPageWidget;
-export '/service/service_list_page/service_list_page_widget.dart'
-    show ServiceListPageWidget;
+export '/service/list/service_near_me_list_page/service_near_me_list_page_widget.dart'
+    show ServiceNearMeListPageWidget;
 export '/service/service_form_page/service_form_page_widget.dart'
     show ServiceFormPageWidget;
 export '/service/map_picker_page/map_picker_page_widget.dart'
@@ -26,3 +26,7 @@ export '/booking/booking_history_list_page/booking_history_list_page_widget.dart
     show BookingHistoryListPageWidget;
 export '/booking/booking_coming_history_list_page/booking_coming_history_list_page_widget.dart'
     show BookingComingHistoryListPageWidget;
+export '/service/list/service_new_list_page/service_new_list_page_widget.dart'
+    show ServiceNewListPageWidget;
+export '/service/list/service_rating_list_page/service_rating_list_page_widget.dart'
+    show ServiceRatingListPageWidget;
