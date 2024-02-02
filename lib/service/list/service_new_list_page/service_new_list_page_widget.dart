@@ -322,6 +322,10 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                                 'is_open',
                                 isEqualTo: true,
                               )
+                              .where(
+                                'category',
+                                isEqualTo: widget.category,
+                              )
                               .orderBy('create_date', descending: true),
                         ),
                         padding: EdgeInsets.fromLTRB(
@@ -577,6 +581,10 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                               .where(
                                 'title',
                                 isLessThanOrEqualTo: _model.keyword,
+                              )
+                              .where(
+                                'category',
+                                isEqualTo: widget.category,
                               )
                               .orderBy('title')
                               .orderBy('create_date', descending: true),
