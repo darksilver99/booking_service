@@ -558,7 +558,7 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                               )
                               .where(
                                 'title',
-                                isLessThanOrEqualTo: _model.keyword,
+                                isLessThanOrEqualTo: "${_model.keyword}\uf8ff",
                               )
                               .orderBy('title')
                               .orderBy('create_date', descending: true),
