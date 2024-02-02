@@ -169,6 +169,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'BookingHistoryListPage',
           path: '/bookingHistoryListPage',
           builder: (context, params) => BookingHistoryListPageWidget(),
+        ),
+        FFRoute(
+          name: 'BookingComingHistoryListPage',
+          path: '/bookingComingHistoryListPage',
+          builder: (context, params) => BookingComingHistoryListPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
