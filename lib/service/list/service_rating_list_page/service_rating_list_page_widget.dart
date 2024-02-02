@@ -323,6 +323,10 @@ class _ServiceRatingListPageWidgetState
                                 'is_open',
                                 isEqualTo: true,
                               )
+                              .where(
+                                'category',
+                                isEqualTo: widget.category,
+                              )
                               .orderBy('rating', descending: true),
                         ),
                         padding: EdgeInsets.fromLTRB(
@@ -578,6 +582,10 @@ class _ServiceRatingListPageWidgetState
                               .where(
                                 'title',
                                 isLessThanOrEqualTo: "${_model.keyword}\uf8ff",
+                              )
+                              .where(
+                                'category',
+                                isEqualTo: widget.category,
                               )
                               .orderBy('title')
                               .orderBy('rating', descending: true),

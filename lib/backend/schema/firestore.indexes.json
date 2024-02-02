@@ -99,6 +99,10 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "category",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "create_date",
           "order": "DESCENDING"
         }
@@ -114,6 +118,10 @@
         },
         {
           "fieldPath": "is_open",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "category",
           "order": "ASCENDING"
         },
         {
@@ -139,6 +147,10 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "category",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "rating",
           "order": "DESCENDING"
         }
@@ -154,6 +166,10 @@
         },
         {
           "fieldPath": "is_open",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "category",
           "order": "ASCENDING"
         },
         {
