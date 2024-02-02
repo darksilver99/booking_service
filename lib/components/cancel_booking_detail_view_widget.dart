@@ -110,7 +110,7 @@ class _CancelBookingDetailViewWidgetState
                         Align(
                           alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Text(
-                            'ยกเลิกเมื่อ : ${functions.getThaiDatetime(widget.bookingDocument?.cancelDate)}',
+                            'ยกเลิกเมื่อ : ${functions.getThaiDatetime(widget.bookingDocument?.cancelDate)} โดย ${widget.bookingDocument?.cancelBy == widget.bookingDocument?.createBy ? 'ผู้จอง' : 'ผู้ให้บริการ'}',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -141,7 +141,7 @@ class _CancelBookingDetailViewWidgetState
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
