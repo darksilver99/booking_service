@@ -288,6 +288,9 @@ class _ServiceNearMeListPageWidgetState
                                 0.0, 0.0, 4.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
+                                if (Navigator.of(context).canPop()) {
+                                  context.pop();
+                                }
                                 context.pushNamed(
                                   'ServiceNewListPage',
                                   queryParameters: {
@@ -296,6 +299,13 @@ class _ServiceNearMeListPageWidgetState
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
                                 );
                               },
                               text: 'มาใหม่',

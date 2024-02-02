@@ -216,6 +216,9 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                               0.0, 0.0, 4.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              if (Navigator.of(context).canPop()) {
+                                context.pop();
+                              }
                               context.pushNamed(
                                 'ServiceNearMeListPage',
                                 queryParameters: {
@@ -224,6 +227,13 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                                     ParamType.String,
                                   ),
                                 }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
                               );
                             },
                             text: 'ใกล้ฉัน',
