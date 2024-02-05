@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
 
+import 'package:booking_service/custom_toon/custom_toon.dart';
+
 class LoginPageWidget extends StatefulWidget {
   const LoginPageWidget({super.key});
 
@@ -34,6 +36,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
     _model.passwordController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
+    upSubscribeTopic();
   }
 
   @override
