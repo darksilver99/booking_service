@@ -63,3 +63,9 @@ String? getThaiDatetime(DateTime? date) {
   return newDateTime =
       '${tmpNewDate[0]} ${tmpNewDate[1]} $newYear ${tmpNewDate[3]} น.';
 }
+
+DateTime? getNextDay(int? nextDay) {
+  DateTime currentDate = DateTime.now();
+  DateTime futureDate = currentDate.add(Duration(days: nextDay!));
+  return futureDate;
+}

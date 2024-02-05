@@ -83,12 +83,14 @@ dependencies:
   json_path: 0.6.2
   lottie: 2.7.0
   mime_type: 1.0.0
+  package_info_plus: ^3.0.3
   page_transition: 2.1.0
   path_provider: 2.0.14
   path_provider_android: 2.0.25
   path_provider_foundation: 2.2.2
   path_provider_platform_interface: 2.0.6
   permission_handler: 10.0.0
+  photo_view: 0.14.0
   plugin_platform_interface: 2.1.6
   pointer_interceptor: 0.9.3+4
   provider: 6.0.5
@@ -124,6 +126,9 @@ dependencies:
   geocoding: ^2.0.2
   firebase_messaging: ^14.1.4
   flutter_local_notifications: ^13.0.0
+
+dependency_overrides:
+  win32: 5.0.9
 
 dev_dependencies:
   flutter_launcher_icons: 0.13.1

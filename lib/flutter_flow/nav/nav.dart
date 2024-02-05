@@ -188,6 +188,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ServiceRatingListPageWidget(
             category: params.getParam('category', ParamType.String),
           ),
+        ),
+        FFRoute(
+          name: 'HelpPage',
+          path: '/helpPage',
+          builder: (context, params) => HelpPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

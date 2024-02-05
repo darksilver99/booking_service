@@ -208,6 +208,10 @@ class _ReviewFormViewWidgetState extends State<ReviewFormViewWidget> {
                         ).then((value) => setState(() {}));
 
                         Navigator.pop(context, 'done');
+                        await actions.pushReplacementNamed(
+                          context,
+                          'HomePage',
+                        );
                       },
                       text: 'บันทึก',
                       options: FFButtonOptions(

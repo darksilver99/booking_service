@@ -286,13 +286,6 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
                             },
                           ).then((value) =>
                               safeSetState(() => _model.isDone = value));
-
-                          if (_model.isDone != null && _model.isDone != '') {
-                            await actions.pushReplacementNamed(
-                              context,
-                              'HomePage',
-                            );
-                          }
                         } else if (listViewBookingListRecord.status == 4) {
                           await showDialog(
                             context: context,

@@ -61,6 +61,16 @@ class UsersRecord extends FirestoreRecord {
   int get totalCanCreateService => _totalCanCreateService ?? 0;
   bool hasTotalCanCreateService() => _totalCanCreateService != null;
 
+  // "expire_date" field.
+  DateTime? _expireDate;
+  DateTime? get expireDate => _expireDate;
+  bool hasExpireDate() => _expireDate != null;
+
+  // "is_first_time" field.
+  bool? _isFirstTime;
+  bool get isFirstTime => _isFirstTime ?? false;
+  bool hasIsFirstTime() => _isFirstTime != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -72,6 +82,8 @@ class UsersRecord extends FirestoreRecord {
     _lastName = snapshotData['last_name'] as String?;
     _totalCanCreateService =
         castToType<int>(snapshotData['total_can_create_service']);
+    _expireDate = snapshotData['expire_date'] as DateTime?;
+    _isFirstTime = snapshotData['is_first_time'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -117,6 +129,8 @@ Map<String, dynamic> createUsersRecordData({
   String? firstName,
   String? lastName,
   int? totalCanCreateService,
+  DateTime? expireDate,
+  bool? isFirstTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -129,6 +143,8 @@ Map<String, dynamic> createUsersRecordData({
       'first_name': firstName,
       'last_name': lastName,
       'total_can_create_service': totalCanCreateService,
+      'expire_date': expireDate,
+      'is_first_time': isFirstTime,
     }.withoutNulls,
   );
 
@@ -148,7 +164,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.firstName == e2?.firstName &&
         e1?.lastName == e2?.lastName &&
-        e1?.totalCanCreateService == e2?.totalCanCreateService;
+        e1?.totalCanCreateService == e2?.totalCanCreateService &&
+        e1?.expireDate == e2?.expireDate &&
+        e1?.isFirstTime == e2?.isFirstTime;
   }
 
   @override
@@ -161,7 +179,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.phoneNumber,
         e?.firstName,
         e?.lastName,
-        e?.totalCanCreateService
+        e?.totalCanCreateService,
+        e?.expireDate,
+        e?.isFirstTime
       ]);
 
   @override
