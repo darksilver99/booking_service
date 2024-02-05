@@ -331,6 +331,10 @@ class _UpdateBookingStatusViewWidgetState
                               status: 3,
                             ));
                             Navigator.pop(context);
+                            await actions.pushReplacementNamed(
+                              context,
+                              'HomePage',
+                            );
                           }
 
                           setState(() {});

@@ -123,6 +123,39 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(0.0),
+                          child: Image.asset(
+                            'assets/images/room-service_1057626.png',
+                            height: 46.0,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'ระบุรายละเอียดบริการของคุณ',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Form(
                     key: _model.formKey,
                     autovalidateMode: AutovalidateMode.disabled,
@@ -935,6 +968,46 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                       },
                                     ).then((value) => setState(() {}));
 
+                                    if (valueOrDefault<bool>(
+                                        currentUserDocument?.isFirstTime,
+                                        false)) {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child:
+                                                  InformationDialogViewWidget(
+                                                title:
+                                                    'พิเศษสำหรับผู้ใช้ใหม่ บัญชีของคุณใช้ฟรี 6 เดือน!',
+                                                detail:
+                                                    'ถึง : ${functions.getThaiDatetime(functions.getNextDay(180))}',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => setState(() {}));
+
+                                      await currentUserReference!
+                                          .update(createUsersRecordData(
+                                        isFirstTime: false,
+                                        expireDate: functions.getNextDay(180),
+                                      ));
+                                    }
                                     context.safePop();
                                   } else {
                                     await showDialog(

@@ -393,6 +393,10 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                               status: 1,
                             ));
                             Navigator.pop(context);
+                            await actions.pushReplacementNamed(
+                              context,
+                              'HomePage',
+                            );
                           }
 
                           setState(() {});

@@ -70,21 +70,6 @@ class _RegisterMoreDetailPageWidgetState
         child: Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primary,
-            automaticallyImplyLeading: false,
-            title: Text(
-              'ระบุข้อมูลเพิ่มเติม',
-              style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Sora',
-                    color: Colors.white,
-                    fontSize: 22.0,
-                  ),
-            ),
-            actions: [],
-            centerTitle: true,
-            elevation: 2.0,
-          ),
           body: SafeArea(
             top: true,
             child: Padding(
@@ -93,6 +78,30 @@ class _RegisterMoreDetailPageWidgetState
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.note_alt_rounded,
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 48.0,
+                          ),
+                          Text(
+                            'ระบุข้อมูลเพิ่มเติม',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Inter',
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Form(
                       key: _model.formKey,
                       autovalidateMode: AutovalidateMode.disabled,
@@ -263,6 +272,7 @@ class _RegisterMoreDetailPageWidgetState
                                 displayName:
                                     '${_model.firstNameController.text} ${_model.lastNameController.text}',
                                 totalCanCreateService: 3,
+                                isFirstTime: true,
                               ));
                               await actions.pushReplacementNamed(
                                 context,
