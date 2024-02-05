@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'booking_list_page_widget.dart' show BookingListPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,6 +36,8 @@ class BookingListPageModel extends FlutterFlowModel<BookingListPageWidget> {
   bool? isCancel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in Container widget.
   String? isCancel2;
+  // Stores action output result for [Bottom Sheet - ReviewFormView] action in Container widget.
+  String? isDone;
 
   /// Initialization and disposal methods.
 
