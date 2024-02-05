@@ -310,6 +310,7 @@ class _ServiceNearMeListPageWidgetState
                               },
                               text: 'มาใหม่',
                               options: FFButtonOptions(
+                                height: 22.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     4.0, 0.0, 4.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -320,6 +321,7 @@ class _ServiceNearMeListPageWidgetState
                                     .override(
                                       fontFamily: 'Inter',
                                       color: Colors.white,
+                                      fontSize: 12.0,
                                     ),
                                 elevation: 3.0,
                                 borderSide: BorderSide(
@@ -347,6 +349,7 @@ class _ServiceNearMeListPageWidgetState
                               },
                               text: 'ใกล้ฉัน',
                               options: FFButtonOptions(
+                                height: 22.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     4.0, 0.0, 4.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -357,6 +360,7 @@ class _ServiceNearMeListPageWidgetState
                                     .override(
                                       fontFamily: 'Inter',
                                       color: Colors.white,
+                                      fontSize: 12.0,
                                     ),
                                 elevation: 3.0,
                                 borderSide: BorderSide(
@@ -394,6 +398,7 @@ class _ServiceNearMeListPageWidgetState
                               },
                               text: 'มาแรง',
                               options: FFButtonOptions(
+                                height: 22.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     4.0, 0.0, 4.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -404,6 +409,7 @@ class _ServiceNearMeListPageWidgetState
                                     .override(
                                       fontFamily: 'Inter',
                                       color: Colors.white,
+                                      fontSize: 12.0,
                                     ),
                                 elevation: 3.0,
                                 borderSide: BorderSide(

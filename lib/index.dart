@@ -18,7 +18,7 @@ export '/service/service_detail_page/service_detail_page_widget.dart'
     show ServiceDetailPageWidget;
 export '/booking/booking_list_page/booking_list_page_widget.dart'
     show BookingListPageWidget;
-export '/my_service_list_page/my_service_list_page_widget.dart'
+export '/service/my_service_list_page/my_service_list_page_widget.dart'
     show MyServiceListPageWidget;
 export '/booking/booking_coming_list_page/booking_coming_list_page_widget.dart'
     show BookingComingListPageWidget;
