@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'approve_from_view_model.dart';
 export 'approve_from_view_model.dart';
 
@@ -101,26 +102,6 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'ข้อมูลผู้จอง',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                   StreamBuilder<UsersRecord>(
                     stream: UsersRecord.getDocument(
                         widget.bookingDocument!.createBy!),
@@ -143,6 +124,27 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                       return Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'ข้อมูลผู้จอง',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -163,16 +165,50 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Expanded(
-                                child: Text(
-                                  'เบอร์โทร : ${columnUsersRecord.phoneNumber}',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 4.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await launchUrl(Uri(
+                                        scheme: 'tel',
+                                        path: columnUsersRecord.phoneNumber,
+                                      ));
+                                    },
+                                    child: Text(
+                                      'เบอร์โทร : ${columnUsersRecord.phoneNumber}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.w500,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await launchUrl(Uri(
+                                    scheme: 'tel',
+                                    path: columnUsersRecord.phoneNumber,
+                                  ));
+                                },
+                                child: Icon(
+                                  Icons.phone_rounded,
+                                  color: FlutterFlowTheme.of(context).secondary,
                                 ),
                               ),
                             ],
@@ -194,13 +230,13 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                               ),
                             ],
                           ),
+                          Divider(
+                            thickness: 3.0,
+                            color: FlutterFlowTheme.of(context).accent4,
+                          ),
                         ],
                       );
                     },
-                  ),
-                  Divider(
-                    thickness: 3.0,
-                    color: FlutterFlowTheme.of(context).accent4,
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),

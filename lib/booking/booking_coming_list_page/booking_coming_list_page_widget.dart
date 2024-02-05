@@ -212,8 +212,7 @@ class _BookingComingListPageWidgetState
                                 child: Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: UpdateBookingStatusViewWidget(
-                                    bookingRef:
-                                        listViewBookingListRecord.reference,
+                                    bookingDocument: listViewBookingListRecord,
                                   ),
                                 ),
                               );

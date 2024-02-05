@@ -5,21 +5,23 @@ import '/components/confirm_dialog_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'update_booking_status_view_model.dart';
 export 'update_booking_status_view_model.dart';
 
 class UpdateBookingStatusViewWidget extends StatefulWidget {
   const UpdateBookingStatusViewWidget({
     super.key,
-    required this.bookingRef,
+    required this.bookingDocument,
   });
 
-  final DocumentReference? bookingRef;
+  final BookingListRecord? bookingDocument;
 
   @override
   State<UpdateBookingStatusViewWidget> createState() =>
@@ -122,25 +124,161 @@ class _UpdateBookingStatusViewWidgetState
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            '     ผู้จองกำลังอยู่ในช่วงบริการของคุณหากดำเนินการเสร็จสิ้นแล้ว กรุณาเปลี่ยนสถานะรายการเป็นรอรีวิว',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '     ผู้จองกำลังอยู่ในช่วงบริการของคุณหากดำเนินการเสร็จสิ้นแล้ว กรุณาเปลี่ยนสถานะรายการเป็นรอรีวิว',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    thickness: 1.0,
+                    color: FlutterFlowTheme.of(context).accent4,
+                  ),
+                  StreamBuilder<UsersRecord>(
+                    stream: UsersRecord.getDocument(
+                        widget.bookingDocument!.createBy!),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      final columnUsersRecord = snapshot.data!;
+                      return Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'ข้อมูลผู้จอง',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'ชื่อ : ${columnUsersRecord.displayName}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 4.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await launchUrl(Uri(
+                                        scheme: 'tel',
+                                        path: columnUsersRecord.phoneNumber,
+                                      ));
+                                    },
+                                    child: Text(
+                                      'เบอร์โทร : ${columnUsersRecord.phoneNumber}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.w500,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await launchUrl(Uri(
+                                    scheme: 'tel',
+                                    path: columnUsersRecord.phoneNumber,
+                                  ));
+                                },
+                                child: Icon(
+                                  Icons.phone_rounded,
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'วันเวลาที่จอง : ${functions.getThaiDatetime(widget.bookingDocument?.bookingDate)}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Divider(
+                            thickness: 3.0,
+                            color: FlutterFlowTheme.of(context).accent4,
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   Builder(
                     builder: (context) => Padding(
@@ -169,7 +307,7 @@ class _UpdateBookingStatusViewWidgetState
                               safeSetState(() => _model.isConfirm = value));
 
                           if ((_model.isConfirm != null) && _model.isConfirm!) {
-                            await widget.bookingRef!
+                            await widget.bookingDocument!.reference
                                 .update(createBookingListRecordData(
                               updateDate: getCurrentTimestamp,
                               updateBy: currentUserReference,
@@ -224,7 +362,7 @@ class _UpdateBookingStatusViewWidgetState
 
                         if (_model.isConfirm3 != null &&
                             _model.isConfirm3 != '') {
-                          await widget.bookingRef!
+                          await widget.bookingDocument!.reference
                               .update(createBookingListRecordData(
                             status: 5,
                             cancelDate: getCurrentTimestamp,
