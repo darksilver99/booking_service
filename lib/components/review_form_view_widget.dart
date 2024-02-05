@@ -207,7 +207,7 @@ class _ReviewFormViewWidgetState extends State<ReviewFormViewWidget> {
                           },
                         ).then((value) => setState(() {}));
 
-                        Navigator.pop(context);
+                        Navigator.pop(context, 'done');
                       },
                       text: 'บันทึก',
                       options: FFButtonOptions(
