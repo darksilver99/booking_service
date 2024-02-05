@@ -133,6 +133,7 @@ class _UpdateBookingStatusViewWidgetState
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
+                                    color: FlutterFlowTheme.of(context).error,
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -179,7 +180,7 @@ class _UpdateBookingStatusViewWidgetState
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Inter',
-                                          fontSize: 18.0,
+                                          fontSize: 20.0,
                                           fontWeight: FontWeight.bold,
                                         ),
                                   ),
@@ -197,7 +198,7 @@ class _UpdateBookingStatusViewWidgetState
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Inter',
-                                        fontSize: 16.0,
+                                        fontSize: 18.0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
@@ -228,29 +229,44 @@ class _UpdateBookingStatusViewWidgetState
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            fontSize: 16.0,
+                                            fontSize: 18.0,
                                             fontWeight: FontWeight.w500,
-                                            decoration:
-                                                TextDecoration.underline,
                                           ),
                                     ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
+                              FFButtonWidget(
+                                onPressed: () async {
                                   await launchUrl(Uri(
                                     scheme: 'tel',
                                     path: columnUsersRecord.phoneNumber,
                                   ));
                                 },
-                                child: Icon(
+                                text: 'ติดต่อผู้จอง',
+                                icon: Icon(
                                   Icons.phone_rounded,
-                                  color: FlutterFlowTheme.of(context).secondary,
+                                  size: 16.0,
+                                ),
+                                options: FFButtonOptions(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        color: Colors.white,
+                                        fontSize: 14.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
                             ],
@@ -265,7 +281,7 @@ class _UpdateBookingStatusViewWidgetState
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Inter',
-                                        fontSize: 16.0,
+                                        fontSize: 18.0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
