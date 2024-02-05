@@ -5,6 +5,7 @@ import '/components/confirm_dialog_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,10 +17,10 @@ export 'approve_from_view_model.dart';
 class ApproveFromViewWidget extends StatefulWidget {
   const ApproveFromViewWidget({
     super.key,
-    required this.bookingRef,
+    required this.bookingDocument,
   });
 
-  final DocumentReference? bookingRef;
+  final BookingListRecord? bookingDocument;
 
   @override
   State<ApproveFromViewWidget> createState() => _ApproveFromViewWidgetState();
@@ -102,6 +103,107 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'ข้อมูลผู้จอง',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Inter',
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  StreamBuilder<UsersRecord>(
+                    stream: UsersRecord.getDocument(
+                        widget.bookingDocument!.createBy!),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      final columnUsersRecord = snapshot.data!;
+                      return Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'ชื่อ : ${columnUsersRecord.displayName}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'เบอร์โทร : ${columnUsersRecord.phoneNumber}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'วันเวลาที่จอง : ${functions.getThaiDatetime(widget.bookingDocument?.bookingDate)}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  Divider(
+                    thickness: 3.0,
+                    color: FlutterFlowTheme.of(context).accent4,
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                     child: TextFormField(
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,
@@ -173,7 +275,7 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                               safeSetState(() => _model.isConfirm = value));
 
                           if ((_model.isConfirm != null) && _model.isConfirm!) {
-                            await widget.bookingRef!
+                            await widget.bookingDocument!.reference
                                 .update(createBookingListRecordData(
                               ownerDetail: _model.textController.text,
                               updateDate: getCurrentTimestamp,
@@ -229,7 +331,7 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
 
                         if (_model.isConfirm2 != null &&
                             _model.isConfirm2 != '') {
-                          await widget.bookingRef!
+                          await widget.bookingDocument!.reference
                               .update(createBookingListRecordData(
                             status: 5,
                             cancelDate: getCurrentTimestamp,
