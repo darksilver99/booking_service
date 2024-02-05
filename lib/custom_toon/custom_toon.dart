@@ -12,3 +12,6 @@ Future subscribeToTopic() async {
   await FirebaseMessaging.instance.subscribeToTopic("booking_service");
 }
 
+Future upSubscribeTopic() async {
+  FirebaseMessaging.instance.deleteToken();
+}
