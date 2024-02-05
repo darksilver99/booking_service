@@ -18,6 +18,8 @@ import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
+import 'package:booking_service/custom_toon/custom_toon.dart';
+
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
 
@@ -147,6 +149,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
         await actions.setStatusType(
           _model.rsBookingStatusList?.toList(),
         );
+        subscribeToTopic();
       }
     });
   }
