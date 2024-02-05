@@ -188,8 +188,6 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                                             fontFamily: 'Inter',
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.w500,
-                                            decoration:
-                                                TextDecoration.underline,
                                           ),
                                     ),
                                   ),
@@ -256,7 +254,7 @@ class _ApproveFromViewWidgetState extends State<ApproveFromViewWidget> {
                     },
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
                     child: TextFormField(
                       controller: _model.textController,
                       focusNode: _model.textFieldFocusNode,

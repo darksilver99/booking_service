@@ -129,12 +129,12 @@ class _UpdateBookingStatusViewWidgetState
                     children: [
                       Expanded(
                         child: Text(
-                          '     ผู้จองกำลังอยู่ในช่วงบริการของคุณหากดำเนินการเสร็จสิ้นแล้ว กรุณาเปลี่ยนสถานะรายการเป็นรอรีวิว',
+                          '     ผู้จองกำลังอยู่ในช่วงบริการของคุณ หากดำเนินการเสร็จสิ้นแล้วกรุณาเปลี่ยนสถานะรายการเป็นรอรีวิว',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
                                     color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 18.0,
+                                    fontSize: 20.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                         ),
@@ -299,7 +299,7 @@ class _UpdateBookingStatusViewWidgetState
                   Builder(
                     builder: (context) => Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           await showDialog(
