@@ -163,7 +163,7 @@ class _PaymentCreditCardPageWidgetState
                                   await processStripePayment(
                                 context,
                                 amount: FFAppState().price,
-                                currency: 'TH',
+                                currency: 'THB',
                                 customerEmail: currentUserEmail,
                                 customerName: currentUserDisplayName,
                                 allowGooglePay: true,
