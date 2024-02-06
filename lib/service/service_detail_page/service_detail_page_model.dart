@@ -31,8 +31,6 @@ class ServiceDetailPageModel extends FlutterFlowModel<ServiceDetailPageWidget> {
   DateTime? datePicked;
   // Stores action output result for [Bottom Sheet - RemarkFormView] action in Button widget.
   String? remarkText;
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue;
 
   /// Initialization and disposal methods.
 

@@ -233,17 +233,52 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         FlutterFlowTheme.of(context).secondary
                       ],
                       stops: [0.0, 0.5, 1.0],
-                      begin: AlignmentDirectional(-1.0, -0.34),
-                      end: AlignmentDirectional(1.0, 0.34),
+                      begin: AlignmentDirectional(0.0, 1.0),
+                      end: AlignmentDirectional(0, -1.0),
                     ),
                   ),
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 64.0, 15.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 32.0, 15.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 1.0),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 16.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 8.0, 0.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/room-service_1057626.png',
+                                    height: 80.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                'จองบริการ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color:
+                                          FlutterFlowTheme.of(context).accent2,
+                                      fontSize: 36.0,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       Expanded(
                         child: MasonryGridView.builder(
                           gridDelegate:
