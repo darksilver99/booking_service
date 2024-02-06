@@ -5,3 +5,4 @@ export 'update_averate_rating.dart' show updateAverateRating;
 export 'navigator.dart' show navigator;
 export 'set_app_version.dart' show setAppVersion;
 export 'close_app.dart' show closeApp;
+export 'get_current_price.dart' show getCurrentPrice;

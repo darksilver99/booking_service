@@ -595,8 +595,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context
-                                          .pushNamed('BookingComingListPage');
+                                      if (currentUserDocument!.expireDate! <
+                                          getCurrentTimestamp) {
+                                        context.pushNamed(
+                                            'PaymentCategoryListPage');
+                                      } else {
+                                        context
+                                            .pushNamed('BookingComingListPage');
+                                      }
                                     },
                                     child: Material(
                                       color: Colors.transparent,

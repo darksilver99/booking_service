@@ -86,7 +86,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       children: [
                         Container(
                           width: double.infinity,
-                          height: 140.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -100,23 +99,27 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Align(
                             alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    'assets/images/room-service_1057626.png',
-                                    height: 80.0,
-                                    fit: BoxFit.cover,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 32.0, 0.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.asset(
+                                      'assets/images/room-service_1057626.png',
+                                      height: 80.0,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'จองบริการ',
-                                  style:
-                                      FlutterFlowTheme.of(context).displaySmall,
-                                ),
-                              ],
+                                  Text(
+                                    'จองบริการ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .displaySmall,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
