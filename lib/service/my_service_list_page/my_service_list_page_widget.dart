@@ -334,7 +334,20 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                                                           'PaymentCategoryListPage');
                                                     } else {
                                                       context.pushNamed(
-                                                          'ServiceFormPage');
+                                                        'ServiceFormPage',
+                                                        queryParameters: {
+                                                          'serviceDocument':
+                                                              serializeParam(
+                                                            listViewServiceListRecord,
+                                                            ParamType.Document,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          'serviceDocument':
+                                                              listViewServiceListRecord,
+                                                        },
+                                                      );
                                                     }
                                                   },
                                                   text: 'แก้ไข',

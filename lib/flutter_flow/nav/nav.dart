@@ -123,7 +123,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ServiceFormPage',
           path: '/serviceFormPage',
-          builder: (context, params) => ServiceFormPageWidget(),
+          asyncParams: {
+            'serviceDocument':
+                getDoc(['service_list'], ServiceListRecord.fromSnapshot),
+          },
+          builder: (context, params) => ServiceFormPageWidget(
+            serviceDocument:
+                params.getParam('serviceDocument', ParamType.Document),
+          ),
         ),
         FFRoute(
           name: 'MapPickerPage',
