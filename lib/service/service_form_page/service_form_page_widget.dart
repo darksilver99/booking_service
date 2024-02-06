@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -950,8 +951,8 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                           updateBy: currentUserReference,
                                           title: _model.textController1.text,
                                           detail: _model.textController2.text,
-                                          startPrice: widget
-                                              .serviceDocument?.startPrice,
+                                          startPrice: int.tryParse(
+                                              _model.textController3.text),
                                           category: _model.dropDownValue,
                                           location:
                                               FFAppState().currentLocation,
@@ -984,16 +985,17 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                               child:
                                                   InformationDialogViewWidget(
                                                 title:
-                                                    'บันทึกข้อมูลเรียบร้อยแล้ว',
-                                                detail:
-                                                    'ผู้ใช้คนอื่นจะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
+                                                    'แก้ไขข้อมูลเรียบร้อยแล้ว',
                                               ),
                                             ),
                                           );
                                         },
                                       ).then((value) => setState(() {}));
 
-                                      context.safePop();
+                                      await actions.pushReplacementNamed(
+                                        context,
+                                        'HomePage',
+                                      );
                                     } else {
                                       await ServiceListRecord.collection
                                           .doc()
