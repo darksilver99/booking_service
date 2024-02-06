@@ -324,9 +324,12 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                                                 ),
                                                 FFButtonWidget(
                                                   onPressed: () async {
-                                                    if (currentUserDocument!
-                                                            .expireDate! <
-                                                        getCurrentTimestamp) {
+                                                    if ((currentUserDocument
+                                                                ?.expireDate !=
+                                                            null) &&
+                                                        (currentUserDocument!
+                                                                .expireDate! <
+                                                            getCurrentTimestamp)) {
                                                       context.pushNamed(
                                                           'PaymentCategoryListPage');
                                                     } else {
