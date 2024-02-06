@@ -193,6 +193,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HelpPage',
           path: '/helpPage',
           builder: (context, params) => HelpPageWidget(),
+        ),
+        FFRoute(
+          name: 'PaymentCategoryListPage',
+          path: '/paymentCategoryListPage',
+          builder: (context, params) => PaymentCategoryListPageWidget(),
+        ),
+        FFRoute(
+          name: 'PaymentCreditCardPage',
+          path: '/paymentCreditCardPage',
+          builder: (context, params) => PaymentCreditCardPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

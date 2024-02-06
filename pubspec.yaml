@@ -31,6 +31,9 @@ dependencies:
   cloud_firestore: 4.13.1
   cloud_firestore_platform_interface: 6.0.5
   cloud_firestore_web: 3.8.5
+  cloud_functions: 4.5.8
+  cloud_functions_platform_interface: 5.5.11
+  cloud_functions_web: 4.6.11
   collection: 1.17.2
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
@@ -55,6 +58,8 @@ dependencies:
   flutter_plugin_android_lifecycle: 2.0.17
   flutter_rating_bar: 4.0.1
   flutter_staggered_grid_view: 0.7.0
+  flutter_stripe: 9.4.0
+  flutter_stripe_web: 4.4.0
   font_awesome_flutter: 10.6.0
   from_css_color: 2.0.0
   geolocator: 10.0.1
@@ -105,6 +110,10 @@ dependencies:
   sign_in_with_apple_web: 1.0.1
   sqflite: 2.2.6
   stream_transform: 2.1.0
+  stripe_android: 9.4.0
+  stripe_ios: 9.4.1
+  stripe_js: 3.2.0
+  stripe_platform_interface: 9.4.0
   timeago: 3.2.2
   url_launcher: 6.1.10
   url_launcher_android: 6.0.27

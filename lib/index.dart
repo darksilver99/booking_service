@@ -31,3 +31,7 @@ export '/service/list/service_new_list_page/service_new_list_page_widget.dart'
 export '/service/list/service_rating_list_page/service_rating_list_page_widget.dart'
     show ServiceRatingListPageWidget;
 export '/help_page/help_page_widget.dart' show HelpPageWidget;
+export '/payment_category_list_page/payment_category_list_page_widget.dart'
+    show PaymentCategoryListPageWidget;
+export '/payment_credit_card_page/payment_credit_card_page_widget.dart'
+    show PaymentCreditCardPageWidget;

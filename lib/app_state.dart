@@ -137,6 +137,12 @@ class FFAppState extends ChangeNotifier {
     _isEnableAd = _value;
     prefs.setBool('ff_isEnableAd', _value);
   }
+
+  int _price = 0;
+  int get price => _price;
+  set price(int _value) {
+    _price = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
