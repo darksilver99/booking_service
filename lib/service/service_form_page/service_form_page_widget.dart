@@ -22,7 +22,12 @@ import 'service_form_page_model.dart';
 export 'service_form_page_model.dart';
 
 class ServiceFormPageWidget extends StatefulWidget {
-  const ServiceFormPageWidget({super.key});
+  const ServiceFormPageWidget({
+    super.key,
+    this.serviceDocument,
+  });
+
+  final ServiceListRecord? serviceDocument;
 
   @override
   State<ServiceFormPageWidget> createState() => _ServiceFormPageWidgetState();
@@ -47,6 +52,27 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
       setState(() {
         FFAppState().currentLocation = null;
       });
+      if (widget.serviceDocument != null) {
+        setState(() {
+          _model.dropDownValueController?.value =
+              widget.serviceDocument!.category;
+        });
+        setState(() {
+          _model.textController1?.text = widget.serviceDocument!.title;
+        });
+        setState(() {
+          _model.textController2?.text = widget.serviceDocument!.detail;
+        });
+        setState(() {
+          _model.textController3?.text =
+              widget.serviceDocument!.startPrice.toString();
+        });
+        FFAppState().currentLocation = widget.serviceDocument?.location;
+        setState(() {
+          _model.imageList =
+              widget.serviceDocument!.image.toList().cast<String>();
+        });
+      }
     });
 
     _model.textController1 ??= TextEditingController();
@@ -916,61 +942,26 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                 }
                                 if (FFAppState().currentLocation != null) {
                                   if (_model.imageList.isNotEmpty) {
-                                    await ServiceListRecord.collection
-                                        .doc()
-                                        .set({
-                                      ...createServiceListRecordData(
-                                        createDate: getCurrentTimestamp,
-                                        createBy: currentUserReference,
-                                        status: 1,
-                                        rating: 0.0,
-                                        title: _model.textController1.text,
-                                        detail: _model.textController2.text,
-                                        startPrice: int.tryParse(
-                                            _model.textController3.text),
-                                        isOpen: true,
-                                        category: _model.dropDownValue,
-                                        location: FFAppState().currentLocation,
-                                      ),
-                                      ...mapToFirestore(
-                                        {
-                                          'image': _model.imageList,
-                                        },
-                                      ),
-                                    });
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: InformationDialogViewWidget(
-                                              title:
-                                                  'บันทึกข้อมูลเรียบร้อยแล้ว',
-                                              detail:
-                                                  'ผู้ใช้คนอื่นจะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => setState(() {}));
-
-                                    if (valueOrDefault<bool>(
-                                        currentUserDocument?.isFirstTime,
-                                        false)) {
+                                    if (widget.serviceDocument != null) {
+                                      await widget.serviceDocument!.reference
+                                          .update({
+                                        ...createServiceListRecordData(
+                                          updateDate: getCurrentTimestamp,
+                                          updateBy: currentUserReference,
+                                          title: _model.textController1.text,
+                                          detail: _model.textController2.text,
+                                          startPrice: widget
+                                              .serviceDocument?.startPrice,
+                                          category: _model.dropDownValue,
+                                          location:
+                                              FFAppState().currentLocation,
+                                        ),
+                                        ...mapToFirestore(
+                                          {
+                                            'image': _model.imageList,
+                                          },
+                                        ),
+                                      });
                                       await showDialog(
                                         context: context,
                                         builder: (dialogContext) {
@@ -993,22 +984,115 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                               child:
                                                   InformationDialogViewWidget(
                                                 title:
-                                                    'พิเศษสำหรับผู้ใช้ใหม่ บัญชีของคุณใช้ฟรี 6 เดือน!',
+                                                    'บันทึกข้อมูลเรียบร้อยแล้ว',
                                                 detail:
-                                                    'ถึง ${functions.getThaiDatetime(functions.getNextDay(180))}',
+                                                    'ผู้ใช้คนอื่นจะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
                                               ),
                                             ),
                                           );
                                         },
                                       ).then((value) => setState(() {}));
 
-                                      await currentUserReference!
-                                          .update(createUsersRecordData(
-                                        isFirstTime: false,
-                                        expireDate: functions.getNextDay(180),
-                                      ));
+                                      context.safePop();
+                                    } else {
+                                      await ServiceListRecord.collection
+                                          .doc()
+                                          .set({
+                                        ...createServiceListRecordData(
+                                          createDate: getCurrentTimestamp,
+                                          createBy: currentUserReference,
+                                          status: 1,
+                                          rating: 0.0,
+                                          title: _model.textController1.text,
+                                          detail: _model.textController2.text,
+                                          startPrice: int.tryParse(
+                                              _model.textController3.text),
+                                          isOpen: true,
+                                          category: _model.dropDownValue,
+                                          location:
+                                              FFAppState().currentLocation,
+                                        ),
+                                        ...mapToFirestore(
+                                          {
+                                            'image': _model.imageList,
+                                          },
+                                        ),
+                                      });
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child:
+                                                  InformationDialogViewWidget(
+                                                title:
+                                                    'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                                detail:
+                                                    'ผู้ใช้คนอื่นจะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => setState(() {}));
+
+                                      if (valueOrDefault<bool>(
+                                          currentUserDocument?.isFirstTime,
+                                          false)) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child:
+                                                    InformationDialogViewWidget(
+                                                  title:
+                                                      'พิเศษสำหรับผู้ใช้ใหม่ บัญชีของคุณใช้ฟรี 6 เดือน!',
+                                                  detail:
+                                                      'ถึง ${functions.getThaiDatetime(functions.getNextDay(180))}',
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+
+                                        await currentUserReference!
+                                            .update(createUsersRecordData(
+                                          isFirstTime: false,
+                                          expireDate: functions.getNextDay(180),
+                                        ));
+                                      }
+                                      context.safePop();
                                     }
-                                    context.safePop();
                                   } else {
                                     await showDialog(
                                       context: context,
