@@ -128,20 +128,78 @@ class _PaymentCreditCardPageWidgetState
                         ),
                       ),
                       Text(
-                        'เนื่องจากบัญชีของคุณหมดอายุการใช้งาน กรุณาชำระเงินเพิ่อเปิดใช้สิทธิ์การใช้งานดังนี้',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        '    เนื่องจากบัญชีของคุณหมดอายุการใช้งาน กรุณาชำระเงินเพิ่อเปิดใช้สิทธิ์การใช้งานดังนี้',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Inter',
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                       Text(
                         '- จัดการบริการของคุณ',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Inter',
+                              fontSize: 18.0,
+                            ),
                       ),
                       Text(
                         '- แสดงบริการของคุณในหน้าค้นหาบริการ',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Inter',
+                              fontSize: 18.0,
+                            ),
                       ),
                       Text(
                         '- จัดการรายการจองที่เข้ามาใช้บริการของคุณ',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Inter',
+                              fontSize: 18.0,
+                            ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '349 บาท/เดือน',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    color: FlutterFlowTheme.of(context).accent3,
+                                    fontSize: 24.0,
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'พิเศษสำหรับคุณเพียง 149 บาท/เดือน',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: FlutterFlowTheme.of(context).error,
+                                      fontSize: 28.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
