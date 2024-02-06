@@ -442,8 +442,10 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
+                                  onPressed: () async {
+                                    await actions.navigator(
+                                      widget.serviceDocument?.location,
+                                    );
                                   },
                                   text: 'นำทาง',
                                   icon: Icon(
@@ -496,21 +498,17 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              RatingBar.builder(
-                                onRatingUpdate: (newValue) => setState(
-                                    () => _model.ratingBarValue = newValue),
+                              RatingBarIndicator(
                                 itemBuilder: (context, index) => Icon(
                                   Icons.star_rounded,
                                   color: FlutterFlowTheme.of(context).warning,
                                 ),
                                 direction: Axis.horizontal,
-                                initialRating: _model.ratingBarValue ??=
-                                    widget.serviceDocument!.rating,
+                                rating: widget.serviceDocument!.rating,
                                 unratedColor:
                                     FlutterFlowTheme.of(context).accent3,
                                 itemCount: 5,
                                 itemSize: 40.0,
-                                glowColor: FlutterFlowTheme.of(context).warning,
                               ),
                               if (false)
                                 Text(

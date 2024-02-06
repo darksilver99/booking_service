@@ -995,7 +995,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                 title:
                                                     'พิเศษสำหรับผู้ใช้ใหม่ บัญชีของคุณใช้ฟรี 6 เดือน!',
                                                 detail:
-                                                    'ถึง : ${functions.getThaiDatetime(functions.getNextDay(180))}',
+                                                    'ถึง ${functions.getThaiDatetime(functions.getNextDay(180))}',
                                               ),
                                             ),
                                           );

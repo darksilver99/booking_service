@@ -210,6 +210,7 @@ class _ServiceRatingListPageWidgetState
                             },
                             text: 'มาใหม่',
                             options: FFButtonOptions(
+                              height: 22.0,
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   4.0, 0.0, 4.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -220,6 +221,7 @@ class _ServiceRatingListPageWidgetState
                                   .override(
                                     fontFamily: 'Inter',
                                     color: Colors.white,
+                                    fontSize: 12.0,
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(
@@ -257,6 +259,7 @@ class _ServiceRatingListPageWidgetState
                             },
                             text: 'ใกล้ฉัน',
                             options: FFButtonOptions(
+                              height: 22.0,
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   4.0, 0.0, 4.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -267,6 +270,7 @@ class _ServiceRatingListPageWidgetState
                                   .override(
                                     fontFamily: 'Inter',
                                     color: Colors.white,
+                                    fontSize: 12.0,
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(
@@ -286,6 +290,7 @@ class _ServiceRatingListPageWidgetState
                             },
                             text: 'มาแรง',
                             options: FFButtonOptions(
+                              height: 22.0,
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   4.0, 0.0, 4.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -296,6 +301,7 @@ class _ServiceRatingListPageWidgetState
                                   .override(
                                     fontFamily: 'Inter',
                                     color: Colors.white,
+                                    fontSize: 12.0,
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(

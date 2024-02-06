@@ -191,6 +191,7 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                             },
                             text: 'มาใหม่',
                             options: FFButtonOptions(
+                              height: 22.0,
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   4.0, 0.0, 4.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -201,6 +202,7 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                                   .override(
                                     fontFamily: 'Inter',
                                     color: Colors.white,
+                                    fontSize: 12.0,
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(
@@ -238,6 +240,7 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                             },
                             text: 'ใกล้ฉัน',
                             options: FFButtonOptions(
+                              height: 22.0,
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   4.0, 0.0, 4.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -248,6 +251,7 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                                   .override(
                                     fontFamily: 'Inter',
                                     color: Colors.white,
+                                    fontSize: 12.0,
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(
@@ -285,6 +289,7 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                             },
                             text: 'มาแรง',
                             options: FFButtonOptions(
+                              height: 22.0,
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   4.0, 0.0, 4.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -295,6 +300,7 @@ class _ServiceNewListPageWidgetState extends State<ServiceNewListPageWidget> {
                                   .override(
                                     fontFamily: 'Inter',
                                     color: Colors.white,
+                                    fontSize: 12.0,
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(
