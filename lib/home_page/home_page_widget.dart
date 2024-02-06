@@ -595,8 +595,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      if (currentUserDocument!.expireDate! <
-                                          getCurrentTimestamp) {
+                                      if ((currentUserDocument?.expireDate !=
+                                              null) &&
+                                          (currentUserDocument!.expireDate! <
+                                              getCurrentTimestamp)) {
                                         context.pushNamed(
                                             'PaymentCategoryListPage');
                                       } else {
