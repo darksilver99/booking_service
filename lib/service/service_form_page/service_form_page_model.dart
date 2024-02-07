@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/components/confirm_dialog_view_widget.dart';
 import '/components/information_dialog_view_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -19,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class ServiceFormPageModel extends FlutterFlowModel<ServiceFormPageWidget> {
@@ -34,6 +36,8 @@ class ServiceFormPageModel extends FlutterFlowModel<ServiceFormPageWidget> {
       imageList.insert(index, item);
   void updateImageListAtIndex(int index, Function(String) updateFn) =>
       imageList[index] = updateFn(imageList[index]);
+
+  bool isLoading = true;
 
   ///  State fields for stateful widgets in this page.
 
@@ -82,6 +86,9 @@ class ServiceFormPageModel extends FlutterFlowModel<ServiceFormPageWidget> {
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
+
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Button widget.
+  bool? isComfirm;
 
   /// Initialization and disposal methods.
 
