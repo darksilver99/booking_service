@@ -57,10 +57,6 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
       });
       if (widget.serviceDocument != null) {
         setState(() {
-          _model.dropDownValueController?.value =
-              widget.serviceDocument!.category;
-        });
-        setState(() {
           _model.textController1?.text = widget.serviceDocument!.title;
         });
         setState(() {
@@ -232,7 +228,13 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                     return FlutterFlowDropDown<String>(
                                       controller:
                                           _model.dropDownValueController ??=
-                                              FormFieldController<String>(null),
+                                              FormFieldController<String>(
+                                        _model.dropDownValue ??=
+                                            widget.serviceDocument != null
+                                                ? widget
+                                                    .serviceDocument?.category
+                                                : null,
+                                      ),
                                       options: dropDownCategoryListRecordList
                                           .map((e) => e.name)
                                           .toList(),
