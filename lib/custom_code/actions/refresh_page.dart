@@ -14,5 +14,8 @@ Future refreshPage(
   String? pageName,
 ) async {
   // Add your function code here!
+  if (Navigator.of(context).canPop()) {
+    context.pop();
+  }
   context.pushNamed(pageName!);
 }

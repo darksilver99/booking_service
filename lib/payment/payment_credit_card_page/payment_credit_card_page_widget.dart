@@ -186,7 +186,7 @@ class _PaymentCreditCardPageWidgetState
                           children: [
                             Expanded(
                               child: Text(
-                                'พิเศษสำหรับคุณเพียง 149 บาท/เดือน',
+                                'พิเศษสำหรับคุณเพียง ${functions.removeLastTwoZero()} บาท/เดือน',
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium

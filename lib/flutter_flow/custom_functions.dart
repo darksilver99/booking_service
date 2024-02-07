@@ -69,3 +69,8 @@ DateTime? getNextDay(int? nextDay) {
   DateTime futureDate = currentDate.add(Duration(days: nextDay!));
   return futureDate;
 }
+
+String? removeLastTwoZero() {
+  String numberString = FFAppState().price.toString();
+  return numberString.substring(0, numberString.length - 2);
+}
