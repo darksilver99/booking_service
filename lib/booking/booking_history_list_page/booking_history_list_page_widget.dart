@@ -176,7 +176,9 @@ class _BookingHistoryListPageWidgetState
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                  child: WaiteBookingDialogViewWidget(),
+                                  child: WaiteBookingDialogViewWidget(
+                                    bookingDocument: listViewBookingListRecord,
+                                  ),
                                 ),
                               );
                             },
