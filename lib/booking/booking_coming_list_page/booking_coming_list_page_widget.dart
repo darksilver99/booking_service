@@ -162,6 +162,7 @@ class _BookingComingListPageWidgetState
               ),
               noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(
                 msg: 'ยังไม่มีรายการจองเข้ามา',
+                refreshPageName: 'BookingComingListPage',
               ),
               itemBuilder: (context, _, listViewIndex) {
                 final listViewBookingListRecord =
