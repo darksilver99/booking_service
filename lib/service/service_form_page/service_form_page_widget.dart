@@ -260,8 +260,10 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                             .secondaryText,
                                         size: 24.0,
                                       ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fillColor: widget.serviceDocument != null
+                                          ? FlutterFlowTheme.of(context).accent4
+                                          : FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
                                       elevation: 2.0,
                                       borderColor: FlutterFlowTheme.of(context)
                                           .alternate,
