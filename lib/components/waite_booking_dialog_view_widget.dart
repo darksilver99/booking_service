@@ -1,14 +1,22 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'waite_booking_dialog_view_model.dart';
 export 'waite_booking_dialog_view_model.dart';
 
 class WaiteBookingDialogViewWidget extends StatefulWidget {
-  const WaiteBookingDialogViewWidget({super.key});
+  const WaiteBookingDialogViewWidget({
+    super.key,
+    required this.bookingDocument,
+  });
+
+  final BookingListRecord? bookingDocument;
 
   @override
   State<WaiteBookingDialogViewWidget> createState() =>
@@ -58,8 +66,7 @@ class _WaiteBookingDialogViewWidgetState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                     child: Text(
                       'กำลังรอผู้ให้บริการตรวจสอบโปรดรอ...',
                       textAlign: TextAlign.center,
@@ -68,6 +75,64 @@ class _WaiteBookingDialogViewWidgetState
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                    child: StreamBuilder<UsersRecord>(
+                      stream: UsersRecord.getDocument(
+                          widget.bookingDocument!.ownerRef!),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                        final buttonUsersRecord = snapshot.data!;
+                        return FFButtonWidget(
+                          onPressed: () async {
+                            await launchUrl(Uri(
+                              scheme: 'tel',
+                              path: buttonUsersRecord.phoneNumber,
+                            ));
+                          },
+                          text: 'ติดต่อผู้ให้บริการ',
+                          icon: Icon(
+                            Icons.phone_rounded,
+                            size: 16.0,
+                          ),
+                          options: FFButtonOptions(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color: Colors.white,
+                                  fontSize: 14.0,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Row(
