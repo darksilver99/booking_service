@@ -270,6 +270,7 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                       margin: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 4.0, 16.0, 4.0),
                                       hidesUnderline: true,
+                                      disabled: widget.serviceDocument != null,
                                       isOverButton: true,
                                       isSearchable: true,
                                       isMultiSelect: false,
