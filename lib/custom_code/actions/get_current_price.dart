@@ -13,4 +13,5 @@ Future getCurrentPrice() async {
   // Add your function code here!
   var rs = await FirebaseFirestore.instance.doc("config/data").get();
   FFAppState().price = rs.data()!["price"];
+  FFAppState().fullPrice = rs.data()!["full_price"];
 }
