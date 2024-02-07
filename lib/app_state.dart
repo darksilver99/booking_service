@@ -143,6 +143,12 @@ class FFAppState extends ChangeNotifier {
   set price(int _value) {
     _price = _value;
   }
+
+  int _fullPrice = 0;
+  int get fullPrice => _fullPrice;
+  set fullPrice(int _value) {
+    _fullPrice = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

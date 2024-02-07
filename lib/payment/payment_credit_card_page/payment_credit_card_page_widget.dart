@@ -158,7 +158,7 @@ class _PaymentCreditCardPageWidgetState
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              '349 บาท/เดือน',
+                              '${FFAppState().fullPrice.toString()} บาท/เดือน',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
