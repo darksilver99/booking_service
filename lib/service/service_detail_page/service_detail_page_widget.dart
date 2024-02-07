@@ -18,6 +18,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'service_detail_page_model.dart';
 export 'service_detail_page_model.dart';
 
@@ -318,20 +319,22 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                       enableDrag: false,
                                       context: context,
                                       builder: (context) {
-                                        return GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
-                                          child: Padding(
-                                            padding: MediaQuery.viewInsetsOf(
-                                                context),
-                                            child: RemarkFormViewWidget(
-                                              hintText:
-                                                  'รายละเอียดถึงผู้ให้บริการ',
+                                        return WebViewAware(
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: RemarkFormViewWidget(
+                                                hintText:
+                                                    'รายละเอียดถึงผู้ให้บริการ',
+                                              ),
                                             ),
                                           ),
                                         );
@@ -365,19 +368,21 @@ class _ServiceDetailPageWidgetState extends State<ServiceDetailPageWidget> {
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child:
-                                                  InformationDialogViewWidget(
-                                                title:
-                                                    'จองเรียบร้อย กรุณารอการติดต่อกลับจากเจ้าของบริการ',
-                                                status: 'success',
+                                            child: WebViewAware(
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child:
+                                                    InformationDialogViewWidget(
+                                                  title:
+                                                      'จองเรียบร้อย กรุณารอการติดต่อกลับจากเจ้าของบริการ',
+                                                  status: 'success',
+                                                ),
                                               ),
                                             ),
                                           );

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'phone_edit_view_model.dart';
 export 'phone_edit_view_model.dart';
 
@@ -175,9 +176,11 @@ class _PhoneEditViewWidgetState extends State<PhoneEditViewWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: InformationDialogViewWidget(
-                                        title: 'อัพเดทข้อมูลเรียบร้อยแล้ว',
-                                        status: 'success',
+                                      child: WebViewAware(
+                                        child: InformationDialogViewWidget(
+                                          title: 'อัพเดทข้อมูลเรียบร้อยแล้ว',
+                                          status: 'success',
+                                        ),
                                       ),
                                     );
                                   },

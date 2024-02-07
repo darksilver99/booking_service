@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'my_service_list_page_model.dart';
 export 'my_service_list_page_model.dart';
 
@@ -131,16 +132,18 @@ class _MyServiceListPageWidgetState extends State<MyServiceListPageWidget> {
                                   backgroundColor: Colors.transparent,
                                   alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: InformationDialogViewWidget(
-                                      title:
-                                          'ขออภัยบัญชีของคุณจำกัด ${valueOrDefault(currentUserDocument?.totalCanCreateService, 0).toString()} บริการ',
-                                      status: 'error',
+                                  child: WebViewAware(
+                                    child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: InformationDialogViewWidget(
+                                        title:
+                                            'ขออภัยบัญชีของคุณจำกัด ${valueOrDefault(currentUserDocument?.totalCanCreateService, 0).toString()} บริการ',
+                                        status: 'error',
+                                      ),
                                     ),
                                   ),
                                 );

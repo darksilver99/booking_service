@@ -18,6 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'booking_history_list_page_model.dart';
 export 'booking_history_list_page_model.dart';
 
@@ -170,14 +171,17 @@ class _BookingHistoryListPageWidgetState
                                 backgroundColor: Colors.transparent,
                                 alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: WaiteBookingDialogViewWidget(
-                                    bookingDocument: listViewBookingListRecord,
+                                child: WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: WaiteBookingDialogViewWidget(
+                                      bookingDocument:
+                                          listViewBookingListRecord,
+                                    ),
                                   ),
                                 ),
                               );
@@ -195,13 +199,15 @@ class _BookingHistoryListPageWidgetState
                                   backgroundColor: Colors.transparent,
                                   alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: ConfirmCancelDialogViewWidget(),
+                                  child: WebViewAware(
+                                    child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: ConfirmCancelDialogViewWidget(),
+                                    ),
                                   ),
                                 );
                               },
@@ -229,14 +235,17 @@ class _BookingHistoryListPageWidgetState
                                 backgroundColor: Colors.transparent,
                                 alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: ApprovedDialogViewWidget(
-                                    bookingDocument: listViewBookingListRecord,
+                                child: WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: ApprovedDialogViewWidget(
+                                      bookingDocument:
+                                          listViewBookingListRecord,
+                                    ),
                                   ),
                                 ),
                               );
@@ -249,18 +258,21 @@ class _BookingHistoryListPageWidgetState
                             enableDrag: false,
                             context: context,
                             builder: (context) {
-                              return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: ReviewFormViewWidget(
-                                    serviceRef:
-                                        listViewBookingListRecord.serviceRef!,
-                                    bookingRef:
-                                        listViewBookingListRecord.reference,
+                              return WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: ReviewFormViewWidget(
+                                      serviceRef:
+                                          listViewBookingListRecord.serviceRef!,
+                                      bookingRef:
+                                          listViewBookingListRecord.reference,
+                                    ),
                                   ),
                                 ),
                               );
@@ -276,14 +288,17 @@ class _BookingHistoryListPageWidgetState
                                 backgroundColor: Colors.transparent,
                                 alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: FinishBookingDetailViewWidget(
-                                    bookingDocument: listViewBookingListRecord,
+                                child: WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: FinishBookingDetailViewWidget(
+                                      bookingDocument:
+                                          listViewBookingListRecord,
+                                    ),
                                   ),
                                 ),
                               );
@@ -299,14 +314,17 @@ class _BookingHistoryListPageWidgetState
                                 backgroundColor: Colors.transparent,
                                 alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: CancelBookingDetailViewWidget(
-                                    bookingDocument: listViewBookingListRecord,
+                                child: WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: CancelBookingDetailViewWidget(
+                                      bookingDocument:
+                                          listViewBookingListRecord,
+                                    ),
                                   ),
                                 ),
                               );

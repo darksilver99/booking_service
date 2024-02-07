@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'update_booking_status_view_model.dart';
 export 'update_booking_status_view_model.dart';
 
@@ -312,11 +313,13 @@ class _UpdateBookingStatusViewWidgetState
                                 backgroundColor: Colors.transparent,
                                 alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: ConfirmDialogViewWidget(
-                                  title:
-                                      'ระบบจะส่งแจ้งเตือนไปยังผู้จองเพื่อให้รีวิว',
-                                  detail:
-                                      'เมื่อผู้จองรีวิวเสร็จสถานะจะเปลี่ยนเป็นเสร็จสิ้น',
+                                child: WebViewAware(
+                                  child: ConfirmDialogViewWidget(
+                                    title:
+                                        'ระบบจะส่งแจ้งเตือนไปยังผู้จองเพื่อให้รีวิว',
+                                    detail:
+                                        'เมื่อผู้จองรีวิวเสร็จสถานะจะเปลี่ยนเป็นเสร็จสิ้น',
+                                  ),
                                 ),
                               );
                             },
@@ -375,7 +378,9 @@ class _UpdateBookingStatusViewWidgetState
                               backgroundColor: Colors.transparent,
                               alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: ConfirmCancelDialogViewWidget(),
+                              child: WebViewAware(
+                                child: ConfirmCancelDialogViewWidget(),
+                              ),
                             );
                           },
                         ).then((value) =>
