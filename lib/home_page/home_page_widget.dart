@@ -330,7 +330,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   FontAwesomeIcons.book,
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryText,
+                                                      .secondaryText,
                                                   size: 32.0,
                                                 ),
                                               ),
@@ -444,7 +444,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 .listUl,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primaryText,
+                                                                .secondaryText,
                                                             size: 32.0,
                                                           ),
                                                         ),
@@ -563,7 +563,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   FontAwesomeIcons.store,
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryText,
+                                                      .secondaryText,
                                                   size: 32.0,
                                                 ),
                                               ),
@@ -686,7 +686,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 .bookMedical,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primaryText,
+                                                                .secondaryText,
                                                             size: 32.0,
                                                           ),
                                                         ),
@@ -805,7 +805,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   Icons.settings_rounded,
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryText,
+                                                      .secondaryText,
                                                   size: 32.0,
                                                 ),
                                               ),
