@@ -11,7 +11,7 @@ import '../../flutter_flow/flutter_flow_util.dart';
 import '../../flutter_flow/flutter_flow_widgets.dart';
 import '../cloud_functions/cloud_functions.dart';
 
-final _isProd = false;
+final _isProd = true;
 
 // Stripe Credentials
 const _kProdStripePublishableKey =

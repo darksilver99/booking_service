@@ -222,7 +222,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 16.0),
+                                          0.0, 0.0, 0.0, 8.0),
                                       child: Container(
                                         width: double.infinity,
                                         child: TextFormField(
@@ -305,6 +305,34 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           validator: _model
                                               .passwordControllerValidator
                                               .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: AlignmentDirectional(1.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 16.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                                'ForgetPasswordPage');
+                                          },
+                                          child: Text(
+                                            'ลืมรหัสผ่าน ?',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                ),
+                                          ),
                                         ),
                                       ),
                                     ),
