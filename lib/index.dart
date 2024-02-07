@@ -35,3 +35,5 @@ export '/payment/payment_category_list_page/payment_category_list_page_widget.da
     show PaymentCategoryListPageWidget;
 export '/payment/payment_credit_card_page/payment_credit_card_page_widget.dart'
     show PaymentCreditCardPageWidget;
+export '/forget_password_page/forget_password_page_widget.dart'
+    show ForgetPasswordPageWidget;

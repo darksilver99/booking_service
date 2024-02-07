@@ -210,6 +210,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'PaymentCreditCardPage',
           path: '/paymentCreditCardPage',
           builder: (context, params) => PaymentCreditCardPageWidget(),
+        ),
+        FFRoute(
+          name: 'ForgetPasswordPage',
+          path: '/forgetPasswordPage',
+          builder: (context, params) => ForgetPasswordPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
