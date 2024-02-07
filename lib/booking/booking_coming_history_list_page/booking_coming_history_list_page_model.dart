@@ -18,6 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class BookingComingHistoryListPageModel
     extends FlutterFlowModel<BookingComingHistoryListPageWidget> {

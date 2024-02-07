@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'register_page_model.dart';
 export 'register_page_model.dart';
 
@@ -645,64 +646,158 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                         ),
                                       ),
                                     ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Theme(
+                                          data: ThemeData(
+                                            checkboxTheme: CheckboxThemeData(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                              ),
+                                            ),
+                                            unselectedWidgetColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                          ),
+                                          child: Checkbox(
+                                            value: _model.checkboxValue ??=
+                                                false,
+                                            onChanged: (newValue) async {
+                                              setState(() => _model
+                                                  .checkboxValue = newValue!);
+                                            },
+                                            activeColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            checkColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'WebViewPage',
+                                              queryParameters: {
+                                                'title': serializeParam(
+                                                  'Terms and Condition',
+                                                  ParamType.String,
+                                                ),
+                                                'url': serializeParam(
+                                                  'https://www.silver-api.com/terms.php',
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          },
+                                          child: Text(
+                                            'Terms and Condition',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  color: Color(0xFF1C15EF),
+                                                  fontWeight: FontWeight.normal,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 16.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          Function() _navigate = () {};
                                           if (_model.formKey.currentState ==
                                                   null ||
                                               !_model.formKey.currentState!
                                                   .validate()) {
                                             return;
                                           }
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-                                          if (_model.passwordController.text !=
-                                              _model.password2Controller.text) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  'Passwords don\'t match!',
+                                          if (_model.checkboxValue!) {
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
+                                            if (_model
+                                                    .passwordController.text !=
+                                                _model
+                                                    .password2Controller.text) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Passwords don\'t match!',
+                                                  ),
                                                 ),
-                                              ),
+                                              );
+                                              return;
+                                            }
+
+                                            final user = await authManager
+                                                .createAccountWithEmail(
+                                              context,
+                                              _model
+                                                  .emailAddressController.text,
+                                              _model.passwordController.text,
                                             );
-                                            return;
+                                            if (user == null) {
+                                              return;
+                                            }
+
+                                            await UsersRecord.collection
+                                                .doc(user.uid)
+                                                .update(createUsersRecordData(
+                                                  email: _model
+                                                      .emailAddressController
+                                                      .text,
+                                                  createdTime:
+                                                      getCurrentTimestamp,
+                                                  phoneNumber: _model
+                                                      .phoneController.text,
+                                                  displayName:
+                                                      '${_model.firstNameController.text} ${_model.lastNameController.text}',
+                                                  firstName: _model
+                                                      .firstNameController.text,
+                                                  lastName: _model
+                                                      .lastNameController.text,
+                                                  totalCanCreateService: 3,
+                                                  isFirstTime: true,
+                                                ));
+
+                                            _navigate = () =>
+                                                context.goNamedAuth('HomePage',
+                                                    context.mounted);
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return WebViewAware(
+                                                  child: AlertDialog(
+                                                    title: Text(
+                                                        'กรุณายอมรับเงื่อนไข'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('ตกลง'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
                                           }
 
-                                          final user = await authManager
-                                              .createAccountWithEmail(
-                                            context,
-                                            _model.emailAddressController.text,
-                                            _model.passwordController.text,
-                                          );
-                                          if (user == null) {
-                                            return;
-                                          }
-
-                                          await UsersRecord.collection
-                                              .doc(user.uid)
-                                              .update(createUsersRecordData(
-                                                email: _model
-                                                    .emailAddressController
-                                                    .text,
-                                                createdTime:
-                                                    getCurrentTimestamp,
-                                                phoneNumber:
-                                                    _model.phoneController.text,
-                                                displayName:
-                                                    '${_model.firstNameController.text} ${_model.lastNameController.text}',
-                                                firstName: _model
-                                                    .firstNameController.text,
-                                                lastName: _model
-                                                    .lastNameController.text,
-                                                totalCanCreateService: 3,
-                                                isFirstTime: true,
-                                              ));
-
-                                          context.goNamedAuth(
-                                              'HomePage', context.mounted);
+                                          _navigate();
                                         },
                                         text: 'ลงทะเบียน',
                                         options: FFButtonOptions(

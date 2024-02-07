@@ -18,6 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'service_near_me_list_page_model.dart';
 export 'service_near_me_list_page_model.dart';
 
@@ -89,14 +90,17 @@ class _ServiceNearMeListPageWidgetState
                 backgroundColor: Colors.transparent,
                 alignment: AlignmentDirectional(0.0, 0.0)
                     .resolve(Directionality.of(context)),
-                child: GestureDetector(
-                  onTap: () => _model.unfocusNode.canRequestFocus
-                      ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                      : FocusScope.of(context).unfocus(),
-                  child: InformationDialogViewWidget(
-                    title: 'ขออภัย ไม่มีบริการใกล้เคียงกับที่อยู่ของคุณ',
-                    status: 'warning',
-                    detail: 'ลองค้นหาให้ไกลขึ้น?',
+                child: WebViewAware(
+                  child: GestureDetector(
+                    onTap: () => _model.unfocusNode.canRequestFocus
+                        ? FocusScope.of(context)
+                            .requestFocus(_model.unfocusNode)
+                        : FocusScope.of(context).unfocus(),
+                    child: InformationDialogViewWidget(
+                      title: 'ขออภัย ไม่มีบริการใกล้เคียงกับที่อยู่ของคุณ',
+                      status: 'warning',
+                      detail: 'ลองค้นหาให้ไกลขึ้น?',
+                    ),
                   ),
                 ),
               );

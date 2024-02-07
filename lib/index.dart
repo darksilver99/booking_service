@@ -37,3 +37,4 @@ export '/payment/payment_credit_card_page/payment_credit_card_page_widget.dart'
     show PaymentCreditCardPageWidget;
 export '/forget_password_page/forget_password_page_widget.dart'
     show ForgetPasswordPageWidget;
+export '/web_view_page/web_view_page_widget.dart' show WebViewPageWidget;

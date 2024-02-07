@@ -215,6 +215,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ForgetPasswordPage',
           path: '/forgetPasswordPage',
           builder: (context, params) => ForgetPasswordPageWidget(),
+        ),
+        FFRoute(
+          name: 'WebViewPage',
+          path: '/webViewPage',
+          builder: (context, params) => WebViewPageWidget(
+            title: params.getParam('title', ParamType.String),
+            url: params.getParam('url', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

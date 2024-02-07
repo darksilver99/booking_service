@@ -21,6 +21,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'service_form_page_model.dart';
 export 'service_form_page_model.dart';
 
@@ -589,24 +590,27 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
+                                                          child: WebViewAware(
                                                             child:
-                                                                InformationDialogViewWidget(
-                                                              title:
-                                                                  'กรุณาอนุญาตการเข้าถึงตำแหน่ง',
-                                                              status: 'warning',
+                                                                GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child:
+                                                                  InformationDialogViewWidget(
+                                                                title:
+                                                                    'กรุณาอนุญาตการเข้าถึงตำแหน่ง',
+                                                                status:
+                                                                    'warning',
+                                                              ),
                                                             ),
                                                           ),
                                                         );
@@ -630,23 +634,26 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
-                                                        child: GestureDetector(
-                                                          onTap: () => _model
-                                                                  .unfocusNode
-                                                                  .canRequestFocus
-                                                              ? FocusScope.of(
-                                                                      context)
-                                                                  .requestFocus(
-                                                                      _model
-                                                                          .unfocusNode)
-                                                              : FocusScope.of(
-                                                                      context)
-                                                                  .unfocus(),
+                                                        child: WebViewAware(
                                                           child:
-                                                              InformationDialogViewWidget(
-                                                            title:
-                                                                'กรุณาอนุญาตการเข้าถึงตำแหน่ง',
-                                                            status: 'warning',
+                                                              GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child:
+                                                                InformationDialogViewWidget(
+                                                              title:
+                                                                  'กรุณาอนุญาตการเข้าถึงตำแหน่ง',
+                                                              status: 'warning',
+                                                            ),
                                                           ),
                                                         ),
                                                       );
@@ -827,22 +834,24 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                             .resolve(
                                                                 Directionality.of(
                                                                     context)),
-                                                    child: GestureDetector(
-                                                      onTap: () => _model
-                                                              .unfocusNode
-                                                              .canRequestFocus
-                                                          ? FocusScope.of(
-                                                                  context)
-                                                              .requestFocus(_model
-                                                                  .unfocusNode)
-                                                          : FocusScope.of(
-                                                                  context)
-                                                              .unfocus(),
-                                                      child:
-                                                          InformationDialogViewWidget(
-                                                        title:
-                                                            'จำกัดรูปภาพ 5 รูป',
-                                                        status: 'warning',
+                                                    child: WebViewAware(
+                                                      child: GestureDetector(
+                                                        onTap: () => _model
+                                                                .unfocusNode
+                                                                .canRequestFocus
+                                                            ? FocusScope.of(
+                                                                    context)
+                                                                .requestFocus(_model
+                                                                    .unfocusNode)
+                                                            : FocusScope.of(
+                                                                    context)
+                                                                .unfocus(),
+                                                        child:
+                                                            InformationDialogViewWidget(
+                                                          title:
+                                                              'จำกัดรูปภาพ 5 รูป',
+                                                          status: 'warning',
+                                                        ),
                                                       ),
                                                     ),
                                                   );
@@ -1016,18 +1025,22 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child:
-                                                    InformationDialogViewWidget(
-                                                  title: 'กรุณาเลือกหมวดบริการ',
-                                                  status: 'warning',
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child:
+                                                      InformationDialogViewWidget(
+                                                    title:
+                                                        'กรุณาเลือกหมวดบริการ',
+                                                    status: 'warning',
+                                                  ),
                                                 ),
                                               ),
                                             );
@@ -1076,19 +1089,23 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child:
-                                                        InformationDialogViewWidget(
-                                                      title:
-                                                          'แก้ไขข้อมูลเรียบร้อยแล้ว',
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogViewWidget(
+                                                        title:
+                                                            'แก้ไขข้อมูลเรียบร้อยแล้ว',
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -1139,21 +1156,25 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child:
-                                                        InformationDialogViewWidget(
-                                                      title:
-                                                          'บันทึกข้อมูลเรียบร้อยแล้ว',
-                                                      detail:
-                                                          'ผู้ใช้คนอื่นจะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogViewWidget(
+                                                        title:
+                                                            'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                                        detail:
+                                                            'ผู้ใช้คนอื่นจะเห็นบริการของคุณเร็วๆนี้ โปรดอดใจรอ',
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -1179,23 +1200,25 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                             .resolve(
                                                                 Directionality.of(
                                                                     context)),
-                                                    child: GestureDetector(
-                                                      onTap: () => _model
-                                                              .unfocusNode
-                                                              .canRequestFocus
-                                                          ? FocusScope.of(
-                                                                  context)
-                                                              .requestFocus(_model
-                                                                  .unfocusNode)
-                                                          : FocusScope.of(
-                                                                  context)
-                                                              .unfocus(),
-                                                      child:
-                                                          InformationDialogViewWidget(
-                                                        title:
-                                                            'พิเศษสำหรับผู้ใช้ใหม่ บัญชีของคุณใช้ฟรี 6 เดือน!',
-                                                        detail:
-                                                            'ถึง ${functions.getThaiDatetime(functions.getNextDay(180))}',
+                                                    child: WebViewAware(
+                                                      child: GestureDetector(
+                                                        onTap: () => _model
+                                                                .unfocusNode
+                                                                .canRequestFocus
+                                                            ? FocusScope.of(
+                                                                    context)
+                                                                .requestFocus(_model
+                                                                    .unfocusNode)
+                                                            : FocusScope.of(
+                                                                    context)
+                                                                .unfocus(),
+                                                        child:
+                                                            InformationDialogViewWidget(
+                                                          title:
+                                                              'พิเศษสำหรับผู้ใช้ใหม่ บัญชีของคุณใช้ฟรี 6 เดือน!',
+                                                          detail:
+                                                              'ถึง ${functions.getThaiDatetime(functions.getNextDay(180))}',
+                                                        ),
                                                       ),
                                                     ),
                                                   );
@@ -1225,19 +1248,21 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child:
-                                                      InformationDialogViewWidget(
-                                                    title: 'กรุณาเลือกรูปภาพ',
-                                                    status: 'warning',
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child:
+                                                        InformationDialogViewWidget(
+                                                      title: 'กรุณาเลือกรูปภาพ',
+                                                      status: 'warning',
+                                                    ),
                                                   ),
                                                 ),
                                               );
@@ -1258,19 +1283,22 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child:
-                                                    InformationDialogViewWidget(
-                                                  title:
-                                                      'กรุณาเลือกสถานที่ตั้งบนแผนที่',
-                                                  status: 'warning',
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child:
+                                                      InformationDialogViewWidget(
+                                                    title:
+                                                        'กรุณาเลือกสถานที่ตั้งบนแผนที่',
+                                                    status: 'warning',
+                                                  ),
                                                 ),
                                               ),
                                             );
@@ -1327,16 +1355,21 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: ConfirmDialogViewWidget(
-                                                  title: 'ต้องการลบบริการนี้?',
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child:
+                                                      ConfirmDialogViewWidget(
+                                                    title:
+                                                        'ต้องการลบบริการนี้?',
+                                                  ),
                                                 ),
                                               ),
                                             );
@@ -1366,19 +1399,21 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child:
-                                                      InformationDialogViewWidget(
-                                                    title:
-                                                        'ลบบริการเรียบร้อยแล้ว',
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child:
+                                                        InformationDialogViewWidget(
+                                                      title:
+                                                          'ลบบริการเรียบร้อยแล้ว',
+                                                    ),
                                                   ),
                                                 ),
                                               );

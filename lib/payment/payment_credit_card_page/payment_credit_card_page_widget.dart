@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'payment_credit_card_page_model.dart';
 export 'payment_credit_card_page_model.dart';
 
@@ -259,16 +260,19 @@ class _PaymentCreditCardPageWidgetState
                                       backgroundColor: Colors.transparent,
                                       alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: InformationDialogViewWidget(
-                                          title: 'ชำระเงินเสร็จสิ้น',
-                                          status: 'success',
+                                      child: WebViewAware(
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: InformationDialogViewWidget(
+                                            title: 'ชำระเงินเสร็จสิ้น',
+                                            status: 'success',
+                                          ),
                                         ),
                                       ),
                                     );
