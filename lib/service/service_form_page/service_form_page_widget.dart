@@ -130,7 +130,9 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
             },
           ),
           title: Text(
-            'สร้างบริการของฉัน',
+            widget.serviceDocument != null
+                ? 'แก้ไขบริการของฉัน'
+                : 'สร้างบริการของฉัน',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Sora',
                   color: Colors.white,
