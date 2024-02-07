@@ -14,6 +14,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -325,8 +326,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
-                                                child: Icon(
-                                                  Icons.settings_rounded,
+                                                child: FaIcon(
+                                                  FontAwesomeIcons.book,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryText,
@@ -438,9 +439,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       0.0,
                                                                       0.0,
                                                                       4.0),
-                                                          child: Icon(
-                                                            Icons
-                                                                .settings_rounded,
+                                                          child: FaIcon(
+                                                            FontAwesomeIcons
+                                                                .listUl,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .primaryText,
@@ -558,8 +559,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
-                                                child: Icon(
-                                                  Icons.settings_rounded,
+                                                child: FaIcon(
+                                                  FontAwesomeIcons.store,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryText,
@@ -680,9 +681,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       0.0,
                                                                       0.0,
                                                                       4.0),
-                                                          child: Icon(
-                                                            Icons
-                                                                .settings_rounded,
+                                                          child: FaIcon(
+                                                            FontAwesomeIcons
+                                                                .bookMedical,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .primaryText,
