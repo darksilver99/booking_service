@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -170,7 +171,13 @@ class _PaymentCategoryListPageWidgetState
                             ParamType.String,
                           ),
                           'url': serializeParam(
-                            'https://vue-payment-qr.web.app/#/?amount=${functions.removeLastTwoZero()}',
+                            'https://vue-payment-qr.web.app/#/?amount=${functions.removeLastTwoZero()}&token=${random_data.randomString(
+                              6,
+                              6,
+                              true,
+                              true,
+                              true,
+                            )}',
                             ParamType.String,
                           ),
                         }.withoutNulls,
