@@ -10,6 +10,9 @@ import 'package:provider/provider.dart';
 import 'web_view_page_model.dart';
 export 'web_view_page_model.dart';
 
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:booking_service/auth/firebase_auth/auth_util.dart';
+
 class WebViewPageWidget extends StatefulWidget {
   const WebViewPageWidget({
     super.key,
@@ -28,6 +31,8 @@ class _WebViewPageWidgetState extends State<WebViewPageWidget> {
   late WebViewPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  InAppWebViewController? _webViewController;
 
   @override
   void initState() {
@@ -56,9 +61,7 @@ class _WebViewPageWidgetState extends State<WebViewPageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -96,13 +99,34 @@ class _WebViewPageWidgetState extends State<WebViewPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: FlutterFlowWebView(
-            content: widget.url!,
-            bypass: false,
-            width: MediaQuery.sizeOf(context).width * 1.0,
-            height: MediaQuery.sizeOf(context).height * 1.0,
-            verticalScroll: false,
-            horizontalScroll: false,
+          child: InAppWebView(
+            initialUrlRequest: URLRequest(url: WebUri(widget.url!)),
+            onWebViewCreated: (controller) {
+              _webViewController = controller;
+              controller.setSettings(
+                settings: InAppWebViewSettings(
+                  cacheEnabled: false,
+                  cacheMode: CacheMode.LOAD_NO_CACHE,
+                  clearCache: true,
+                ),
+              );
+            },
+            onLoadStop: (controller, url) {
+              print("onLoadStop : $url");
+              /*controller.addJavaScriptHandler(
+                handlerName: "getUserData",
+                callback: (args) async {
+                  return {
+                    "userPath": currentUserDocument!.reference.path,
+                  };
+                },
+              );*/
+              // controller.evaluateJavascript(source: 'window.callUploadFunction()');
+            },
+            onConsoleMessage: (controller, msg) {
+              print("onConsoleMessage");
+              print(msg);
+            },
           ),
         ),
       ),
