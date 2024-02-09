@@ -104,23 +104,27 @@ class _WebViewPageWidgetState extends State<WebViewPageWidget> {
             onWebViewCreated: (controller) {
               _webViewController = controller;
               controller.setSettings(
-                settings: InAppWebViewSettings(
-                  cacheEnabled: false,
-                  cacheMode: CacheMode.LOAD_NO_CACHE,
-                  clearCache: true,
-                ),
+                settings: InAppWebViewSettings(incognito: true),
               );
             },
             onLoadStop: (controller, url) {
               print("onLoadStop : $url");
-              /*controller.addJavaScriptHandler(
+              controller.addJavaScriptHandler(
                 handlerName: "getUserData",
                 callback: (args) async {
                   return {
                     "userPath": currentUserDocument!.reference.path,
                   };
                 },
-              );*/
+              );
+
+              controller.addJavaScriptHandler(
+                handlerName: "callUploadFunctionOnFlutter",
+                callback: (args) async {
+                  print(args[0]["userPath"]);
+                },
+              );
+
               // controller.evaluateJavascript(source: 'window.callUploadFunction()');
             },
             onConsoleMessage: (controller, msg) {
