@@ -164,6 +164,7 @@ class _BookingListPageWidgetState extends State<BookingListPageWidget> {
               ),
               noItemsFoundIndicatorBuilder: (_) => NoDataViewWidget(
                 msg: 'ยังไม่มีรายการจอง',
+                refreshPageName: 'BookingListPage',
               ),
               itemBuilder: (context, _, listViewIndex) {
                 final listViewBookingListRecord =
