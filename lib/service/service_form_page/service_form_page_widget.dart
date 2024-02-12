@@ -1335,58 +1335,14 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                   ),
                                 ),
                               ),
-                              Builder(
-                                builder: (context) => Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 8.0, 0.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      if (widget.serviceDocument != null) {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: WebViewAware(
-                                                child: GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child:
-                                                      ConfirmDialogViewWidget(
-                                                    title:
-                                                        'ต้องการลบบริการนี้?',
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => safeSetState(
-                                            () => _model.isComfirm = value));
-
-                                        if ((_model.isComfirm != null) &&
-                                            _model.isComfirm!) {
-                                          await widget
-                                              .serviceDocument!.reference
-                                              .update(
-                                                  createServiceListRecordData(
-                                            deleteDate: getCurrentTimestamp,
-                                            deleteBy: currentUserReference,
-                                            status: 2,
-                                          ));
+                              if (widget.serviceDocument != null)
+                                Builder(
+                                  builder: (context) => Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 8.0, 0.0, 0.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        if (widget.serviceDocument != null) {
                                           await showDialog(
                                             context: context,
                                             builder: (dialogContext) {
@@ -1410,53 +1366,103 @@ class _ServiceFormPageWidgetState extends State<ServiceFormPageWidget> {
                                                         : FocusScope.of(context)
                                                             .unfocus(),
                                                     child:
-                                                        InformationDialogViewWidget(
+                                                        ConfirmDialogViewWidget(
                                                       title:
-                                                          'ลบบริการเรียบร้อยแล้ว',
+                                                          'ต้องการลบบริการนี้?',
                                                     ),
                                                   ),
                                                 ),
                                               );
                                             },
-                                          ).then((value) => setState(() {}));
+                                          ).then((value) => safeSetState(
+                                              () => _model.isComfirm = value));
 
-                                          await actions.pushReplacementNamed(
-                                            context,
-                                            'HomePage',
-                                          );
+                                          if ((_model.isComfirm != null) &&
+                                              _model.isComfirm!) {
+                                            await widget
+                                                .serviceDocument!.reference
+                                                .update(
+                                                    createServiceListRecordData(
+                                              deleteDate: getCurrentTimestamp,
+                                              deleteBy: currentUserReference,
+                                              status: 2,
+                                            ));
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogViewWidget(
+                                                        title:
+                                                            'ลบบริการเรียบร้อยแล้ว',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+
+                                            await actions.pushReplacementNamed(
+                                              context,
+                                              'HomePage',
+                                            );
+                                          }
                                         }
-                                      }
 
-                                      setState(() {});
-                                    },
-                                    text: 'ลบบริการนี้',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 50.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color: FlutterFlowTheme.of(context).error,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            color: Colors.white,
-                                            fontSize: 20.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                        setState(() {});
+                                      },
+                                      text: 'ลบบริการนี้',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color: Colors.white,
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
                                 ),
-                              ),
                             ],
                           ),
                         ),
