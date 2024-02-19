@@ -19,18 +19,22 @@ Future<String> setQRCodePayment(DocumentReference? paymentRef) async {
 
   var url = '';
   const publicKey = "pkey_test_5x1h5fbuqkwm8g53lm0";
-  OmiseFlutter omise = OmiseFlutter(publicKey);
+  const secretKey = "skey_test_5x1cv8dk84i1twgjbxv";
 
+  OmiseFlutter omise = OmiseFlutter(publicKey);
+  print("secretKey");
+  print(FFAppState().price);
   try {
-    final source = await omise.source
-        .create(int.parse(functions.removeLastTwoZero()!), "THB", "promptpay");
+    final source =
+        await omise.source.create(FFAppState().price, "THB", "promptpay");
 
     const urlOmise = 'https://api.omise.co/charges';
 
+    var convertKey = 'Basic ${base64Encode(utf8.encode('$secretKey:'))}';
+
     // อันนี้ได้ ไปแกะ package มันมา
     Map<String, String> header = {
-      'Authorization':
-          'Basic ${base64Encode(utf8.encode('skey_test_5x1cv8dk84i1twgjbxv:'))}',
+      'Authorization': convertKey,
       'Omise-Version': '2019-05-29',
       'Cache-Control': 'no-cache',
       'Content-Type': 'application/json',
