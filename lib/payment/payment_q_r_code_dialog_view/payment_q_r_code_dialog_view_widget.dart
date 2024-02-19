@@ -61,7 +61,9 @@ class _PaymentQRCodeDialogViewWidgetState
       setState(() {
         _model.paymentRef = _model.tmpPaymentRef?.reference;
       });
-      _model.rsURL = await actions.setQRCodePayment();
+      _model.rsURL = await actions.setQRCodePayment(
+        _model.tmpPaymentRef?.reference,
+      );
       setState(() {
         _model.url = _model.rsURL;
       });
