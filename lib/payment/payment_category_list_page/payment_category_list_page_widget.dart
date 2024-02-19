@@ -166,7 +166,7 @@ class _PaymentCategoryListPageWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        if (!true) {
+                        if (true) {
                           await showDialog(
                             context: context,
                             builder: (dialogContext) {
@@ -215,6 +215,11 @@ class _PaymentCategoryListPageWidgetState
                               );
                             },
                           ).then((value) => setState(() {}));
+
+                          await actions.pushReplacementNamed(
+                            context,
+                            'HomePage',
+                          );
                         }
                       },
                       child: Material(

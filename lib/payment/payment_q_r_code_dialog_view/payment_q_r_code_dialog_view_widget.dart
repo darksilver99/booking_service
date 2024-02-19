@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/information_dialog_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'payment_q_r_code_dialog_view_model.dart';
 export 'payment_q_r_code_dialog_view_model.dart';
 
@@ -130,78 +132,104 @@ class _PaymentQRCodeDialogViewWidgetState
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Expanded(
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 6.0, 16.0),
-                      child: StreamBuilder<PaymentHistoryListRecord>(
-                        stream: PaymentHistoryListRecord.getDocument(
-                            _model.paymentRef!),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
+                    child: Builder(
+                      builder: (context) => Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 8.0, 6.0, 16.0),
+                        child: StreamBuilder<PaymentHistoryListRecord>(
+                          stream: PaymentHistoryListRecord.getDocument(
+                              _model.paymentRef!),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          }
-                          final buttonPaymentHistoryListRecord = snapshot.data!;
-                          return FFButtonWidget(
-                            onPressed: () async {
-                              if (buttonPaymentHistoryListRecord.status == 1) {
-                                Navigator.pop(context);
-                              }
-                            },
-                            text: () {
-                              if (buttonPaymentHistoryListRecord.status == 0) {
-                                return 'Processing...';
-                              } else if (buttonPaymentHistoryListRecord
-                                      .status ==
-                                  1) {
-                                return 'Successfully';
-                              } else {
-                                return 'Failed';
-                              }
-                            }(),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: () {
+                              );
+                            }
+                            final buttonPaymentHistoryListRecord =
+                                snapshot.data!;
+                            return FFButtonWidget(
+                              onPressed: () async {
+                                if (buttonPaymentHistoryListRecord.status ==
+                                    1) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: WebViewAware(
+                                          child: InformationDialogViewWidget(
+                                            title: 'ชำระเงินเสร็จสิ้น',
+                                            status: 'success',
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+
+                                  Navigator.pop(context);
+                                }
+                              },
+                              text: () {
                                 if (buttonPaymentHistoryListRecord.status ==
                                     0) {
-                                  return FlutterFlowTheme.of(context).warning;
+                                  return 'Processing...';
                                 } else if (buttonPaymentHistoryListRecord
                                         .status ==
                                     1) {
-                                  return FlutterFlowTheme.of(context).success;
+                                  return 'Successfully';
                                 } else {
-                                  return FlutterFlowTheme.of(context).error;
+                                  return 'Failed';
                                 }
                               }(),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: Colors.white,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: () {
+                                  if (buttonPaymentHistoryListRecord.status ==
+                                      0) {
+                                    return FlutterFlowTheme.of(context).warning;
+                                  } else if (buttonPaymentHistoryListRecord
+                                          .status ==
+                                      1) {
+                                    return FlutterFlowTheme.of(context).success;
+                                  } else {
+                                    return FlutterFlowTheme.of(context).error;
+                                  }
+                                }(),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Colors.white,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
