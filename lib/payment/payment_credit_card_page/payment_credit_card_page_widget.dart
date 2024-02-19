@@ -213,6 +213,40 @@ class _PaymentCreditCardPageWidgetState
                               16.0, 0.0, 16.0, 16.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              var paymentHistoryListRecordReference =
+                                  PaymentHistoryListRecord.collection.doc();
+                              await paymentHistoryListRecordReference
+                                  .set(createPaymentHistoryListRecordData(
+                                createDate: getCurrentTimestamp,
+                                createBy: currentUserReference,
+                                amount: FFAppState().price,
+                                status: 0,
+                                paymentType: 'creditCard',
+                                paymentOrder: random_data.randomString(
+                                  8,
+                                  8,
+                                  true,
+                                  true,
+                                  true,
+                                ),
+                              ));
+                              _model.rsPayment =
+                                  PaymentHistoryListRecord.getDocumentFromData(
+                                      createPaymentHistoryListRecordData(
+                                        createDate: getCurrentTimestamp,
+                                        createBy: currentUserReference,
+                                        amount: FFAppState().price,
+                                        status: 0,
+                                        paymentType: 'creditCard',
+                                        paymentOrder: random_data.randomString(
+                                          8,
+                                          8,
+                                          true,
+                                          true,
+                                          true,
+                                        ),
+                                      ),
+                                      paymentHistoryListRecordReference);
                               final paymentResponse =
                                   await processStripePayment(
                                 context,
@@ -244,23 +278,11 @@ class _PaymentCreditCardPageWidgetState
                                   expireDate: functions.getNextDay(30),
                                 ));
 
-                                await PaymentHistoryListRecord.collection
-                                    .doc()
-                                    .set(createPaymentHistoryListRecordData(
-                                      createDate: getCurrentTimestamp,
-                                      createBy: currentUserReference,
-                                      amount: FFAppState().price,
-                                      status: 1,
-                                      paymentType: 'creditCard',
-                                      paymentDate: getCurrentTimestamp,
-                                      paymentOrder: random_data.randomString(
-                                        8,
-                                        8,
-                                        true,
-                                        true,
-                                        true,
-                                      ),
-                                    ));
+                                await _model.rsPayment!.reference
+                                    .update(createPaymentHistoryListRecordData(
+                                  paymentDate: getCurrentTimestamp,
+                                  status: 1,
+                                ));
                                 await showDialog(
                                   context: context,
                                   builder: (dialogContext) {
