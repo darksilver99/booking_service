@@ -10,8 +10,10 @@ import 'package:provider/provider.dart';
 class ConfirmDialogViewModel extends FlutterFlowModel<ConfirmDialogViewWidget> {
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {}
 
+  @override
   void dispose() {}
 
   /// Action blocks are added here.

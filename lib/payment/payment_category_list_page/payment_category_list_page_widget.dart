@@ -3,9 +3,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/payment/payment_q_r_code_dialog_view/payment_q_r_code_dialog_view_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -167,7 +166,7 @@ class _PaymentCategoryListPageWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        if (true) {
+                        if (!true) {
                           await showDialog(
                             context: context,
                             builder: (dialogContext) {
@@ -194,25 +193,28 @@ class _PaymentCategoryListPageWidgetState
                             },
                           ).then((value) => setState(() {}));
                         } else {
-                          context.pushNamed(
-                            'WebViewPage',
-                            queryParameters: {
-                              'title': serializeParam(
-                                'โอนผ่าน QR Code',
-                                ParamType.String,
-                              ),
-                              'url': serializeParam(
-                                'https://vue-payment-qr.web.app/#/?amount=${functions.removeLastTwoZero()}&token=${random_data.randomString(
-                                  6,
-                                  6,
-                                  true,
-                                  true,
-                                  true,
-                                )}',
-                                ParamType.String,
-                              ),
-                            }.withoutNulls,
-                          );
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: PaymentQRCodeDialogViewWidget(),
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
                         }
                       },
                       child: Material(

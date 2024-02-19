@@ -36,11 +36,29 @@ class PaymentHistoryListRecord extends FirestoreRecord {
   int get amount => _amount ?? 0;
   bool hasAmount() => _amount != null;
 
+  // "payment_type" field.
+  String? _paymentType;
+  String get paymentType => _paymentType ?? '';
+  bool hasPaymentType() => _paymentType != null;
+
+  // "payment_date" field.
+  DateTime? _paymentDate;
+  DateTime? get paymentDate => _paymentDate;
+  bool hasPaymentDate() => _paymentDate != null;
+
+  // "payment_order" field.
+  String? _paymentOrder;
+  String get paymentOrder => _paymentOrder ?? '';
+  bool hasPaymentOrder() => _paymentOrder != null;
+
   void _initializeFields() {
     _createDate = snapshotData['create_date'] as DateTime?;
     _createBy = snapshotData['create_by'] as DocumentReference?;
     _status = castToType<int>(snapshotData['status']);
     _amount = castToType<int>(snapshotData['amount']);
+    _paymentType = snapshotData['payment_type'] as String?;
+    _paymentDate = snapshotData['payment_date'] as DateTime?;
+    _paymentOrder = snapshotData['payment_order'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -83,6 +101,9 @@ Map<String, dynamic> createPaymentHistoryListRecordData({
   DocumentReference? createBy,
   int? status,
   int? amount,
+  String? paymentType,
+  DateTime? paymentDate,
+  String? paymentOrder,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -90,6 +111,9 @@ Map<String, dynamic> createPaymentHistoryListRecordData({
       'create_by': createBy,
       'status': status,
       'amount': amount,
+      'payment_type': paymentType,
+      'payment_date': paymentDate,
+      'payment_order': paymentOrder,
     }.withoutNulls,
   );
 
@@ -105,12 +129,22 @@ class PaymentHistoryListRecordDocumentEquality
     return e1?.createDate == e2?.createDate &&
         e1?.createBy == e2?.createBy &&
         e1?.status == e2?.status &&
-        e1?.amount == e2?.amount;
+        e1?.amount == e2?.amount &&
+        e1?.paymentType == e2?.paymentType &&
+        e1?.paymentDate == e2?.paymentDate &&
+        e1?.paymentOrder == e2?.paymentOrder;
   }
 
   @override
-  int hash(PaymentHistoryListRecord? e) => const ListEquality()
-      .hash([e?.createDate, e?.createBy, e?.status, e?.amount]);
+  int hash(PaymentHistoryListRecord? e) => const ListEquality().hash([
+        e?.createDate,
+        e?.createBy,
+        e?.status,
+        e?.amount,
+        e?.paymentType,
+        e?.paymentDate,
+        e?.paymentOrder
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is PaymentHistoryListRecord;

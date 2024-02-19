@@ -56,12 +56,14 @@ class RegisterMoreDetailPageModel
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     firstNameControllerValidator = _firstNameControllerValidator;
     lastNameControllerValidator = _lastNameControllerValidator;
     phoneControllerValidator = _phoneControllerValidator;
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     firstNameFocusNode?.dispose();

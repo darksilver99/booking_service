@@ -27,10 +27,12 @@ class ConfirmCancelDialogViewModel
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     textControllerValidator = _textControllerValidator;
   }
 
+  @override
   void dispose() {
     textFieldFocusNode?.dispose();
     textController?.dispose();

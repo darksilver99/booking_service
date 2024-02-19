@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -250,6 +251,15 @@ class _PaymentCreditCardPageWidgetState
                                       createBy: currentUserReference,
                                       amount: FFAppState().price,
                                       status: 1,
+                                      paymentType: 'creditCard',
+                                      paymentDate: getCurrentTimestamp,
+                                      paymentOrder: random_data.randomString(
+                                        8,
+                                        8,
+                                        true,
+                                        true,
+                                        true,
+                                      ),
                                     ));
                                 await showDialog(
                                   context: context,

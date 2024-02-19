@@ -30,10 +30,12 @@ class ForgetPasswordPageModel
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     emailAddressControllerValidator = _emailAddressControllerValidator;
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     emailAddressFocusNode?.dispose();

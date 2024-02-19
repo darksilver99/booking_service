@@ -95,6 +95,7 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     emailAddressControllerValidator = _emailAddressControllerValidator;
     passwordVisibility = false;
@@ -106,6 +107,7 @@ class RegisterPageModel extends FlutterFlowModel<RegisterPageWidget> {
     phoneControllerValidator = _phoneControllerValidator;
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     emailAddressFocusNode?.dispose();

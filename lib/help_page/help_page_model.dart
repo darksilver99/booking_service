@@ -81,6 +81,7 @@ class HelpPageModel extends FlutterFlowModel<HelpPageWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     topicControllerValidator = _topicControllerValidator;
     detailControllerValidator = _detailControllerValidator;
@@ -89,6 +90,7 @@ class HelpPageModel extends FlutterFlowModel<HelpPageWidget> {
     contactEmailControllerValidator = _contactEmailControllerValidator;
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     topicFocusNode?.dispose();
